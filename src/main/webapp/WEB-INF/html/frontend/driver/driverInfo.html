@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>司机信息编辑</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../resources/css/common/style.css">
+	<link rel="stylesheet" href="../resources/css/common/modal.css">
+	<link rel="stylesheet" href="../resources/css/common/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/css/common/calendar.css">
+	<link rel="stylesheet" href="../resources/css/common/sm-extend.min.css">
+	<style>
+		.aui-flex {
+			padding: 8px 15px;
+		}
+
+		.aui-flex h4 {
+			color: #444;
+		}
+
+		.aui-flex-box input {
+			border: none;
+		}
+
+		.inp-sm input {
+			width: 100px;
+			margin-right: 5px;
+		}
+
+		.file-btn {
+			width: 100% !important;
+			height: 100% !important;
+		}
+
+		.active {
+			display: block
+		}
+
+		.hidden {
+			display: none
+		}
+
+		.aui-footer-button {
+			position: fixed;
+			bottom: 0;
+		}
+
+		.aui-arrow {
+			font-size: .8rem
+		}
+
+		/* 上一步按钮 */
+		.pre-btn {
+			width: 45% !important;
+			margin-top: 35px;
+			margin-left: 10px;
+			float: left;
+		}
+
+		/* 下一步按钮 */
+		.next-btn {
+			width: 45% !important;
+			margin-top: 35px;
+			margin-right: 10px;
+			float: right;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" id="goBack">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">司机信息</span>
+			</div>
+			<a href="javascript:;" id="goSave" class="aui-navBar-item">保存</a>
+		</header>
+
+		<div class="aui-scrollView">
+			<!-- 第一页 基本信息 -->
+			<div id="module1" class="active">
+				<div class="aui-flex">
+					<h4>基本信息</h4>
+				</div>
+				<form id="baseInfo">
+					<!-- <div class="aui-news-list b-line">
+						<div class="aui-flex">
+							<div class="aui-news-img">
+								<img src="../resources/images/icon-fl1.png" alt="" />
+							</div>
+							<div class="aui-flex-box aui-flex-name">
+								<p>
+									所属公司
+									<em>
+										<input type="text" style="width: 230px;" class="baseInfo-input" id="companyName" name="companyName" readonly>
+										<input type="hidden" class="baseInfo-input" id="id" name="id" value=""/>
+										<input type="hidden" class="baseInfo-input" id="companyCode" name="companyCode" value=""/>
+										<input type="hidden" class="baseInfo-input" id="companyId" name="companyId" value=""/>
+									</em>
+								</p>
+							</div>
+						</div>
+					</div> -->
+
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<div class="aui-news-img" style="float:left;">
+								<img src="../resources/images/icon-fl1.png" alt="" />
+							</div>
+							<div style="float:left;margin-top:3px;">所属公司<span style="color:red;">*</span></div>
+						</div>
+						<div class="aui-arrow" onclick="chooseCompany();">
+							<a href="javascript:;" style="font-size: 0.8rem; " id="companyNameSelect">请选择</a>
+							<input type="hidden" style="width: 230px;" class="baseInfo-input" required="required"
+								id="companyName" name="companyName">
+							<input type="hidden" class="baseInfo-input" id="id" name="id" value="" />
+							<input type="hidden" class="baseInfo-input" id="companyCode" name="companyCode" value="" />
+							<input type="hidden" class="baseInfo-input" id="companyId" name="companyId" value="" />
+						</div>
+					</div>
+
+					<!-- <div class="divHeight"></div> -->
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>姓名<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="baseInfo-input" placeholder="请输入" required="required"
+								data-name="姓名" id="name" name="name" />
+						</div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>性别<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<!-- <input type="text" placeholder="请输入" name="sex" value=""> -->
+							<select id="sex" class="baseInfo-input" name="sex" style="border:none;">
+								<option value="0">男</option>
+								<option value="1">女</option>
+							</select>
+						</div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>出生日期<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="baseInfo-input" required="required" data-name="出生日期"
+								placeholder="请输入" name="birthday" id="birthday" value="" readonly>
+						</div>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>联系电话<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="baseInfo-input" required="required" data-name="联系电话"
+								placeholder="请输入" id="phoneNumber" name="phoneNumber" value="">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line" id="go-type">
+						<div class="aui-flex-box">
+							<p>准驾车型<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-arrow" id="models">
+							请选择
+						</div>
+						<input type="hidden" class="baseInfo-input" required="required" data-name="准驾车型" name="models"
+							value="">
+						<input type="hidden" data-name="准驾车型" name="modelsCode" value="">
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>住址</p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="baseInfo-input" data-name="住址" placeholder="请输入" name="address"
+								value="">
+						</div>
+					</div>
+				</form>
+
+				<footer class="aui-footer-button">
+					<input type="button" id="submit-baseInfo" value="下一步">
+				</footer>
+			</div>
+
+			<!-- 第二页 身份证信息 -->
+			<div id="module2" class="hidden">
+				<form id="upload-sfz">
+					<div class="aui-flex">
+						<h4>身份证</h4>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>身份证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="number" class="sfz-input" id="idCord" name="idCord" value=""
+								onchange="interceptBirthday()">
+						</div>
+					</div>
+
+					<div class="divHeight"></div>
+
+					<div class="aui-flex">
+						<h4>身份证照片（请上传正反两面）</h4>
+					</div>
+
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="faceImg" src="../resources/images/list-ico/no-img.png" alt=""
+								height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">司机身份证照片</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="face">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="emblemImg" src="../resources/images/list-ico/no-img.png"
+								alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">司机身份证照片</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="emblem">
+						</div>
+					</div>
+
+				</form>
+
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-baseinfo" class="pre-btn" value="上一步">
+					<input type="button" id="submit-sfz" class="next-btn" value="下一步">
+				</footer>
+
+			</div>
+
+			<!-- 第三页 驾驶证信息 -->
+			<div id="module3" class="hidden">
+				<form id="upload-jsz">
+					<div class="aui-flex">
+						<h4>驾驶证信息</h4>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="number" class="jsz-input" placeholder="请输入" id="licenseNumber"
+								name="licenseNumber" value="">
+						</div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证初次领证日期<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="jsz-input" style="width:180px;" placeholder="请输入"
+								name="licensingDate" id="licensingDate" value="">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证有效期限<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="jsz-input" style="width:180px;" placeholder="请输入"
+								id="periodValidity" name="periodValidity" value="">
+						</div>
+					</div>
+
+					<div class="divHeight"></div>
+
+					<div class="aui-flex">
+						<h4>驾驶证照片（请上传正本、副本）</h4>
+					</div>
+
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="originalImg" src="../resources/images/list-ico/no-img.png"
+								alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">司机驾驶证照片</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="original">
+						</div>
+					</div>
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="duplicateImg" src="../resources/images/list-ico/no-img.png"
+								alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">司机驾驶证照片</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="duplicate">
+						</div>
+					</div>
+				</form>
+
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-sfz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-jsz" class="next-btn" value="下一步">
+				</footer>
+
+			</div>
+
+			<!-- 第四页 从业资格证 -->
+			<div id="module4" class="hidden">
+				<form id="upload-zgz">
+					<div class="aui-flex">
+						<h4>从业资格证</h4>
+					</div>
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>从业资格证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="zgz-input" name="qualificationCode" id="qualificationCode" placeholder="请输入从业资格证号"
+								value="" required="required">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>有效期限（截止日期）<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" class="zgz-input" style="width: 180px;" id="practitionerLicenseDate" name="practitionerLicenseDate"
+								placeholder="请选择有效期限" value="" required="required">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="zgzPositiveImg" src="../resources/images/list-ico/no-img.png"
+								alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">从业证</p>
+						</div>
+						<div class="aui-next">
+							<span class="preview">预览</span>
+						</div>
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="zgzPositive">
+						</div>
+					</div>
+
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="zgzNegativeImg" src="../resources/images/list-ico/no-img.png"
+								alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">从业证</p>
+						</div>
+						<div class="aui-next">
+							<span class="preview">预览</span>
+						</div>
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="zgzNegative">
+						</div>
+					</div>
+
+				</form>
+
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-jsz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-zgz" class="next-btn" value="提交审核">
+				</footer>
+			</div>
+		</div>
+	</div>
+
+	<div class="popup" id="choose-type">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" id="close-type" class="aui-navBar-item" style="color: #1b9af6; font-weight: normal;">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择准驾车型</span>
+			</div>
+		</header>
+
+		<div id="content-type" class="aui-scrollView"></div>
+
+	</div>
+
+	<div class="popup" id="companys">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:closeCompany();" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择公司</span>
+			</div>
+		</header>
+		<div class="aui-search">
+			<div class="aui-search-box">
+				<input type="text" id="title" placeholder="请输入公司名称">
+			</div>
+		</div>
+		<div id="companysDiv" class="aui-scrollView">
+			<!-- 公司列表 -->
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+	<script>
+		$.config = {
+			router: false
+		}
+	</script>
+	<script type="text/javascript" src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/common.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/frontend/driver/driverInfo.js" charset="utf-8"></script>
+
+</body>
+
+</html>

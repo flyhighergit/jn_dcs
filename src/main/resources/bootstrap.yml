@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: jn_dcs
+  cloud:
+    servicecomb:
+      config:
+        serverAddr: https://cse.cn-north-4.myhuaweicloud.com
+        appName: jn_apps
+        watch:
+          delay: 10000
+      credentials:
+        enabled: true
+        accessKey: BE1AYAXIXO1EHSQKQG8U
+        secretKey: YfaypJBG9o8nf3aoyBlgw1dDVOrQ4e9ecvDOmhXo
+        akskCustomCipher: default
+        project: cn-north-4

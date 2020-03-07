@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhcc.dcs.dao.TSBaseUserDao">
+	<resultMap id="tSBaseUserMap" type="com.dhcc.dcs.entity.TSBaseUser">
+		<id column="id" property="id" />
+		<result column="username" property="userName" />
+		<result column="password" property="password" />
+		<result column="realName" property="realName" />
+		<result column="status" property="status" />
+		<result column="departid" property="departid" />
+		<result column="driver" property="driver" />
+		<result column="id_cord" property="idCord" />
+		<result column="bs_user_type" property="bsUserType" />
+		<result column="delete_flag" property="deleteFlag" />
+	</resultMap>
+	<select id="queryTSBaseUserByUserNameAndPwd" resultMap="tSBaseUserMap" parameterType="String">
+		SELECT
+		t.id,
+		t.username,
+		t.password,
+		t.realName,
+		t.status,
+		t.departid,
+		t.id_cord,
+		t.bs_user_type,
+		t.delete_flag
+		FROM
+		t_s_base_user_app t
+		WHERE
+		t.username =#{username}
+		AND
+		t.password = #{password}
+	</select>
+	<select id="queryTSBaseUserById" resultMap="tSBaseUserMap" parameterType="String">
+		SELECT
+		t.id,
+		t.username,
+		t.password,
+		t.realName,
+		t.status,
+		t.departid,
+		t.id_cord,
+		t.bs_user_type,
+		t.delete_flag
+		FROM
+		t_s_base_user_app t
+		WHERE
+		t.id =#{id}
+	</select>
+	<insert id="save" parameterType="com.dhcc.dcs.entity.TSBaseUser">
+		INSERT
+		INTO
+		t_s_base_user_app(id,username,password,realName,status,departid,driver,id_cord,bs_user_type,delete_flag)
+		VALUES
+		(#{id},#{userName},#{password},#{realName},'1',#{departid},'1',#{idCord},'4',0)
+	</insert>
+	<update id="updatePwd">
+		update t_s_base_user_app
+		<set>
+			<if test="newPassword != null">password=#{newPassword}</if>
+		</set>
+		where id=#{id}
+	</update>
+	<select id="getTSBaseUserByUserName" resultMap="tSBaseUserMap" parameterType="String">
+		SELECT
+		t.id,
+		t.username,
+		t.password,
+		t.realName,
+		t.status,
+		t.departid,
+		t.id_cord,
+		t.bs_user_type,
+		t.delete_flag
+		FROM
+		t_s_base_user_app t
+		WHERE
+		t.username =#{userName} limit 1
+	</select>
+	<select id="getTSBaseUserByIdCord" resultMap="tSBaseUserMap" parameterType="String">
+		SELECT
+		t.id,
+		t.username,
+		t.password,
+		t.realName,
+		t.status,
+		t.departid,
+		t.id_cord,
+		t.bs_user_type,
+		t.delete_flag
+		FROM
+		t_s_base_user_app t
+		WHERE
+		t.id_cord =#{idCord}
+	</select>
+	
+	<update id="updateIdCord" parameterType="map">
+		update t_s_base_user_app
+		set
+			id_cord=#{idCord}
+		where id=#{id}
+	</update>
+
+	<select id="queryTSBaseUserByIdCardAndPwd" resultMap="tSBaseUserMap" parameterType="String">
+		SELECT
+		t.id,
+		t.username,
+		t.password,
+		t.realName,
+		t.status,
+		t.departid,
+		t.id_cord,
+		t.bs_user_type,
+		t.delete_flag
+		FROM
+		t_s_base_user_app t
+		WHERE
+		t.id_cord =#{idCord}
+		AND
+		t.password = #{password}
+	</select>
+
+</mapper>

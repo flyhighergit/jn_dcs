@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbCoalRelatedDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbCoalRelated"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbCoalRelated">
+		<result property="id" column="id"/>
+		<result property="code" column="code"/>
+		<result property="name" column="name"/>
+		<result property="orgShortName" column="org_short_name"/>
+		<result property="parentId" column="parent_id"/>
+		<result property="parentName" column="parent_name"/>
+		<result property="parentShortName" column="parent_short_name"/>
+		<result property="createName" column="create_name"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateName" column="update_name"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="orgLevel" column="org_level"/>
+		<result property="jd" column="jd"/>
+		<result property="wd" column="wd"/>
+		<result property="opPurchase" column="op_purchase"/>
+		<result property="opDispatch" column="op_dispatch"/>
+		<result property="opCarriage" column="op_carriage"/>
+		<result property="opNone" column="op_none"/>
+		<result property="address" column="address"/>
+		<result property="legalPerson" column="legal_person"/>
+		<result property="agent" column="agent"/>
+		<result property="telegraph" column="telegraph"/>
+		<result property="telephone" column="telephone"/>
+		<result property="openingBank" column="opening_bank"/>
+		<result property="bankAccount" column="bank_account"/>
+		<result property="taxpayerIdentification" column="taxpayer_identification"/>
+		<result property="postalCode" column="postal_code"/>
+		<result property="isCollect" column="is_collect"/>
+		<result property="companyType" column="company_type"/>
+		<result property="parnetOrgId" column="parnet_org_id"/>
+		<result property="parentOrgCode" column="parent_org_code"/>
+		<result property="parentOrgName" column="parent_org_name"/>
+		<result property="parentOrgShortName" column="parent_org_short_name"/>
+		<result property="orgTypeCode" column="org_type_code"/>
+		<result property="orgTypeName" column="org_type_name"/>
+		<result property="orgIndustryCode" column="org_industry_code"/>
+		<result property="orgIndustryName" column="org_industry_name"/>
+		<result property="checkStatus" column="check_status"/>
+		<result property="checkerId" column="checker_id"/>
+		<result property="checkTime" column="check_time"/>
+		<result property="isOpening" column="is_opening"/>
+		<result property="profile" column="profile"/>
+		<result property="attributeCode" column="attribute_code"/>
+		<result property="attributeName" column="attribute_name"/>
+		<result property="poundStyle" column="pound_style"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.code,
+			t.name,
+			t.org_short_name,
+			t.parent_id,
+			t.parent_name,
+			t.parent_code,
+			t.parent_short_name,
+			t.create_name,
+			t.create_by,
+			t.create_date,
+			t.update_name,
+			t.update_by,
+			t.update_date,
+			t.org_level,
+			t.jd,
+			t.wd,
+			t.op_purchase,
+			t.op_dispatch,
+			t.op_carriage,
+			t.op_none,
+			t.address,
+			t.legal_person,
+			t.agent,
+			t.telegraph,
+			t.telephone,
+			t.opening_bank,
+			t.bank_account,
+			t.taxpayer_identification,
+			t.postal_code,
+			t.is_collect,
+			t.company_type,
+			t.parnet_org_id,
+			t.parent_org_code,
+			t.parent_org_name,
+			t.parent_org_short_name,
+			t.org_type_code,
+			t.org_type_name,
+			t.org_industry_code,
+			t.org_industry_name,
+			t.check_status,
+			t.checker_id,
+			t.check_time,
+			t.is_opening,
+			t.profile,
+			t.attribute_code,
+			t.attribute_name,
+			t.pound_style,
+	 	</trim>
+	</sql>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_coal_related
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			code,
+			name,
+			org_short_name,
+			parent_id,
+			parent_name,
+			parent_code,
+			parent_short_name,
+			create_name,
+			create_by,
+			create_date,
+			update_name,
+			update_by,
+			update_date,
+			org_level,
+			jd,
+			wd,
+			op_purchase,
+			op_dispatch,
+			op_carriage,
+			op_none,
+			address,
+			legal_person,
+			agent,
+			telegraph,
+			telephone,
+			opening_bank,
+			bank_account,
+			taxpayer_identification,
+			postal_code,
+			is_collect,
+			company_type,
+			parnet_org_id,
+			parent_org_code,
+			parent_org_name,
+			parent_org_short_name,
+			org_type_code,
+			org_type_name,
+			org_industry_code,
+			org_industry_name,
+			check_status,
+			checker_id,
+			check_time,
+			is_opening,
+			profile,
+			attribute_code,
+			attribute_name,
+			pound_style,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{code},
+			#{name},
+			#{orgShortName},
+			#{parentId},
+			#{parentName},
+			#{parentCode},
+			#{parentShortName},
+			#{createName},
+			#{createBy},
+			#{createDate},
+			#{updateName},
+			#{updateBy},
+			#{updateDate},
+			#{orgLevel},
+			#{jd},
+			#{wd},
+			#{opPurchase},
+			#{opDispatch},
+			#{opCarriage},
+			#{opNone},
+			#{address},
+			#{legalPerson},
+			#{agent},
+			#{telegraph},
+			#{telephone},
+			#{openingBank},
+			#{bankAccount},
+			#{taxpayerIdentification},
+			#{postalCode},
+			#{isCollect},
+			#{companyType},
+			#{parnetOrgId},
+			#{parentOrgCode},
+			#{parentOrgName},
+			#{parentOrgShortName},
+			#{orgTypeCode},
+			#{orgTypeName},
+			#{orgIndustryCode},
+			#{orgIndustryName},
+			#{checkStatus},
+			#{checkerId},
+			#{checkTime},
+			#{isOpening},
+			#{profile},
+			#{attributeCode},
+			#{attributeName},
+			#{poundStyle},
+		</trim>
+	</insert>
+	
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_coal_related t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="code != null and code != ''">
+				and t.code = #{code}
+			</if>
+			<if test="name != null and name != ''">
+				and t.name like concat('%',#{name},'%')
+			</if>
+			<if test="orgShortName != null and orgShortName != ''">
+				or t.org_short_name like concat('%',#{orgShortName},'%')
+			</if>
+			<if test="parentId != null and parentId != ''">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and t.parent_code = #{parentCode}			
+			</if>
+			<if test="parentName != null and parentName != ''">
+				and t.parent_name = #{parentName}			
+			</if>
+			<if test="parentShortName != null and parentShortName != ''">
+				and t.parent_short_name = #{parentShortName}			
+			</if>
+			<if test="orgLevel != null and orgLevel != ''">
+				and t.org_level = #{orgLevel}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="jd != null and jd != ''">
+				and t.jd = #{jd}
+			</if>
+			<if test="wd != null and wd != ''">
+				and t.wd = #{wd}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="checkStatus != null and checkStatus != ''">
+				and t.check_status = #{checkStatus}			
+			</if>
+			<if test="companyType != null and companyType != ''">
+				and t.company_type = #{companyType}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="findMaxId" parameterType="java.lang.String" resultMap="resultMap">
+		SELECT max(t.id) id 
+		FROM tb_coal_related t 
+		where t.parent_code = #{value}
+	</select>
+	
+	<select id="findByPage" resultMap="resultMap">
+		select 
+			<include refid="columnSql"></include>
+		from tb_coal_related t
+		<where>
+			<if test="tbCoalRelated.id != null and tbCoalRelated.id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="tbCoalRelated.code != null and tbCoalRelated.code != ''">
+				and t.code = #{code}
+			</if>
+			<if test="tbCoalRelated.name != null and tbCoalRelated.name != ''">
+				and t.name like concat('%',#{name},'%')
+			</if>
+			<if test="tbCoalRelated.orgShortName != null and tbCoalRelated.orgShortName != ''">
+				or t.org_short_name like concat('%',#{orgShortName},'%')
+			</if>
+			<if test="tbCoalRelated.parentId != null and tbCoalRelated.parentId != ''">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="tbCoalRelated.parentCode != null and tbCoalRelated.parentCode != ''">
+				and t.parent_code = #{parentCode}			
+			</if>
+			<if test="tbCoalRelated.parentName != null and tbCoalRelated.parentName != ''">
+				and t.parent_name = #{parentName}			
+			</if>
+			<if test="tbCoalRelated.parentShortName != null and tbCoalRelated.parentShortName != ''">
+				and t.parent_short_name = #{parentShortName}			
+			</if>
+			<if test="tbCoalRelated.orgLevel != null and tbCoalRelated.orgLevel != ''">
+				and t.org_level = #{org_level}			
+			</if>
+			<if test="tbCoalRelated.createBy != null and tbCoalRelated.createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="tbCoalRelated.jd != null and tbCoalRelated.jd != ''">
+				and t.jd = #{jd}			
+			</if>
+			<if test="tbCoalRelated.wd != null and tbCoalRelated.wd != ''">
+				and t.wd = #{wd}			
+			</if>
+			<if test="tbCoalRelated.createDate != null and tbCoalRelated.createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="tbCoalRelated.updateName != null and tbCoalRelated.updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="tbCoalRelated.updateBy != null and tbCoalRelated.updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="tbCoalRelated.updateDate != null and tbCoalRelated.updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="tbCoalRelated.checkStatus != null and tbCoalRelated.checkStatus != ''">
+				and t.check_status = #{tbCoalRelated.checkStatus}			
+			</if>
+		</where>
+		
+		ORDER BY
+		create_date DESC
+		
+		LIMIT #{rowIndex},#{pageSize};
+	</select>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_coal_related t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="code != null and code != ''">
+				and t.code = #{code}			
+			</if>
+			<if test="name != null and name != ''">
+				and t.name = #{name}
+			</if>
+			<if test="orgShortName != null and orgShortName != ''">
+				and t.org_short_name = #{orgShortName}
+			</if>
+			<if test="parentId != null and parentId != ''">
+				and t.parent_id = #{parentId}			
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and t.parent_code = #{parentCode}			
+			</if>
+			<if test="parenName != null and parentName != ''">
+				and t.parent_name = #{parentName}			
+			</if>
+			<if test="parentShortName != null and parentShortName != ''">
+				and t.parent_short_name = #{parentShortName}			
+			</if>
+			<if test="orgLevel != null and orgLevel != ''">
+				and t.org_level = #{orgLevel}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="jd != null and jd != ''">
+				and t.jd = #{jd}			
+			</if>
+			<if test="wd != null and wd != ''">
+				and t.wd = #{wd}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+		</where>
+		
+		ORDER BY
+		create_date DESC
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_coal_related t
+		where t.id = #{value}
+	</select>
+	
+	<select id="queryCount" resultType="int">
+		select 
+			count(1)
+		from tb_coal_related t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="code != null and code != ''">
+				and t.code = #{code}
+			</if>
+			<if test="name != null and name != ''">
+				and t.name like concat('%',#{name},'%')
+			</if>
+			<if test="orgShortName != null and orgShortName != ''">
+				or t.org_short_name like concat('%',#{orgShortName},'%')
+			</if>
+			<if test="parentId != null and parentId != ''">
+				and t.parent_id = #{parentId}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and t.parent_code = #{parentCode}			
+			</if>
+			<if test="parentName != null and parentName != ''">
+				and t.parent_name = #{parentName}			
+			</if>
+			<if test="parentShortName != null and parentShortName != ''">
+				and t.parent_short_name = #{parentShortName}			
+			</if>
+			<if test="orgLevel != null and orgLevel != ''">
+				and t.org_level = #{org_level}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="jd != null and jd != ''">
+				and t.jd = #{jd}			
+			</if>
+			<if test="wd != null and wd != ''">
+				and t.wd = #{wd}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="checkStatus != null and checkStatus != ''">
+				and t.check_status = #{checkStatus}			
+			</if>
+		</where>
+	</select>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_coal_related where id = #{value}
+	</delete>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_coal_related
+		<set>
+			<if test="id != null">
+			id = #{id},
+			</if>
+			<if test="code != null">
+			id = #{code},
+			</if>
+			<if test="name != null">
+			name = #{name},
+			</if>
+			<if test="orgShortName != null">
+			org_short_name = #{orgShortName},
+			</if>
+			<if test="parentId != null">
+			parent_id = #{parentId},
+			</if>
+			<if test="parentName != null">
+			parent_name = #{parentName},
+			</if>
+			<if test="parentShortName != null">
+			parent_short_name = #{parentShortName},
+			</if>
+			<if test="createName != null">
+			create_name = #{createName},
+			</if>
+			<if test="createBy != null">
+			create_by = #{createBy},
+			</if>
+			<if test="createDate != null">
+			create_date = #{createDate},
+			</if>
+			<if test="updateName != null">
+			update_name = #{updateName},
+			</if>
+			<if test="updateBy != null">
+			update_by = #{updateBy},
+			</if>
+			<if test="updateDate != null">
+			update_date = #{updateDate},
+			</if>
+			<if test="orgLevel != null">
+			org_level = #{orgLevel},
+			</if>
+			<if test="jd != null">
+			jd = #{jd},
+			</if>
+			<if test="wd != null">
+			wd = #{wd},
+			</if>
+			<if test="opPurchase != null">
+			op_purchase = #{opPurchase},
+			</if>
+			<if test="opDispatch != null">
+			op_dispatch = #{opDispatch},
+			</if>
+			<if test="opCarriage != null">
+			op_carriage = #{opCarriage},
+			</if>
+			<if test="opNone != null">
+			op_none = #{opNone},
+			</if>
+			<if test="address != null">
+			address = #{address},
+			</if>
+			<if test="legalPerson != null">
+			legal_person = #{legalPerson},
+			</if>
+			<if test="agent != null">
+			agent = #{agent},
+			</if>
+			<if test="telegraph != null">
+			telegraph = #{telegraph},
+			</if>
+			<if test="telephone != null">
+			telephone = #{telephone},
+			</if>
+			<if test="openingBank != null">
+			opening_bank = #{openingBank},
+			</if>
+			<if test="bankAccount != null">
+			bank_account = #{bankAccount},
+			</if>
+			<if test="taxpayerIdentification != null">
+			taxpayer_identification = #{taxpayerIdentification},
+			</if>
+			<if test="postalCode != null">
+			postal_code = #{postalCode},
+			</if>
+			<if test="isCollect != null">
+			is_collect = #{isCollect},
+			</if>
+			<if test="companyType != null">
+			company_type = #{companyType},
+			</if>
+			<if test="parnetOrgId != null">
+			parnet_org_id = #{parnetOrgId},
+			</if>
+			<if test="parentOrgCode != null">
+			parent_org_code = #{parentOrgCode},
+			</if>
+			<if test="parentOrgName != null">
+			parent_org_name = #{parentOrgName},
+			</if>
+			<if test="parentOrgShortName != null">
+			parent_org_short_name = #{parentOrgShortName},
+			</if>
+			<if test="orgTypeCode != null">
+			org_type_code = #{orgTypeCode},
+			</if>
+			<if test="orgTypeName != null">
+			org_type_name = #{orgTypeName},
+			</if>
+			<if test="orgIndustryCode != null">
+			org_industry_code = #{orgIndustryCode},
+			</if>
+			<if test="orgIndustryName != null">
+			org_industry_name = #{orgIndustryName},
+			</if>
+			<if test="checkStatus != null">
+			check_status = #{checkStatus},
+			</if>
+			<if test="checkerId != null">
+			checker_id = #{checkerId},
+			</if>
+			<if test="checkTime != null">
+			check_time = #{checkTime},
+			</if>
+			<if test="isOpening != null">
+			is_opening = #{isOpening},
+			</if>
+			<if test="profile != null">
+			profile = #{profile},
+			</if>
+			<if test="attributeCode != null">
+			attribute_code = #{attributeCode},
+			</if>
+			<if test="attributeName != null">
+			attribute_name = #{attributeName},
+			</if>
+			<if test="poundStyle != null">
+			pound_style = #{poundStyle},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+</mapper>

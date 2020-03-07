@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.PhoneLicensePlateInfoDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.PhoneLicensePlateInfo"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.PhoneLicensePlateInfo">
+		<result property="id" column="id"/>
+		<result property="model" column="model"/>
+		<result property="product" column="product"/>
+		<result property="licenseplate" column="licenseplate"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.model,
+			t.product,
+			t.licenseplate,
+	 	</trim>
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from phone_license_plate_info t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="model != null and model != ''">
+				and t.model = #{model}			
+			</if>
+			<if test="product != null and product != ''">
+				and t.product = #{product}			
+			</if>
+			<if test="licenseplate != null and licenseplate != ''">
+				and t.licenseplate = #{licenseplate}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from phone_license_plate_info t
+		where t.id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into phone_license_plate_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			model,
+			product,
+			licenseplate,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{model},
+			#{product},
+			#{licenseplate},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into phone_license_plate_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			model,
+			product,
+			licenseplate,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.model},
+				#{item.product},
+				#{item.licenseplate},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update phone_license_plate_info
+		<set>
+			model = #{model},
+			product = #{product},
+			licenseplate = #{licenseplate},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update phone_license_plate_info
+		<set>
+			<if test="model != null">
+			model = #{model},
+			</if>
+			<if test="product != null">
+			product = #{product},
+			</if>
+			<if test="licenseplate != null">
+			licenseplate = #{licenseplate},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from phone_license_plate_info where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from phone_license_plate_info where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

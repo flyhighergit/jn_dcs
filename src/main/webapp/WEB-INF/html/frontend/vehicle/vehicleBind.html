@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>车辆绑定</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+	<style>
+		.aui-me-list {
+			overflow: hidden;
+			height: 600px;
+		}
+
+		.feik-ul p {
+			font-size: 0.9rem;
+		}
+
+		.feik-ul p i {
+			width: 90px;
+			display: block;
+			float: left;
+		}
+
+		.aui-text i {
+			margin-right: 7px;
+			font-size: 0.8rem;
+			color: #666;
+		}
+
+		.top-bg {
+			background: url(image/head-bg.png) center center no-repeat;
+			background-size: cover;
+		}
+
+		.mar-top {
+			margin-top: 14px;
+		}
+
+		.img-shadow {
+			box-shadow: 0px 0px 7px #9aacb5;
+			border-radius: 10px;
+		}
+
+		.aui-img-car {
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+
+		.aui-img-car img {
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="aui-flexView" id="vehicles">
+        <header class="aui-navBar  b-line">
+            <a href="javascript:closeVehicle();" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+            <div class="aui-center">
+				<span class="aui-center-title">车辆绑定</span>
+			</div>
+        </header>
+        <div class="aui-search">
+			<div class="aui-search-box">
+				<i class="icon icon-search" id="select"></i>
+				<input type="text" id="title" placeholder="请输入要绑定的车辆的车牌号" >
+			</div>
+		</div>
+		<div id="companysDiv" class="aui-scrollView">
+			<!-- 车辆列表 -->
+		</div>
+    </div>
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/vehicle/vehicleBind.js' charset='utf-8'></script>
+
+</html>

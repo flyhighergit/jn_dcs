@@ -1,0 +1,24 @@
+server:
+  port: 8888
+  env: development
+
+spring:
+  application:
+    name: jn_dcs
+  cloud:
+    servicecomb:
+      swagger:
+        enableJavaChassisAdapter: true
+      discovery:
+        enabled: true
+        address: https://cse.cn-north-4.myhuaweicloud.com
+        serviceName: jn_dcs
+        appName: jn_apps
+        version: 0.0.1
+        healthCheckInterval: 30
+      credentials:
+        enabled: true
+        accessKey: BE1AYAXIXO1EHSQKQG8U
+        secretKey: YfaypJBG9o8nf3aoyBlgw1dDVOrQ4e9ecvDOmhXo
+        akskCustomCipher: default
+        project: cn-north-4

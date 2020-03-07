@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>司机信息详情</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="../resources/css/common/style.css">
+<link rel="stylesheet" href="../resources/css/common/modal.css">
+<link rel="stylesheet" href="../resources/css/common/font-awesome.min.css">
+<link rel="stylesheet" href="../resources/css/common/sm-extend.min.css">
+
+<style>
+	.aui-flex { padding:8px 15px;}
+	.aui-flex h4 { color:#444;}
+	.aui-flex-box input {border: none; }
+	.inp-sm  input{ width:100px; margin-right:5px;}
+	.file-btn{width:100% !important;height:100% !important;}
+	
+	.aui-footer-button{position: fixed;bottom: 0;}
+	.aui-arrow{font-size: .8rem}
+</style>
+
+</head>
+
+<body>
+
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" id="goBack">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">司机信息</span>
+			</div>
+			<a href="javascript:;" id="goEdit" style="display: none;" class="aui-navBar-item">编辑</a>
+		</header>
+		
+		<div class="aui-scrollView">
+			<!-- 第一页 基本信息 -->
+			<div id="module1" class="active">
+				<div class="aui-flex">
+					<h4>基本信息</h4>
+				</div>
+				<form id="baseInfo">
+					<div class="aui-news-list b-line">
+						<div class="aui-flex">
+							<div class="aui-news-img">
+								<img src="../resources/images/icon-fl1.png" alt="" />
+							</div>
+							<div class="aui-flex-box aui-flex-name">
+								<p>
+									所属公司
+									<em id="companyName"></em>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="divHeight"></div>
+					
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>姓名</p>
+						</div>
+						<div class="aui-text" id="name"></div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>性别</p>
+						</div>
+						<div class="aui-text" id="sex"></div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>出生日期</p>
+						</div>
+						<div class="aui-text" id="birthday"></div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>住址</p>
+						</div>
+						<div class="aui-text" id="address"></div>
+					</div>
+
+					<div class="aui-flex b-line" id="go-type">
+						<div class="aui-flex-box">
+							<p>准驾车型</p>
+						</div>
+						<div class="aui-text" id="models"></div>
+					</div>
+				</form>
+			</div>
+
+			<div class="divHeight"></div>
+			
+			<!-- 第二页 身份证信息 -->
+			<div id="module2" class="hidden">
+				<div class="upload" id="sfzInfo">
+					<div class="aui-flex">
+						<h4>身份证</h4>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>身份证号</p>
+						</div>
+						<div class="aui-text" id="idCord"></div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="divHeight"></div>
+
+			<!-- 第三页 驾驶证信息 -->
+			<div id="module3" class="hidden">
+				<div class="upload" id="jszInfo">
+					<div class="aui-flex">
+						<h4>驾驶证信息</h4>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证号</p>
+						</div>
+						<div class="aui-text" id="licenseNumber"></div>
+					</div>
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证初次领证日期</p>
+						</div>
+						<div class="aui-text" id="licensingDate"></div>
+					</div>
+
+					<div class="aui-flex b-line">
+						<div class="aui-flex-box">
+							<p>驾驶证有效期限</p>
+						</div>
+						<div class="aui-text" id="periodValidity"></div>
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- 第四页 从业证 -->
+			<div id="module4">
+				<div class="aui-flex">
+					<h4>从业证</h4>
+				</div>
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>从业资格证号</p>
+					</div>
+					<div class="aui-text" id="qualificationCode"></div>
+				</div>
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>有效期限</p>
+					</div>
+					<div class="aui-text" id="practitionerLicenseDate"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="popup" id="choose-type">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" id="close-type" class="aui-navBar-item" style="color: #1b9af6; font-weight: normal;"> 
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择合同类型</span>
+			</div>
+		</header>
+		
+		<div id="content-type" class="aui-scrollView"></div>
+
+	</div>
+	
+	<script type="text/javascript" src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+	<script>$.config = {router: false}</script>
+	<script type="text/javascript" src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/common.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/frontend/driver/driverInfoDetail.js" charset="utf-8"></script>
+	
+</body>
+</html>

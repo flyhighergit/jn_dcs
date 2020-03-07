@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>承运关系</title>
+
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+
+    <link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+    <style>
+        .aui-img-build {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .aui-img-build img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="aui-flexView">
+        <header class="aui-navBar  b-line">
+            <a href="javascript:;" class="aui-navBar-item goBack">
+                <i class=" fa fa-angle-left fa-lg" style="margin-right:5px;"></i>返回
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title">承运关系</span>
+            </div>
+
+        </header>
+        <div class="aui-scrollView">
+
+            <div class="divHeight"></div>
+
+            <a href="javascript:;" class="aui-flex b-line">
+                <div class="aui-img-build">
+                    <img src="../resources/images/list-ico/build.png" alt="" />
+                </div>
+                <div class="aui-flex-box">
+                    <p id="bindCompany"></p>
+                </div>
+                <div class="aui-next" id="unbind">
+                    <i class=" fa fa-chain-broken"></i>
+                    	解除绑定
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/carriage/relation.js' charset='utf-8'></script>
+
+</html>

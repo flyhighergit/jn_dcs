@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录页</title>
+
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="resources/css/common/style.css" rel="stylesheet"
+	type="text/css">
+<link href="resources/css/common/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+</head>
+<style>
+#qrcode {
+	margin-left: 2rem auto;
+}
+</style>
+<style type="text/css">
+.aui-ver-button {
+	margin-top: 0px;
+}
+</style>
+<body>
+
+	<div class="aui-flexView">
+		<div class="aui-ver-head">
+			<img src="resources/images/head2.png" alt="">
+		</div>
+
+		<div class="aui-ver-form" style="height: 300px">
+
+			<div class="aui-flex">
+				<div class="aui-flex-box">
+					<i class="icon-code fa fa-truck"></i> 
+					<input id="licensePlate" name="licensePlate"  type="text" placeholder="车牌号">
+				</div>
+			</div>
+
+			<div id="qrcode" align="center" style="height: 2rem; margin-top: 2rem;"></div>
+			
+		</div>
+
+	</div>
+	<footer class="aui-footer-button" style="margin-top: -60px">
+		<div class="aui-ver-button">
+			<a class="login-btn" id = "createCode" onclick="make2DCode()">生成二维码</a>
+		</div>
+
+	</footer>
+
+	<script type='text/javascript'
+		src='resources/js/common/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='resources/js/common/sm.min.js'
+		charset='utf-8'></script>
+	<script type='text/javascript'
+		src='resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='resources/js/common/common.js'
+		charset='utf-8'></script>
+	<script type="text/javascript" charset="utf-8"
+		src="resources/js/common/jquery-2.1.1.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="resources/js/common/jquery.qrcode.min.js"></script>
+	<script>
+		//生成二维码
+		function make2DCode() {
+			var licensePlate = $('#licensePlate').val();
+			if(licensePlate==null||licensePlate==""){
+				alert("请输入车牌");
+				return;
+			}
+			$("#qrcode").html("");//清空二维码
+			jQuery('#qrcode').qrcode({
+				render:"canvas",
+				width: "180",
+				height: "180",
+				correctLevel:0,
+				text: utf16to8(licensePlate)
+			}); 
+		}
+	</script>
+</body>
+</html>

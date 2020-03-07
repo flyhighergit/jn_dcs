@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>电子货运单</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+	<style>
+		.sty-ipt input {
+			border: 1px solid #eee;
+			border-radius: 3px;
+			padding: 5px;
+		}
+
+		#time {
+			width: 80px;
+			border: none;
+			height: 28px;
+			text-align: center;
+		}
+
+		.container {
+			position: relative;
+			top: .8rem;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="page">
+
+		<header class="aui-navBar  b-line">
+			<div class="aui-center">
+				<span class="aui-center-title">货运单</span>
+			</div>
+		</header>
+
+		<div class="bar bar-header-secondary">
+			<a href="javascript:;" class="aui-flex sty-ipt" style="padding: 3px 8px;">
+				<div class="aui-flex-box">
+					<p>车牌号：<input type="text" id="licensePlate" style=" width:100px"></p>
+				</div>
+				
+				<div class="aui-we">时间：
+					<select id="time">
+						<option value="all" selected>全部</option>
+						<option value="today">今天</option>
+						<option value="week">近一周</option>
+						<option value="month">近一月</option>
+					</select>
+				</div>
+			</a>
+		</div>
+
+		<div class="content pull-to-refresh-content infinite-scroll infinite-scroll-bottom" data-ptr-distance="55"
+			data-distance="100" style="margin-bottom: 3rem;">
+			<div id="top"></div>
+			<!-- 默认的下拉刷新层 -->
+			<div class="pull-to-refresh-layer">
+				<div class="preloader"></div>
+				<div class="pull-to-refresh-arrow"></div>
+			</div>
+
+			<div class="container">
+
+			</div>
+
+			<!-- 加载提示符 -->
+			<div class="infinite-scroll-preloader">
+				<div class="preloader"></div>
+			</div>
+		</div>
+
+		<!-- <a href="#top" class="anchor"></a> -->
+
+		<footer class="aui-footer ">
+			<a href="javascript:;" class="aui-tabBar-item" id="gowork">
+				<span class="aui-tabBar-item-icon">
+					<i class="fa fa-pencil-square-o "></i>
+				</span>
+				<span class="aui-tabBar-item-text">作业</span>
+			</a>
+			<a href="javascript:;" class="aui-tabBar-item" id="dispatch-bill">
+                <span class="aui-tabBar-item-icon">
+                    <i class=" fa fa-file-text-o "></i>
+                </span>
+                <span class="aui-tabBar-item-text">订单</span>
+            </a>
+			<a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active">
+				<span class="aui-tabBar-item-icon">
+					<i class=" fa fa-file-text-o "></i>
+				</span>
+				<span class="aui-tabBar-item-text">货运单</span>
+			</a>
+
+			<a href="javascript:;" class="aui-tabBar-item" id="gomyself">
+				<span class="aui-tabBar-item-icon">
+					<i class=" fa fa-user-circle-o"></i>
+				</span>
+				<span class="aui-tabBar-item-text">个人</span>
+			</a>
+		</footer>
+
+	</div>
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/waybill/waybill.js' charset='utf-8'></script>
+
+</html>

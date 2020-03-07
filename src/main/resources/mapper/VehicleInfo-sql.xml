@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.VehicleInfoDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.VehicleInfo"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.VehicleInfo">
+		<result property="id" column="id"/>
+		<result property="licensePlate" column="license_plate"/>
+		<result property="sysCompanyName" column="sys_company_name"/>
+		<result property="sysCompanyCode" column="sys_company_code"/>
+		<result property="axles" column="axles"/>
+		<result property="maxPayload" column="max_payload"/>
+		<result property="qualificationCode" column="qualification_code"/>
+		<result property="qualificationPath" column="qualification_path"/>
+		<result property="tradingCode" column="trading_code"/>
+		<result property="tradingPath" column="trading_path"/>
+		<result property="licenceDisc" column="licence_disc"/>
+		<result property="licenceDiscPath" column="licence_disc_path"/>
+		<result property="engineNum" column="engine_num"/>
+		<result property="frameNum" column="frame_num"/>
+		<result property="driverLicense" column="driver_license"/>
+		<result property="driverLicensePath" column="driver_license_path"/>
+		<result property="holder" column="holder"/>
+		<result property="vin" column="vin"/>
+		<result property="phoneNumber" column="phone_number"/>
+		<result property="address" column="address"/>
+		<result property="remark" column="remark"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="createTime" column="create_time"/>
+		<result property="sexOwner" column="sex_owner"/>
+		<result property="bornOwner" column="born_owner"/>
+		<result property="numberOwner" column="number_owner"/>
+		<result property="vehicleTypeName" column="vehicle_type_name"/>
+		<result property="vehicleType" column="vehicle_type"/>
+		<result property="natureUse" column="nature_use"/>
+		<result property="brandModel" column="brand_model"/>
+		<result property="numberDate" column="number_date"/>
+		<result property="issueDate" column="issue_date"/>
+		<result property="nationality" column="nationality"/>
+		<result property="licensingDate" column="licensing_date"/>
+		<result property="modelsCode" column="models_code"/>
+		<result property="models" column="models"/>
+		<result property="periodValidity" column="period_validity"/>
+		<result property="typeQualification" column="type_qualification"/>
+		<result property="issuingTime" column="issuing_time"/>
+		<result property="issuingAuthority" column="issuing_authority"/>
+		<result property="businessName" column="business_name"/>
+		<result property="businessAddress" column="business_address"/>
+		<result property="economicType" column="economic_type"/>
+		<result property="tonnage" column="tonnage"/>
+		<result property="vehicleLength" column="vehicle_length"/>
+		<result property="vehicleWidth" column="vehicle_width"/>
+		<result property="vehicleHeight" column="vehicle_height"/>
+		<result property="businessScope" column="business_scope"/>
+		<result property="cardPath" column="card_path"/>
+		<result property="status" column="status"/>
+		<result property="checkStatus" column="check_status"/>
+		<result property="founder" column="founder"/>
+		<result property="founderId" column="founder_id"/>
+		<result property="modifier" column="modifier"/>
+		<result property="modifierId" column="modifier_id"/>
+		<result property="addressOwner" column="address_owner"/>
+		<result property="checkerId" column="checker_id"/>
+		<result property="checkTime" column="check_time"/>
+		
+		<result property="travelLicenseDate" column="travel_license_date"/>
+		<result property="driveLicenseDate" column="drive_license_date"/>
+		<result property="practitionerLicenseDate" column="practitioner_license_date"/>
+		<result property="transportLicenseDate" column="transport_license_date"/>
+		<result property="transportIssueDate" column="transport_issue_date"/>
+		<result property="brandColor" column="brand_color"/>
+		<result property="brandColorName" column="brand_color_name"/>
+		
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.license_plate,
+			t.sys_company_name,
+			t.sys_company_code,
+			t.axles,
+			t.max_payload,
+			t.qualification_code,
+			t.qualification_path,
+			t.trading_code,
+			t.trading_path,
+			t.licence_disc,
+			t.licence_disc_path,
+			t.engine_num,
+			t.frame_num,
+			t.driver_license,
+			t.driver_license_path,
+			t.holder,
+			t.vin,
+			t.phone_number,
+			t.address,
+			t.remark,
+			t.update_time,
+			t.create_time,
+			t.sex_owner,
+			t.born_owner,
+			t.number_owner,
+			t.vehicle_type_name,
+			t.vehicle_type,
+			t.nature_use,
+			t.brand_model,
+			t.number_date,
+			t.issue_date,
+			t.nationality,
+			t.licensing_date,
+			t.models_code,
+			t.models,
+			t.period_validity,
+			t.type_qualification,
+			t.issuing_time,
+			t.issuing_authority,
+			t.business_name,
+			t.business_address,
+			t.economic_type,
+			t.tonnage,
+			t.vehicle_length,
+			t.vehicle_width,
+			t.vehicle_height,
+			t.business_scope,
+			t.card_path,
+			t.status,
+			t.check_status,
+			t.founder,
+			t.founder_id,
+			t.modifier,
+			t.modifier_id,
+			t.address_owner,
+			t.checker_id,
+			t.check_time,
+			t.travel_license_date,
+			t.drive_license_date,
+			t.practitioner_license_date,
+			t.transport_license_date,
+			t.transport_issue_date,
+			t.brand_color,
+			t.brand_color_name,
+	 	</trim>
+	</sql>
+	
+	<select id="find" resultType="com.dhcc.dcs.entity.VehicleInfo">
+		SELECT
+			<include refid="columnSql"></include>
+		FROM
+			tb_vehicle_info t
+		<where>
+			<if test="vehicleInfo.sysCompanyCode != null and vehicleInfo.sysCompanyCode != ''">
+				and t.sys_company_code = #{vehicleInfo.sysCompanyCode}
+			</if>
+			<if test="vehicleInfo.id != null and vehicleInfo.id != ''">
+				and t.id = #{vehicleInfo.id}
+			</if>
+			<if test="vehicleInfo.licensePlate != null and vehicleInfo.licensePlate!= ''">
+				and t.license_plate = #{vehicleInfo.licensePlate}
+			</if>
+			<if test="vehicleInfo.status != null and vehicleInfo.status !=''">
+				and t.status = #{vehicleInfo.status}
+			</if>
+			<if test="vehicleInfo.checkStatus != null and vehicleInfo.checkStatus !=''">
+				and t.check_status = #{vehicleInfo.checkStatus}
+			</if>
+			<if test="vehicleInfo.founderId != null and vehicleInfo.founderId !=''">
+				and t.founder_id = #{vehicleInfo.founderId}
+			</if>
+		</where>
+		ORDER BY t.check_status DESC,t.create_time DESC,t.update_time DESC
+	</select>
+	
+	<select id="queryCount" resultType="int" parameterMap="parameterMap">
+		select count(*)
+		from tb_vehicle_info
+		<where>
+			<if test="id != null and id != '' ">
+				id = #{id}
+			</if>
+			<if test="sysCompanyCode != null and sysCompanyCode != ''">
+				and sys_company_code = #{sysCompanyCode}
+			</if>
+			<if test="licensePlate != null and licensePlate!= ''">
+				and license_plate = #{licensePlate}
+			</if>
+			<if test="status != null and status !=''">
+				and status = #{status}
+			</if>
+			<if test="checkStatus != null and checkStatus !=''">
+				and check_status = #{checkStatus}
+			</if>
+			<if test="founderId != null and founderId !=''">
+				and founder_id = #{founderId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_vehicle_info t
+		where t.id = #{value}
+	</select>
+	
+	<select id="getByLicensePlate" parameterType="java.lang.String" resultType="com.dhcc.dcs.entity.VehicleInfo">
+		select 
+			<include refid="columnSql"></include>
+		from tb_vehicle_info t
+		where t.license_plate=#{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_vehicle_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			license_plate,
+			sys_company_name,
+			sys_company_code,
+			axles,
+			max_payload,
+			qualification_code,
+			qualification_path,
+			trading_code,
+			trading_path,
+			licence_disc,
+			licence_disc_path,
+			engine_num,
+			frame_num,
+			driver_license,
+			driver_license_path,
+			holder,
+			vin,
+			phone_number,
+			address,
+			remark,
+			update_time,
+			create_time,
+			sex_owner,
+			born_owner,
+			number_owner,
+			vehicle_type_name,
+			vehicle_type,
+			nature_use,
+			brand_model,
+			number_date,
+			issue_date,
+			nationality,
+			licensing_date,
+			models_code,
+			models,
+			period_validity,
+			type_qualification,
+			issuing_time,
+			issuing_authority,
+			business_name,
+			business_address,
+			economic_type,
+			tonnage,
+			vehicle_length,
+			vehicle_width,
+			vehicle_height,
+			business_scope,
+			card_path,
+			status,
+			check_status,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			address_owner,
+			checker_id,
+			check_time,
+			travel_license_date,
+			drive_license_date,
+			practitioner_license_date,
+			transport_license_date,
+			transport_issue_date,
+			brand_color,
+			brand_color_name,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{licensePlate},
+			#{sysCompanyName},
+			#{sysCompanyCode},
+			#{axles},
+			#{maxPayload},
+			#{qualificationCode},
+			#{qualificationPath},
+			#{tradingCode},
+			#{tradingPath},
+			#{licenceDisc},
+			#{licenceDiscPath},
+			#{engineNum},
+			#{frameNum},
+			#{driverLicense},
+			#{driverLicensePath},
+			#{holder},
+			#{vin},
+			#{phoneNumber},
+			#{address},
+			#{remark},
+			#{updateTime},
+			#{createTime},
+			#{sexOwner},
+			#{bornOwner},
+			#{numberOwner},
+			#{vehicleTypeName},
+			#{vehicleType},
+			#{natureUse},
+			#{brandModel},
+			#{numberDate},
+			#{issueDate},
+			#{nationality},
+			#{licensingDate},
+			#{modelsCode},
+			#{models},
+			#{periodValidity},
+			#{typeQualification},
+			#{issuingTime},
+			#{issuingAuthority},
+			#{businessName},
+			#{businessAddress},
+			#{economicType},
+			#{tonnage},
+			#{vehicleLength},
+			#{vehicleWidth},
+			#{vehicleHeight},
+			#{businessScope},
+			#{cardPath},
+			#{status},
+			#{checkStatus},
+			#{founder},
+			#{founderId},
+			#{modifier},
+			#{modifierId},
+			#{addressOwner},
+			#{checkerId},
+			#{checkTime},
+			#{travelLicenseDate},
+			#{driveLicenseDate},
+			#{practitionerLicenseDate},
+			#{transportLicenseDate},
+			#{transportIssueDate},
+			#{brandColor},
+			#{brandColorName},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_vehicle_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			license_plate,
+			sys_company_name,
+			sys_company_code,
+			axles,
+			max_payload,
+			qualification_code,
+			qualification_path,
+			trading_code,
+			trading_path,
+			licence_disc,
+			licence_disc_path,
+			engine_num,
+			frame_num,
+			driver_license,
+			driver_license_path,
+			holder,
+			vin,
+			phone_number,
+			address,
+			remark,
+			update_time,
+			create_time,
+			sex_owner,
+			born_owner,
+			number_owner,
+			vehicle_type_name,
+			vehicle_type,
+			nature_use,
+			brand_model,
+			number_date,
+			issue_date,
+			nationality,
+			licensing_date,
+			models_code,
+			models,
+			period_validity,
+			type_qualification,
+			issuing_time,
+			issuing_authority,
+			business_name,
+			business_address,
+			economic_type,
+			tonnage,
+			vehicle_length,
+			vehicle_width,
+			vehicle_height,
+			business_scope,
+			card_path,
+			status,
+			check_status,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			address_owner,
+			checker_id,
+			check_time,
+			travel_license_date,
+			drive_license_date,
+			practitioner_license_date,
+			transport_license_date,
+			transport_issue_date,
+			brand_color,
+			brand_color_name,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.licensePlate},
+				#{item.sysCompanyName},
+				#{item.sysCompanyCode},
+				#{item.axles},
+				#{item.maxPayload},
+				#{item.qualificationCode},
+				#{item.qualificationPath},
+				#{item.tradingCode},
+				#{item.tradingPath},
+				#{item.licenceDisc},
+				#{item.licenceDiscPath},
+				#{item.engineNum},
+				#{item.frameNum},
+				#{item.driverLicense},
+				#{item.driverLicensePath},
+				#{item.holder},
+				#{item.vin},
+				#{item.phoneNumber},
+				#{item.address},
+				#{item.remark},
+				#{item.updateTime},
+				#{item.createTime},
+				#{item.sexOwner},
+				#{item.bornOwner},
+				#{item.numberOwner},
+				#{item.vehicleTypeName},
+				#{item.vehicleType},
+				#{item.natureUse},
+				#{item.brandModel},
+				#{item.numberDate},
+				#{item.issueDate},
+				#{item.nationality},
+				#{item.licensingDate},
+				#{item.modelsCode},
+				#{item.models},
+				#{item.periodValidity},
+				#{item.typeQualification},
+				#{item.issuingTime},
+				#{item.issuingAuthority},
+				#{item.businessName},
+				#{item.businessAddress},
+				#{item.economicType},
+				#{item.tonnage},
+				#{item.vehicleLength},
+				#{item.vehicleWidth},
+				#{item.vehicleHeight},
+				#{item.businessScope},
+				#{item.cardPath},
+				#{item.status},
+				#{item.checkStatus},
+				#{item.founder},
+				#{item.founderId},
+				#{item.modifier},
+				#{item.modifierId},
+				#{item.addressOwner},
+				#{item.checkerId},
+				#{item.checkTime},
+				#{item.travelLicenseDate},
+				#{item.driveLicenseDate},
+				#{item.practitionerLicenseDate},
+				#{item.transportLicenseDate},
+				#{item.transportIssueDate},
+				#{item.brandColor},
+				#{item.brandColorName},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_vehicle_info
+		<set>
+			license_plate = #{licensePlate},
+			sys_company_name = #{sysCompanyName},
+			sys_company_code = #{sysCompanyCode},
+			axles = #{axles},
+			max_payload = #{maxPayload},
+			qualification_code = #{qualificationCode},
+			qualification_path = #{qualificationPath},
+			trading_code = #{tradingCode},
+			trading_path = #{tradingPath},
+			licence_disc = #{licenceDisc},
+			licence_disc_path = #{licenceDiscPath},
+			engine_num = #{engineNum},
+			frame_num = #{frameNum},
+			driver_license = #{driverLicense},
+			driver_license_path = #{driverLicensePath},
+			holder = #{holder},
+			vin = #{vin},
+			phone_number = #{phoneNumber},
+			address = #{address},
+			remark = #{remark},
+			update_time = #{updateTime},
+			create_time = #{createTime},
+			sex_owner = #{sexOwner},
+			born_owner = #{bornOwner},
+			number_owner = #{numberOwner},
+			vehicle_type_name = #{vehicleTypeName},
+			vehicle_type = #{vehicleType},
+			nature_use = #{natureUse},
+			brand_model = #{brandModel},
+			number_date = #{numberDate},
+			issue_date = #{issueDate},
+			nationality = #{nationality},
+			licensing_date = #{licensingDate},
+			models_code = #{modelsCode},
+			models = #{models},
+			period_validity = #{periodValidity},
+			type_qualification = #{typeQualification},
+			issuing_time = #{issuingTime},
+			issuing_authority = #{issuingAuthority},
+			business_name = #{businessName},
+			business_address = #{businessAddress},
+			economic_type = #{economicType},
+			tonnage = #{tonnage},
+			vehicle_length = #{vehicleLength},
+			vehicle_width = #{vehicleWidth},
+			vehicle_height = #{vehicleHeight},
+			business_scope = #{businessScope},
+			card_path = #{cardPath},
+			status = #{status},
+			check_status = #{checkStatus},
+			founder = #{founder},
+			founder_id = #{founderId},
+			modifier = #{modifier},
+			modifier_id = #{modifierId},
+			address_owner = #{addressOwner},
+			checker_id = #{checkerId},
+			check_time = #{checkTime},
+			travel_license_date = #{travelLicenseDate},
+			drive_license_date = #{driveLicenseDate},
+			practitioner_license_date = #{practitionerLicenseDate},
+			transport_license_date = #{transportLicenseDate},
+			transport_issue_date = #{transportIssueDate},
+			brand_color = #{brandColor},
+			brand_color_name = #{brandColorName},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_vehicle_info
+		<set>
+			<if test="licensePlate != null">
+			license_plate = #{licensePlate},
+			</if>
+			<if test="sysCompanyName != null">
+			sys_company_name = #{sysCompanyName},
+			</if>
+			<if test="sysCompanyCode != null">
+			sys_company_code = #{sysCompanyCode},
+			</if>
+			<if test="axles != null">
+			axles = #{axles},
+			</if>
+			<if test="maxPayload != null">
+			max_payload = #{maxPayload},
+			</if>
+			<if test="qualificationCode != null">
+			qualification_code = #{qualificationCode},
+			</if>
+			<if test="qualificationPath != null">
+			qualification_path = #{qualificationPath},
+			</if>
+			<if test="tradingCode != null">
+			trading_code = #{tradingCode},
+			</if>
+			<if test="tradingPath != null">
+			trading_path = #{tradingPath},
+			</if>
+			<if test="licenceDisc != null">
+			licence_disc = #{licenceDisc},
+			</if>
+			<if test="licenceDiscPath != null">
+			licence_disc_path = #{licenceDiscPath},
+			</if>
+			<if test="engineNum != null">
+			engine_num = #{engineNum},
+			</if>
+			<if test="frameNum != null">
+			frame_num = #{frameNum},
+			</if>
+			<if test="driverLicense != null">
+			driver_license = #{driverLicense},
+			</if>
+			<if test="driverLicensePath != null">
+			driver_license_path = #{driverLicensePath},
+			</if>
+			<if test="holder != null">
+			holder = #{holder},
+			</if>
+			<if test="vin != null">
+			vin = #{vin},
+			</if>
+			<if test="phoneNumber != null">
+			phone_number = #{phoneNumber},
+			</if>
+			<if test="address != null">
+			address = #{address},
+			</if>
+			<if test="remark != null">
+			remark = #{remark},
+			</if>
+			<if test="updateTime != null">
+			update_time = #{updateTime},
+			</if>
+			<if test="createTime != null">
+			create_time = #{createTime},
+			</if>
+			<if test="sexOwner != null">
+			sex_owner = #{sexOwner},
+			</if>
+			<if test="bornOwner != null">
+			born_owner = #{bornOwner},
+			</if>
+			<if test="numberOwner != null">
+			number_owner = #{numberOwner},
+			</if>
+			<if test="vehicleTypeName != null">
+			vehicle_type_name = #{vehicleTypeName},
+			</if>
+			<if test="vehicleType != null">
+			vehicle_type = #{vehicleType},
+			</if>
+			<if test="natureUse != null">
+			nature_use = #{natureUse},
+			</if>
+			<if test="brandModel != null">
+			brand_model = #{brandModel},
+			</if>
+			<if test="numberDate != null">
+			number_date = #{numberDate},
+			</if>
+			<if test="issueDate != null">
+			issue_date = #{issueDate},
+			</if>
+			<if test="nationality != null">
+			nationality = #{nationality},
+			</if>
+			<if test="licensingDate != null">
+			licensing_date = #{licensingDate},
+			</if>
+			<if test="modelsCode != null">
+			models_code = #{modelsCode},
+			</if>
+			<if test="models != null">
+			models = #{models},
+			</if>
+			<if test="periodValidity != null">
+			period_validity = #{periodValidity},
+			</if>
+			<if test="typeQualification != null">
+			type_qualification = #{typeQualification},
+			</if>
+			<if test="issuingTime != null">
+			issuing_time = #{issuingTime},
+			</if>
+			<if test="issuingAuthority != null">
+			issuing_authority = #{issuingAuthority},
+			</if>
+			<if test="businessName != null">
+			business_name = #{businessName},
+			</if>
+			<if test="businessAddress != null">
+			business_address = #{businessAddress},
+			</if>
+			<if test="economicType != null">
+			economic_type = #{economicType},
+			</if>
+			<if test="tonnage != null">
+			tonnage = #{tonnage},
+			</if>
+			<if test="vehicleLength != null">
+			vehicle_length = #{vehicleLength},
+			</if>
+			<if test="vehicleWidth != null">
+			vehicle_width = #{vehicleWidth},
+			</if>
+			<if test="vehicleHeight != null">
+			vehicle_height = #{vehicleHeight},
+			</if>
+			<if test="businessScope != null">
+			business_scope = #{businessScope},
+			</if>
+			<if test="cardPath != null">
+			card_path = #{cardPath},
+			</if>
+			<if test="status != null">
+			status = #{status},
+			</if>
+			<if test="checkStatus != null">
+			check_status = #{checkStatus},
+			</if>
+			<if test="founder != null">
+			founder = #{founder},
+			</if>
+			<if test="founderId != null">
+			founder_id = #{founderId},
+			</if>
+			<if test="modifier != null">
+			modifier = #{modifier},
+			</if>
+			<if test="modifierId != null">
+			modifier_id = #{modifierId},
+			</if>
+			<if test="addressOwner != null">
+			address_owner = #{addressOwner},
+			</if>
+			<if test="checkerId != null">
+			checker_id = #{checkerId},
+			</if>
+			<if test="checkTime != null">
+			check_time = #{checkTime},
+			</if>
+			<if test="travelLicenseDate != null">
+			travel_license_date = #{travelLicenseDate},
+			</if>
+			<if test="driveLicenseDate != null">
+			drive_license_date = #{driveLicenseDate},
+			</if>
+			<if test="practitionerLicenseDate != null">
+			practitioner_license_date = #{practitionerLicenseDate},
+			</if>
+			<if test="transportLicenseDate != null">
+			transport_license_date = #{transportLicenseDate},
+			</if>
+			<if test="transportIssueDate != null">
+			transport_issue_date = #{transportIssueDate},
+			</if>
+			<if test="brandColor != null">
+			brand_color = #{brandColor},
+			</if>
+			<if test="brandColorName != null">
+			brand_color_name = #{brandColorName},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterMap="parameterMap">
+		delete from tb_vehicle_info where id = #{id}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_vehicle_info where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="validLicensePlate" parameterType="java.lang.String" resultType="int">
+		select count(*) from tb_vehicle_info where license_plate = #{value}
+	</select>
+	
+	<select id="validVin" parameterType="java.lang.String" resultType="int">
+		select count(*) from tb_vehicle_info where vin = #{value}
+	</select>
+	
+	<select id="validEngineNum" parameterType="java.lang.String" resultType="int">
+		select count(*) from tb_vehicle_info where engine_num = #{value}
+	</select>
+	
+	<select id="getByCompanyId" parameterType="map" resultType="com.dhcc.dcs.entity.VehicleInfo">
+		select
+			<include refid="columnSql"></include> 
+		from tb_vehicle_info t 
+		where t.id not in(
+			select 
+				s.vehicle_id 
+			from tb_driver_vehicle s 
+			where s.company_id = #{companyId} and s.driver_id = #{driverId}
+		) and t.sys_company_code = #{companyId} and t.check_status = '1'
+	</select>
+	
+	<select id="getVehicleByCompanyId" parameterType="map" resultType="com.dhcc.dcs.entity.VehicleInfo">
+		select 
+			<include refid="columnSql"></include>,ts.status as bindStatus 
+		from tb_vehicle_info t
+		left join tb_driver_vehicle ts on t.id = ts.vehicle_id
+		where t.id in(
+			select
+				s.vehicle_id
+			from tb_driver_vehicle s
+			where s.company_id = #{companyId} and s.driver_id = #{driverId}
+   		) and ts.driver_id = #{driverId}
+	</select>
+	
+</mapper>

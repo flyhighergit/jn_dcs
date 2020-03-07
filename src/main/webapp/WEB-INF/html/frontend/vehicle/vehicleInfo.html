@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>车辆信息</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<link rel="stylesheet" href="../resources/css/common/sm.min.css">
+	<link rel="stylesheet" href="../resources/css/common/sm-extend.min.css">
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<style type="text/css">
+	.icon {
+		margin-bottom: 9px
+	}
+</style>
+
+<body>
+
+	<section id="preview"></section>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" id="goBack">
+				<i class=" "><img src="../resources/images/return-left.png" alt="" /></i>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">车辆信息</span>
+			</div>
+			<div class="aui-navBar-item"></div>
+		</header>
+
+
+		<div class="aui-scrollView" id="content" style="display: none;">
+
+			<div class="divHeight"></div>
+
+			<div id="content" class="aui-me-list">
+
+				<div class="aui-flex" style="margin-top: 1rem">
+					<div class="aui-jon-user">
+						<img src="../resources/images/user.png" alt="">
+					</div>
+					<div class="aui-flex-box">
+						<h4>车牌号</h4>
+						<p>{{{licensePlate}}}</p>
+					</div>
+				</div>
+
+				<div class="divHeight"></div>
+
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>所属公司</p>
+					</div>
+					<div class="aui-text">{{{sysCompanyName}}}</div>
+				</div>
+
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>车牌号</p>
+					</div>
+					<div class="aui-text">{{{licensePlate}}}</div>
+				</div>
+
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>轴数</p>
+					</div>
+					<div class="aui-text">{{{axles}}}</div>
+
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>核载(吨)</p>
+					</div>
+					<div class="aui-text">{{{maxPayload}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>资格证号</p>
+					</div>
+					<div class="aui-text">{{{qualificationCode}}}</div>
+				</div>
+
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>运营证号</p>
+					</div>
+					<div class="aui-text">{{{tradingCode}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>行车证号</p>
+					</div>
+					<div class="aui-text">{{{licenceDisc}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>发动机号</p>
+					</div>
+					<div class="aui-text">{{{engineNum}}}</div>
+				</div>
+
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车架号</p>
+					</div>
+					<div class="aui-text">{{{frameNum}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆识别号</p>
+					</div>
+					<div class="aui-text">{{{vin}}}</div>
+				</div>
+
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>驾驶证</p>
+					</div>
+					<div class="aui-text">{{{driverLicense}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆持有人</p>
+					</div>
+					<div class="aui-text">{{{holder}}}</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/local/vehicle.js' charset='utf-8'></script>
+</body>
+
+</html>

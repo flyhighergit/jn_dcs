@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhcc.dcs.dao.DictionaryDao">
+	<resultMap type="map" id="resultMap">
+		<id column="id" property="id"/>
+		<result column="typecode" property="typecode"/>
+		<result column="typename" property="typename"/>
+		<result column="typepid" property="typepid"/>
+		<result column="typegroupid" property="typegroupid"/>
+	</resultMap>
+	<sql id="column">
+		t.id,
+		t.typecode,
+		t.typename,
+		t.typepid,
+		t.typegroupid
+	</sql>
+	
+	<select id="getById" resultMap="resultMap">
+		select 
+			<include refid="column"></include>
+		from t_s_type
+		where id=#{id};
+	</select>
+	
+	<select id="getByType" resultMap="resultMap" parameterType="java.lang.String">
+		select 
+			<include refid="column"></include>
+		from t_s_type t left join t_s_typegroup g on t.typegroupid=g.id
+		where g.typegroupcode = #{value}
+	</select>
+	
+	<select id="getByTypeAndCode" resultMap="resultMap" parameterType="java.lang.String">
+		select 
+			<include refid="column"></include>
+		from t_s_type t left join t_s_typegroup g on t.typegroupid=g.id
+		where g.typegroupcode = #{type} and t.typecode =#{code}
+	</select>
+</mapper>

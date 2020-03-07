@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>货运单详情</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<section id="preview"></section>
+	<div class="aui-flexView page">
+		<header class="aui-navBar b-line back">
+			<a href="javascript:;" class="aui-navBar-item">
+				<i class=" fa fa-angle-left fa-lg" style="margin-right:5px;"></i>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">货运单</span>
+			</div>
+			<!-- <a href="javascript:;" class="aui-navBar-item">
+				<i class="icon icon-sm"></i>
+			</a> -->
+		</header>
+
+		<div class="aui-scrollView">
+
+			<div class="divHeight"></div>
+
+			<div id="content" class="aui-me-list">
+
+				<a href="javascript:;" class=" b-line">
+
+					<div class="aui-flex-box" style="padding:12px 15px;">
+						<!-- <p>车辆和司机的电子标签</p> -->
+					</div>
+
+					<div class="ew-code">
+						<div id="qrcode" style="width:100px;height:100px;margin:10px auto;"></div>
+					</div>
+				</a>
+				<div class="divHeight"></div>
+				<!-- <a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>源头单位</p>
+					</div>
+					<div class="aui-text" id="companyName"></div>
+				</a> -->
+
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>承运单位</p>
+					</div>
+					<div class="aui-text" id="carrierUnit"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>司机姓名</p>
+					</div>
+					<div class="aui-text" id="driver"></div>
+
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>驾驶证号</p>
+					</div>
+					<div class="aui-text" id="licenseNumber"></div>
+				</a>
+				<div class="divHeight"></div>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车牌号码</p>
+					</div>
+					<div class="aui-text" id="licensePlate"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车属单位</p>
+					</div>
+					<div class="aui-text" id="vehicleCompany"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆类型</p>
+					</div>
+					<div class="aui-text" id="cxmc"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆轴数</p>
+					</div>
+					<div class="aui-text" id="axles"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆核载（吨）</p>
+					</div>
+					<div class="aui-text" id="maxPayload"></div>
+				</a>
+				<div class="divHeight"></div>
+
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>货物名称</p>
+					</div>
+					<div class="aui-text" id="wlName"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车货总重（吨）</p>
+					</div>
+					<div class="aui-text" id="secondWeight"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>货物净重（吨）</p>
+					</div>
+					<div class="aui-text" id="netWeight"></div>
+				</a>
+				<div class="divHeight"></div>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>起运时间</p>
+					</div>
+					<div class="aui-text" id="firstTime"></div>
+				</a>
+				<a href="javascript:;" class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>装载地址</p>
+					</div>
+					<div class="aui-text" id="companyName"></div>
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type="text/javascript" charset="utf-8" src="../resources/js/common/jquery-2.1.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="../resources/js/common/jquery.qrcode.min.js"></script>
+<script type='text/javascript' src='../resources/js/frontend/waybill/billList.js' charset='utf-8'></script>
+
+</html>

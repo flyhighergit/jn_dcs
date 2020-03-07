@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>选择绑定企业</title>
+
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+
+    <link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+    <style>
+        .aui-img-build {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .aui-img-build img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aui-flexView" id="companys">
+        <header class="aui-navBar  b-line">
+            <a href="javascript:closeCompany();" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+            <div class="aui-center">
+				<span class="aui-center-title">选择公司</span>
+			</div>
+        </header>
+        <div class="aui-search">
+			<div class="aui-search-box">
+				<input type="text" id="title" placeholder="请输入公司名称">
+			</div>
+		</div>
+		<div id="companysDiv" class="aui-scrollView">
+			<!-- 公司列表 -->
+		</div>
+    </div>
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/driver/chooseCompany.js' charset='utf-8'></script>
+
+</html>

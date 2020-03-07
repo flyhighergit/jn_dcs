@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>个人设置</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../resources/css/common/modal.css">
+</head>
+
+<body>
+	<section id="preview"></section>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<div class="aui-center">
+				<span class="aui-center-title">设置</span>
+			</div>
+		</header>
+
+		<div class="aui-scrollView">
+			<div id="content" class="aui-me-list">
+
+				<div class="aui-flex" style="margin-top:1rem">
+					<div class="aui-jon-user">
+						<img src="../resources/images/user.png" alt="">
+					</div>
+					<div class="aui-flex-box">
+						<h4 id="name"></h4>
+					</div>
+				</div>
+				<div class="divHeight"></div>
+				<a href="javascript:;" class="aui-flex b-line" id="godriverinfo">
+					<div class="aui-img-sml">
+						<img src="../resources/images/list-ico/set-01.png" alt="" />
+					</div>
+					<div class="aui-flex-box">
+						<p>司机信息</p>
+					</div>
+					<div class="aui-text red" id="driverinfoState"></div>
+					<div class="aui-arrow"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line" id="gobind">
+					<div class="aui-img-sml">
+						<img src="../resources/images/list-ico/set-02.png" alt="" />
+					</div>
+					<div class="aui-flex-box">
+						<p>承运关系</p>
+					</div>
+					<div class="aui-arrow"></div>
+
+				</a>
+				<a href="javascript:;" class="aui-flex b-line" id="gorelation">
+					<div class="aui-img-sml">
+						<img src="../resources/images/list-ico/set-03.png" alt="" />
+					</div>
+					<div class="aui-flex-box">
+						<p>车辆关系</p>
+					</div>
+					<div class="aui-arrow"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line" id="clearcache">
+					<div class="aui-img-sml">
+						<img src="../resources/images/list-ico/set-04.png" alt="" />
+					</div>
+					<div class="aui-flex-box">
+						<p>清除缓存</p>
+					</div>
+					<div class="aui-arrow"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line" id="editPassword">
+					<div class="aui-img-sml">
+						<img src="../resources/images/list-ico/set-05.png" alt="" />
+					</div>
+					<div class="aui-flex-box">
+						<p>修改密码</p>
+					</div>
+
+					<div class="aui-arrow"></div>
+				</a>
+
+				<a href="javascript:;" class="aui-flex b-line" id="logout">
+					<input type="button" class="btn" value="注销登录">
+				</a>
+
+			</div>
+		</div>
+
+		<footer class="aui-footer ">
+			<a href="javascript:;" class="aui-tabBar-item" id="gowork">
+				<span class="aui-tabBar-item-icon">
+					<i class="fa fa-pencil-square-o "></i>
+				</span>
+				<span class="aui-tabBar-item-text">作业</span>
+			</a>
+			<a href="javascript:;" class="aui-tabBar-item" id="dispatch-bill">
+				<span class="aui-tabBar-item-icon">
+					<i class=" fa fa-file-text-o "></i>
+				</span>
+				<span class="aui-tabBar-item-text">订单</span>
+			</a>
+			<a href="javascript:;" class="aui-tabBar-item" id="e-bill">
+				<span class="aui-tabBar-item-icon">
+					<i class=" fa fa-file-text-o "></i>
+				</span>
+				<span class="aui-tabBar-item-text">货运单</span>
+			</a>
+
+			<a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" id="gomyself">
+				<span class="aui-tabBar-item-icon">
+					<i class=" fa fa-user-circle-o"></i>
+				</span>
+				<span class="aui-tabBar-item-text">个人</span>
+			</a>
+		</footer>
+	</div>
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/cordova-2.5.0.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/personal/personal.js' charset='utf-8'></script>
+
+</html>

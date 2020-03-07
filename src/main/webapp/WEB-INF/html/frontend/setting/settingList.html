@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>设置</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link rel="stylesheet" href="../resources/css/common/style.css">
+	<link rel="stylesheet" href="../resources/css/common/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/css/common/modal.css">
+	<link rel="icon" href="data:;base64,=">
+</head>
+
+<body>
+
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" id="back">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">设置</span>
+			</div>
+		</header>
+
+		<div class="aui-scrollView">
+
+			<div class="divHeight"></div>
+
+			<div id="content" class="aui-me-list">
+				<div class="aui-flex" style="margin-top:1rem">
+					<div class="aui-jon-user">
+						<img src="../resources/images/user.png" alt="">
+					</div>
+					<div class="aui-flex-box">
+						<a><em id="user"></em></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="divHeight"></div>
+
+			<a href="javascript:;" class="aui-flex b-line" id="myCoalRelatedInfo">
+				<div class="aui-flex-box">
+					<p>我的企业信息</p>
+				</div>
+				<div class="aui-arrow"></div>
+			</a>
+			<a href="javascript:;" class="aui-flex b-line" id="myInfo">
+				<div class="aui-flex-box">
+					<p>个人信息</p>
+				</div>
+				<div class="aui-arrow"></div>
+			</a>
+			<a href="javascript:;" class="aui-flex b-line" id="editPassword">
+				<div class="aui-flex-box">
+					<p>修改密码</p>
+				</div>
+				<div class="aui-arrow"></div>
+			</a>
+
+			<div class="divHeight"></div>
+
+			<a href="javascript:;" class="aui-flex b-line" id="clearcache">
+				<div class="aui-flex-box">
+					<p>清空缓存</p>
+				</div>
+				<div class="aui-arrow"></div>
+			</a>
+
+			<a href="javascript:;" class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>版本更新</p>
+				</div>
+				<div class="aui-text">当前为最新版本</div>
+				<div class="aui-arrow"></div>
+			</a>
+
+			<div class="divHeight"></div>
+
+			<a href="javascript:;" class="aui-flex b-line" id="exit">
+				<div class="aui-flex-box">
+					<p>退出登录</p>
+				</div>
+				<div class="aui-arrow"></div>
+			</a>
+
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+<script>
+	$.config = {
+		router: false
+	}
+</script>
+<script type="text/javascript" src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/cordova-2.5.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/frontend/setting/settingList.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/local/logout.js" charset="utf-8"></script>
+
+</html>

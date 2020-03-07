@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.DriverInfoDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.DriverInfo"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.DriverInfo">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="idCord" column="id_cord"/>
+		<result property="licenseNumber" column="license_number"/>
+		<result property="licensingDate" column="licensing_date"/>
+		<result property="models" column="models"/>
+		<result property="periodValidity" column="period_validity"/>
+		<result property="sex" column="sex"/>
+		<result property="birthday" column="birthday"/>
+		<result property="phoneNumber" column="phone_number"/>
+		<result property="address" column="address"/>
+		<result property="founder" column="founder"/>
+		<result property="founderId" column="founder_id"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifier" column="modifier"/>
+		<result property="modifierId" column="modifier_id"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="checkStatu" column="CHECK_STATU"/>
+		<result property="checkTime" column="CHECK_TIME"/>
+		<result property="dataStatu" column="DATA_STATU"/>
+		<result property="checkerId" column="checker_id"/>
+		<result property="companyId" column="company_id"/>
+		<result property="companyCode" column="company_code"/>
+		<result property="companyName" column="company_name"/>
+		<result property="countyId" column="county_id"/>
+		<result property="countyCode" column="county_code"/>
+		<result property="cityId" column="city_id"/>
+		<result property="cityCode" column="city_code"/>
+		<result property="modelsCode" column="models_code"/>
+		<result property="qualificationCode" column="qualification_code"/>
+		<result property="practitionerLicenseDate" column="practitioner_license_date"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.name,
+			t.id_cord,
+			t.license_number,
+			t.licensing_date,
+			t.models,
+			t.period_validity,
+			t.sex,
+			t.birthday,
+			t.phone_number,
+			t.address,
+			t.founder,
+			t.founder_id,
+			t.create_time,
+			t.modifier,
+			t.modifier_id,
+			t.update_time,
+			t.CHECK_STATU,
+			t.CHECK_TIME,
+			t.DATA_STATU,
+			t.checker_id,
+			t.company_id,
+			t.company_code,
+			t.company_name,
+			t.county_id,
+			t.county_code,
+			t.city_id,
+			t.city_code,
+			t.models_code,
+			t.qualification_code,
+			t.practitioner_license_date
+	 	</trim>
+	</sql>
+	
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_info t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				and t.name like concat('%', #{name},'%')			
+			</if>
+			<if test="idCord != null and idCord != ''">
+				and t.id_cord = #{idCord}			
+			</if>
+			<if test="licenseNumber != null and licenseNumber != ''">
+				and t.license_number = #{licenseNumber}			
+			</if>
+			<if test="licensingDate != null and licensingDate != ''">
+				and t.licensing_date = #{licensingDate}			
+			</if>
+			<if test="models != null and models != ''">
+				and t.models = #{models}			
+			</if>
+			<if test="periodValidity != null and periodValidity != ''">
+				and t.period_validity = #{periodValidity}			
+			</if>
+			<if test="sex != null and sex != ''">
+				and t.sex = #{sex}			
+			</if>
+			<if test="birthday != null and birthday != ''">
+				and t.birthday = #{birthday}			
+			</if>
+			<if test="address != null and address != ''">
+				and t.address = #{address}			
+			</if>
+			<if test="founder != null and founder != ''">
+				and t.founder = #{founder}			
+			</if>
+			<if test="founderId != null and founderId != ''">
+				and t.founder_id = #{founderId}			
+			</if>
+			<if test="createTime != null">
+				and t.create_time = #{createTime}			
+			</if>
+			<if test="modifier != null and modifier != ''">
+				and t.modifier = #{modifier}			
+			</if>
+			<if test="modifierId != null and modifierId != ''">
+				and t.modifier_id = #{modifierId}			
+			</if>
+			<if test="updateTime != null">
+				and t.update_time = #{updateTime}			
+			</if>
+			<if test="checkStatu != null and checkStatu != ''">
+				and t.CHECK_STATU = #{checkStatu}			
+			</if>
+			<if test="checkTime != null">
+				and t.CHECK_TIME = #{checkTime}			
+			</if>
+			<if test="dataStatu != null and dataStatu != ''">
+				and t.DATA_STATU = #{dataStatu}			
+			</if>
+			<if test="checkerId != null and checkerId != ''">
+				and t.checker_id = #{checkerId}			
+			</if>
+			<if test="companyId != null and companyId != ''">
+				and t.company_id = #{companyId}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="companyName != null and companyName != ''">
+				and t.company_name = #{companyName}			
+			</if>
+			<if test="countyId != null and countyId != ''">
+				and t.county_id = #{countyId}			
+			</if>
+			<if test="countyCode != null and countyCode != ''">
+				and t.county_code = #{countyCode}			
+			</if>
+			<if test="cityId != null and cityId != ''">
+				and t.city_id = #{cityId}			
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+				and t.city_code = #{cityCode}
+			</if>
+			<if test="modelsCode != null and modelsCode != ''">
+				and t.models_code = #{modelsCode}
+			</if>
+			<if test="practitionerLicenseDate != null">
+				and t.practitioner_license_date = #{practitionerLicenseDate}
+			</if>
+			<if test="qualificationCode != null and qualificationCode != ''">
+				and t.qualification_code = #{qualificationCode}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findByPage" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_info t
+		<where>
+			<if test="driverInfo.id != null and driverInfo.id != ''">
+				and t.id = #{driverInfo.id}
+			</if>
+			<if test="driverInfo.name != null and driverInfo.name != ''">
+					and t.name like concat ('%', #{driverInfo.name},'%')			
+			</if>
+			<if test="driverInfo.idCord != null and driverInfo.idCord != ''">
+				and t.id_cord = #{driverInfo.idCord}			
+			</if>
+			<if test="driverInfo.licenseNumber != null and driverInfo.licenseNumber != ''">
+				and t.license_number = #{driverInfo.licenseNumber}			
+			</if>
+			<if test="driverInfo.licensingDate != null and licensingDate != ''">
+				and t.licensing_date = #{driverInfo.licensingDate}			
+			</if>
+			<if test="driverInfo.models != null and driverInfo.models != ''">
+				and t.models = #{driverInfo.models}			
+			</if>
+			<if test="driverInfo.periodValidity != null and driverInfo.periodValidity != ''">
+				and t.period_validity = #{driverInfo.periodValidity}			
+			</if>
+			<if test="driverInfo.sex != null and driverInfo.sex != ''">
+				and t.sex = #{driverInfo.sex}			
+			</if>
+			<if test="driverInfo.birthday != null and driverInfo.birthday != ''">
+				and t.birthday = #{driverInfo.birthday}			
+			</if>
+			<if test="driverInfo.address != null and driverInfo.address != ''">
+				and t.address = #{driverInfo.address}
+			</if>
+			<if test="driverInfo.founder != null and driverInfo.founder != ''">
+				and t.founder = #{driverInfo.founder}			
+			</if>
+			<if test="driverInfo.founderId != null and driverInfo.founderId != ''">
+				and t.founder_id = #{driverInfo.founderId}			
+			</if>
+			<if test="driverInfo.createTime != null and driverInfo.createTime != ''">
+				and t.create_time = #{driverInfo.createTime}			
+			</if>
+			<if test="driverInfo.modifier != null and driverInfo.modifier != ''">
+				and t.modifier = #{driverInfo.modifier}			
+			</if>
+			<if test="driverInfo.modifierId != null and driverInfo.modifierId != ''">
+				and t.modifier_id = #{driverInfo.modifierId}			
+			</if>
+			<if test="driverInfo.updateTime != null and driverInfo.updateTime != ''">
+				and t.update_time = #{driverInfo.updateTime}
+			</if>
+			<if test="driverInfo.dataStatu != null and driverInfo.dataStatu != ''">
+				and t.DATA_STATU = #{driverInfo.dataStatu}			
+			</if>
+			<if test="driverInfo.checkStatu != null and driverInfo.checkStatu != ''">
+				and t.CHECK_STATU = #{driverInfo.checkStatu}			
+			</if>
+			<if test="driverInfo.checkTime != null">
+				and t.CHECK_TIME = #{driverInfo.checkTime}			
+			</if>
+			<if test="driverInfo.checkerId != null and driverInfo.checkerId != ''">
+				and t.checker_id = #{driverInfo.checkerId}			
+			</if>
+			<if test="driverInfo.companyId != null and driverInfo.companyId != ''">
+				and t.company_id = #{driverInfo.companyId}			
+			</if>
+			<if test="driverInfo.companyCode != null and driverInfo.companyCode != ''">
+				and t.company_code = #{driverInfo.companyCode}			
+			</if>
+			<if test="driverInfo.companyName != null and driverInfo.companyName != ''">
+				and t.company_name = #{driverInfo.companyName}			
+			</if>
+			<if test="driverInfo.countyId != null and driverInfo.countyId != ''">
+				and t.county_id = #{driverInfo.countyId}			
+			</if>
+			<if test="driverInfo.countyCode != null and driverInfo.countyCode != ''">
+				and t.county_code = #{driverInfo.countyCode}			
+			</if>
+			<if test="driverInfo.cityId != null and driverInfo.cityId != ''">
+				and t.city_id = #{driverInfo.cityId}			
+			</if>
+			<if test="driverInfo.cityCode != null and driverInfo.cityCode != ''">
+				and t.city_code = #{driverInfo.cityCode}
+			</if>
+			<if test="driverInfo.modelsCode != null and driverInfo.modelsCode != ''">
+				and t.models_code = #{driverInfo.modelsCode}
+			</if>
+			<if test="driverInfo.practitionerLicenseDate != null and driverInfo.practitionerLicenseDate != ''">
+				and t.practitioner_license_date = #{driverInfo.practitionerLicenseDate}
+			</if>
+			<if test="driverInfo.qualificationCode != null and driverInfo.qualificationCode != ''">
+				and t.qualification_code = #{driverInfo.qualificationCode}
+			</if>
+		</where>
+		
+		ORDER BY t.update_time DESC,t.CHECK_STATU DESC,t.create_time DESC 
+		
+		LIMIT ${rowIndex},${pageSize}
+	</select>
+	
+	<select id="queryCount" parameterMap="parameterMap" resultType="int">
+		select
+			count(1)
+		from tb_driver_info t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				and t.name = #{name}			
+			</if>
+			<if test="idCord != null and idCord != ''">
+				and t.id_cord = #{idCord}
+			</if>
+			<if test="licenseNumber != null and licenseNumber != ''">
+				and t.license_number = #{licenseNumber}			
+			</if>
+			<if test="licensingDate != null and licensingDate != ''">
+				and t.licensing_date = #{licensingDate}			
+			</if>
+			<if test="models != null and models != ''">
+				and t.models = #{models}			
+			</if>
+			<if test="periodValidity != null and periodValidity != ''">
+				and t.period_validity = #{periodValidity}			
+			</if>
+			<if test="sex != null and sex != ''">
+				and t.sex = #{sex}			
+			</if>
+			<if test="birthday != null and birthday != ''">
+				and t.birthday = #{birthday}			
+			</if>
+			<if test="address != null and address != ''">
+				and t.address = #{address}			
+			</if>
+			<if test="founder != null and founder != ''">
+				and t.founder = #{founder}			
+			</if>
+			<if test="founderId != null and founderId != ''">
+				and t.founder_id = #{founderId}			
+			</if>
+			<if test="createTime != null">
+				and t.create_time = #{createTime}			
+			</if>
+			<if test="modifier != null and modifier != ''">
+				and t.modifier = #{modifier}			
+			</if>
+			<if test="modifierId != null and modifierId != ''">
+				and t.modifier_id = #{modifierId}			
+			</if>
+			<if test="updateTime != null">
+				and t.update_time = #{updateTime}			
+			</if>
+			<if test="checkStatu != null and checkStatu != ''">
+				and t.CHECK_STATU = #{checkStatu}			
+			</if>
+			<if test="checkTime != null">
+				and t.CHECK_TIME = #{checkTime}			
+			</if>
+			<if test="dataStatu != null and dataStatu != ''">
+				and t.DATA_STATU = #{dataStatu}			
+			</if>
+			<if test="checkerId != null and checkerId != ''">
+				and t.checker_id = #{checkerId}			
+			</if>
+			<if test="companyId != null and companyId != ''">
+				and t.company_id = #{companyId}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="companyName != null and companyName != ''">
+				and t.company_name = #{companyName}			
+			</if>
+			<if test="countyId != null and countyId != ''">
+				and t.county_id = #{countyId}
+			</if>
+			<if test="countyCode != null and countyCode != ''">
+				and t.county_code = #{countyCode}
+			</if>
+			<if test="cityId != null and cityId != ''">
+				and t.city_id = #{cityId}
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+				and t.city_code = #{cityCode}
+			</if>
+			<if test="modelsCode != null and modelsCode != ''">
+				and t.models_code = #{modelsCode}
+			</if>
+			<if test="practitionerLicenseDate != null">
+				and t.practitioner_license_date = #{practitionerLicenseDate}
+			</if>
+			<if test="qualificationCode != null and qualificationCode != ''">
+				and t.qualification_code = #{qualificationCode}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_info t
+		where t.id = #{value}
+	</select>
+	
+	<select id="getByFounderId" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_info t
+		where t.founder_id = #{value}
+	</select>
+	
+	<select id="getByIdCord" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_info t
+		where t.id_cord = #{value}
+	</select>
+
+	<insert id="insert" parameterMap="parameterMap">
+		insert into tb_driver_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			name,
+			id_cord,
+			license_number,
+			licensing_date,
+			models,
+			period_validity,
+			sex,
+			birthday,
+			phone_number,
+			address,
+			founder,
+			founder_id,
+			create_time,
+			modifier,
+			modifier_id,
+			update_time,
+			CHECK_STATU,
+			CHECK_TIME,
+			DATA_STATU,
+			checker_id,
+			company_id,
+			company_code,
+			company_name,
+			county_id,
+			county_code,
+			city_id,
+			city_code,
+			models_code,
+			practitioner_license_date,
+			qualification_code
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{name},
+			#{idCord},
+			#{licenseNumber},
+			#{licensingDate},
+			#{models},
+			#{periodValidity},
+			#{sex},
+			#{birthday},
+			#{phoneNumber},
+			#{address},
+			#{founder},
+			#{founderId},
+			#{createTime},
+			#{modifier},
+			#{modifierId},
+			#{updateTime},
+			#{checkStatu},
+			#{checkTime},
+			#{dataStatu},
+			#{checkerId},
+			#{companyId},
+			#{companyCode},
+			#{companyName},
+			#{countyId},
+			#{countyCode},
+			#{cityId},
+			#{cityCode},
+			#{modelsCode},
+			#{practitionerLicenseDate},
+			#{qualificationCode}
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_driver_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			name,
+			id_cord,
+			license_number,
+			licensing_date,
+			models,
+			period_validity,
+			sex,
+			birthday,
+			address,
+			founder,
+			founder_id,
+			create_time,
+			modifier,
+			modifier_id,
+			update_time,
+			CHECK_STATU,
+			CHECK_TIME,
+			DATA_STATU,
+			checker_id,
+			company_id,
+			company_code,
+			company_name,
+			county_id,
+			county_code,
+			city_id,
+			city_code,
+			models_code,
+			qualification_code,
+			practitioner_license_date
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.name},
+				#{item.idCord},
+				#{item.licenseNumber},
+				#{item.licensingDate},
+				#{item.models},
+				#{item.periodValidity},
+				#{item.sex},
+				#{item.birthday},
+				#{item.address},
+				#{item.founder},
+				#{item.founderId},
+				#{item.createTime},
+				#{item.modifier},
+				#{item.modifierId},
+				#{item.updateTime},
+				#{item.checkStatu},
+				#{item.checkTime},
+				#{item.dataStatu},
+				#{item.checkerId},
+				#{item.companyId},
+				#{item.companyCode},
+				#{item.companyName},
+				#{item.countyId},
+				#{item.countyCode},
+				#{item.cityId},
+				#{item.cityCode},
+				#{item.modelsCode},
+				#{item.qualificationCode},
+				#{item.practitionerLicenseDate}
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_driver_info
+		<set>
+			name = #{name},
+			id_cord = #{idCord},
+			license_number = #{licenseNumber},
+			licensing_date = #{licensingDate},
+			models = #{models},
+			period_validity = #{periodValidity},
+			sex = #{sex},
+			birthday = #{birthday},
+			phone_number = #{phoneNumber},
+			address = #{address},
+			founder = #{founder},
+			founder_id = #{founderId},
+			create_time = #{createTime},
+			modifier = #{modifier},
+			modifier_id = #{modifierId},
+			update_time = #{updateTime},
+			check_statu = #{checkStatu},
+			check_time = #{checkTime},
+			data_statu = #{dataStatu},
+			checker_id = #{checkerId},
+			company_id = #{companyId},
+			company_code = #{companyCode},
+			company_name = #{companyName},
+			county_id = #{countyId},
+			county_code = #{countyCode},
+			city_id = #{cityId},
+			city_code = #{cityCode},
+			models_code = #{modelsCode},
+			practitioner_license_date = #{practitionerLicenseDate},
+			qualification_code = #{qualificationCode}
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="bindDriverInfo" parameterMap="parameterMap">
+		update tb_driver_info
+		<set>
+			company_id = #{companyId},
+			company_code = #{companyCode},
+			company_name = #{companyName},
+			county_id = #{countyId},
+			county_code = #{countyCode},
+			city_id = #{cityId},
+			city_code = #{cityCode}
+		</set>
+		where founder_id = #{founderId}
+	</update>
+	
+	<update id="unbindDriverInfo" parameterType="java.lang.String">
+		update tb_driver_info
+		set
+			checker_id = null,
+			company_id = null,
+			company_code = null,
+			company_name = null,
+			county_id = null,
+			county_code = null,
+			city_id = null,
+			city_code = null
+		
+		where founder_id = #{value}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_driver_info
+		<set>
+			<if test="name != null">
+			name = #{name},
+			</if>
+			<if test="idCord != null">
+			id_cord = #{idCord},
+			</if>
+			<if test="licenseNumber != null">
+			license_number = #{licenseNumber},
+			</if>
+			<if test="licensingDate != null">
+			licensing_date = #{licensingDate},
+			</if>
+			<if test="models != null">
+			models = #{models},
+			</if>
+			<if test="periodValidity != null">
+			period_validity = #{periodValidity},
+			</if>
+			<if test="sex != null">
+			sex = #{sex},
+			</if>
+			<if test="birthday != null">
+			birthday = #{birthday},
+			</if>
+			<if test="phoneNumber != null and phoneNumber !='' ">
+			phone_number = #{phoneNumber},
+			</if>
+			<if test="address != null">
+			address = #{address},
+			</if>
+			<if test="founder != null">
+			founder = #{founder},
+			</if>
+			<if test="founderId != null">
+			founder_id = #{founderId},
+			</if>
+			<if test="createTime != null">
+			create_time = #{createTime},
+			</if>
+			<if test="modifier != null">
+			modifier = #{modifier},
+			</if>
+			<if test="modifierId != null">
+			modifier_id = #{modifierId},
+			</if>
+			<if test="updateTime != null">
+			update_time = #{updateTime},
+			</if>
+			<if test="checkStatu != null">
+			CHECK_STATU = #{checkStatu},			
+			</if>
+			<if test="checkTime != null">
+			CHECK_TIME = #{checkTime},			
+			</if>
+			<if test="dataStatu != null">
+			DATA_STATU = #{dataStatu},			
+			</if>
+			<if test="checkerId != null">
+			checker_id = #{checkerId},			
+			</if>
+			<if test="companyId != null and companyId != ''">
+			company_id = #{companyId},			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+			company_code = #{companyCode},			
+			</if>
+			<if test="companyName != null and companyName != ''">
+			company_name = #{companyName},			
+			</if>
+			<if test="countyId != null and countyId != ''">
+			county_id = #{countyId},
+			</if>
+			<if test="countyCode != null and countyCode != ''">
+			county_code = #{countyCode},
+			</if>
+			<if test="cityId != null and cityId != ''">
+			city_id = #{cityId},
+			</if>
+			<if test="cityCode != null and cityCode != ''">
+			city_code = #{cityCode},
+			</if>
+			<if test="modelsCode != null and modelsCode != ''">
+			models_code = #{modelsCode},
+			</if>
+			<if test="practitionerLicenseDate != null ">
+			practitioner_license_date = #{practitionerLicenseDate},
+			</if>
+			<if test="qualificationCode != null and qualificationCode != ''">
+			qualification_code = #{qualificationCode},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_driver_info where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_driver_info where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

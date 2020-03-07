@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>派单详情</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="../resources/css/common/style.css" rel="stylesheet"
+	type="text/css">
+<link href="../resources/css/common/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../resources/css/common/sm.min.css">
+<link rel="stylesheet" href="../resources/css/common/sm-extend.min.css">
+<style type="text/css">
+.icon {
+	margin-bottom: 9px
+}
+
+p {
+	margin: 0px;
+}
+
+body {
+	background: #fff;
+}
+
+.list-block .item-content {
+	padding-left: 0px;
+}
+
+.list-block .item-inner {
+	padding-left: .75rem;
+}
+
+.mb_ico {
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	/*  border:1px solid Gray; */
+	width: 18px;
+	height: 18px;
+	textAlign: center;
+	lineHeight: 16px;
+	cursor: pointer;
+	borderRadius: 12px;
+	fontFamily: 微软雅黑;
+}
+
+.yuan-btn {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: -webkit-linear-gradient(#60beff, #2f98fb);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#60beff, #2f98fb);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#60beff, #2f98fb);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#60beff, #2f98fb);
+	text-align: center;
+	line-height: 95px;
+	vertical-align: bottom;
+	margin: 30px auto;
+	color: #fff;
+	box-shadow: 0px 5px 10px #bedefd;
+}
+
+.login-screen, .popup {
+	top: 160px;
+}
+</style>
+</head>
+<body>
+	<section id="preview"></section>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<div class="aui-navBar-item" id="goBack">
+				<i class=" "><img src="../resources/images/return-left.png"
+					alt="" /></i>返回
+			</div>
+			<div class="aui-center">
+				<span class="aui-center-title">派单信息</span>
+			</div>
+			<!--  <div class="aui-navBar-item">
+			<i class="icon icon-sm"></i>
+		</div>		 -->
+		</header>
+
+
+		<div class="aui-scrollView" id="content" style="display: none;">
+			<div class="popup">
+				<div class="content">
+					<a href="javascript:;" class="mb_ico"
+						onclick="$.closeModal('.popup')"
+						style="font-size: 1.4rem; margin-top: -13px; color: #666">&times;</a>
+					<div class="list-block">
+						<ul>
+							<li>
+								<div class="item-content">
+									<div class="item-inner">
+										<div class="item-title label">公司名称</div>
+										<div class="item-input">
+											<input type="text" id="company" readonly="readonly">
+											<input type="hidden" id="id">
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-inner">
+										<div class="item-title label">磅秤编号</div>
+										<div class="item-input">
+											<input type="text" id="bangcheng" readonly="readonly">
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-inner">
+										<div class="item-title label">重量</div>
+										<div class="item-input">
+											<input type="text" id="weight" readonly="readonly">
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="content-block">
+						<div class="yuan-btn open-preloader-title" style="">开始称重</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="divHeight"></div>
+
+
+			<div class="aui-me-list">
+
+				<div class="aui-flex" style="margin-top: 1rem">
+					<div class="aui-jon-user">
+						<img src="../resources/images/user.png" alt="">
+					</div>
+					<div class="aui-flex-box">
+						<h4>车牌号</h4>
+						<p>{{{licensePlate}}}</p>
+
+					</div>
+				</div>
+
+				<div class="divHeight"></div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>车辆信息</p>
+					</div>
+
+					<div class="aui-arrow" onclick="goVehicle('{{{licensePlate}}}')"></div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>司机</p>
+					</div>
+					<div class="aui-text">{{{passenger}}}</div>
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>派单时间</p>
+					</div>
+					<div class="aui-text">{{{paymentTime}}}</div>
+
+				</div>
+				<div class="aui-flex b-line">
+
+					<div class="aui-flex-box">
+						<p>起运地点</p>
+					</div>
+					<div class="aui-text">{{{deliveryPlace}}}</div>
+
+				</div>
+				
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>终到地点</p>
+					</div>
+					<div class="aui-text">{{{receiptPlace}}}</div>
+				</div>
+				
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>用车事由</p>
+					</div>
+					<div class="aui-text">{{{serviceRemark}}}</div>
+				</div>
+				
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>称重（吨）</p>
+					</div>
+					<div class="aui-text" id="chengzhong"></div>
+				</div>
+				
+				<div class="yuan-btn" style="" onclick="scanQRCode()">准备称重</div>
+			</div>
+		</div>
+	</div>
+
+	<script type='text/javascript'
+		src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='../resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/common.js'
+		charset='utf-8'></script>
+	<script type='text/javascript'
+		src='../resources/js/frontend/dispatching.js' charset='utf-8'></script>
+	<script type="text/javascript">
+		$(document).on('click', '.open-preloader-title', function() {
+			$.showPreloader('正在称重');
+			$.ajax({
+				url : getContextPath() + "tbWeighingRecord/getWeight",
+				type : 'POST',
+				data : {
+					"id" : $("#id").val()
+				},
+				dataType : "json",
+				success : function(data) {
+					$.hidePreloader();
+					if (data.success) {
+						$("#weight").val(data.weight);
+						$("#chengzhong").html(data.weight);
+						$(".yuan-btn").toggle();
+					}else{
+						$.alert("未获取到数据，请重新点击");
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

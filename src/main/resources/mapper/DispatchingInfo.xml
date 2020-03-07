@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhcc.dcs.dao.DispatchingInfoDao">
+	<sql id="dispatchingInfo">
+		id,
+		license_plate,
+		service_time,
+		service_remark,
+		coal_related_code,
+		delivery_place,
+		receipt_place,
+		passenger_id,
+		passenger,
+		vehicle_type,
+		carriage_contract_id,
+		carriage_contract,
+		purchase_info_id,
+		purchase_code,
+		single_payer_id,
+		single_payer_name,
+		payment_time,
+		update_person_id,
+		update_person_name,
+		update_time,
+		status,
+		check_status,
+		checker_id,
+		check_time,
+		create_name,
+		create_id,
+		create_time,
+		data_statu,
+		county_id,
+		city_id,
+		city_code,
+		county_code
+	</sql>
+
+	<select id="queryList"
+		resultType="com.dhcc.dcs.entity.DispatchingInfo">
+		SELECT
+		<include refid="dispatchingInfo"></include>
+		FROM
+		tb_dispatching_Info
+		<where>
+			<if test="dispatchingInfo.id != null and dispatchingInfo.id != ''">
+				and id = #{dispatchingInfo.id}
+			</if>
+			<if
+				test="dispatchingInfo.carriageContractId != null and dispatchingInfo.carriageContractId != ''">
+				and carriage_contract_id =
+				#{dispatchingInfo.carriageContractId}
+			</if>
+		</where>
+		ORDER BY
+		create_time DESC
+		<if test="rowIndex!= null and pageSize !=null">
+			LIMIT #{rowIndex},#{pageSize};
+		</if>
+	</select>
+
+	<select id="getById"
+		resultType="com.dhcc.dcs.entity.DispatchingInfo">
+		select
+		<include refid="dispatchingInfo"></include>
+		from tb_dispatching_Info
+		where id=#{id};
+	</select>
+
+	<select id="findList"
+		resultType="com.dhcc.dcs.entity.DispatchingInfo">
+		select
+		<include refid="dispatchingInfo"></include>
+		from tb_dispatching_Info
+		<where>
+			1=1
+			<if test="licensePlate!=null and licensePlate !=''">
+				and license_plate =#{licensePlate}
+			</if>
+			<if test="coalRelatedCode !=null and coalRelatedCode !=''">
+				and coal_related_code =#{coalRelatedCode}
+			</if>
+			<if test="status!=null and status !=''">
+				and status =#{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="find"
+		resultType="com.dhcc.dcs.entity.DispatchingInfo">
+		select
+		<include refid="dispatchingInfo"></include>
+		from tb_dispatching_Info
+		<where>
+			1=1
+			<if test="licensePlate!=null and licensePlate !=''">
+				and license_plate =#{licensePlate}
+			</if>
+			<if test="coalRelatedCode !=null and coalRelatedCode !=''">
+				and coal_related_code =#{coalRelatedCode}
+			</if>
+		</where>
+	</select>
+
+	<update id="updateStatu"
+		parameterType="com.dhcc.dcs.entity.DispatchingInfo">
+		update tb_dispatching_Info set status =#{status} where
+		id = #{id}
+	</update>
+
+	<select id="findCurrent" resultType="map" parameterType="string">
+		SELECT
+			<include refid="dispatchingInfo"></include>
+		FROM
+			tb_dispatching_info 
+		<where>
+			license_plate = #{licensePlate}
+			AND (`status` IS NULL OR `status` = '0' )
+		</where>
+		
+		ORDER BY
+		
+		create_time;
+	</select>
+	
+	<select id="findGauge" resultType="map" parameterType="String">
+		SELECT
+			d.id dispatchingId,/*派车单ID*/
+			c.id carriageId,/*承运合同ID*/
+			c.contract_code contractCode,/*合同编号*/
+			c.com_a_id aId,/*托运方ID*/
+			c.com_b_id bId,/*承运方ID*/
+			c.com_a_name aName,/*托运方*/
+			c.com_b_name bName,/*承运方*/
+			v.axles,/*轴数*/
+			v.max_payload maxPayload,/*核载*/
+			v.driver_license driverLicense,/*驾驶证号*/
+			d.passenger passenger,/*司机（搭乘人员）*/
+			d.receipt_place receiptPlace,/*卸货地点（目的地）*/
+			v.qualification_code qualificationCode,/*资格证号*/
+			v.licence_disc licenceDisc,/*行车证号*/
+			v.max_payload maxPayload,/*核载*/
+			v.trading_code tradingCode,/*运营证号*/
+			c.id carriageId,/*购销合同ID*/
+			c.contract_code contractCode,/*（承运）合同编号*/
+			c.goods_type_name goodsTypeName ,/*货物种类*/
+			d.create_time/*创建时间*/
+		FROM
+			tb_dispatching_info d
+			LEFT JOIN tb_vehicle_info v ON d.license_plate = v.license_plate
+			LEFT JOIN tb_carriage_contract_info c ON d.carriage_contract_id = c.id
+		<where>
+			d.id=#{dispatchingId}
+		</where>
+		
+		ORDER BY
+		d.create_time;
+	</select>
+	
+	<select id="getPurchaseByPurchaseId" resultType="map">
+		select 
+			id,
+			contract_code,
+			contract_type_code,
+			contract_type_name,
+			seller_id,
+			seller_name,
+			buyer_id,
+			buyer_name,
+			signing_time,
+			delivery_place,
+			receipt_place,
+			signing_place,
+			goods_type_code,
+			goods_type_name,
+			goods_variety_code,
+			goods_variety_name,
+			goods_amount,
+			money_amount,
+			price,
+			create_time,
+			update_time,
+			annex_path,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			coal_source,
+			mine_name,
+			mine_type,
+			design_capacity,
+			loading_point,
+			mode_transport,
+			unloading_point,
+			total,
+			january,
+			february,
+			march,
+			april,
+			may,
+			june,
+			july,
+			august,
+			september,
+			october,
+			november,
+			december,
+			mj,
+			kcal,
+			particle_size,
+			ash,
+			fugitive_constituent,
+			total_sulfur,
+			full_moisture,
+			bond_index,
+			fixed_carbon,
+			carbon_melting,
+			colloidal_coal,
+			grindability,
+			data_statu,
+			checker_id,
+			check_statu,
+			check_time,
+			consignee,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			coal_source,
+			mine_name,
+			mine_type,
+			design_capacity,
+			loading_point,
+			mode_transport,
+			unloading_point,
+			total,
+			january,
+			february,
+			march,
+			april,
+			may,
+			june,
+			july,
+			august,
+			september,
+			october,
+			november,
+			december,
+			mj,
+			kcal,
+			particle_size,
+			ash,
+			fugitive_constituent,
+			total_sulfur,
+			full_moisture,
+			bond_index,
+			fixed_carbon,
+			carbon_melting,
+			colloidal_coal,
+			grindability,
+			data_statu,
+			checker_id,
+			check_statu,
+			check_time,
+			consignee,
+			loading_point_id 
+		FROM
+			tb_purchase_sale_contract_info
+		WHERE 
+			id=#{purchaseId}
+	</select>
+	
+	<select id="getPurchaseByCarriageId" resultType="map">
+		SELECT 
+			id,
+			contract_code,
+			contract_type_code,
+			contract_type_name,
+			seller_id,
+			seller_name,
+			buyer_id,
+			buyer_name,
+			signing_time,
+			delivery_place,
+			receipt_place,
+			signing_place,
+			goods_type_code,
+			goods_type_name,
+			goods_variety_code,
+			goods_variety_name,
+			goods_amount,
+			money_amount,
+			price,
+			create_time,
+			update_time,
+			annex_path,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			coal_source,
+			mine_name,
+			mine_type,
+			design_capacity,
+			loading_point,
+			mode_transport,
+			unloading_point,
+			total,
+			january,
+			february,
+			march,
+			april,
+			may,
+			june,
+			july,
+			august,
+			september,
+			october,
+			november,
+			december,
+			mj,
+			kcal,
+			particle_size,
+			ash,
+			fugitive_constituent,
+			total_sulfur,
+			full_moisture,
+			bond_index,
+			fixed_carbon,
+			carbon_melting,
+			colloidal_coal,
+			grindability,
+			data_statu,
+			checker_id,
+			check_statu,
+			check_time,
+			consignee,
+			founder,
+			founder_id,
+			modifier,
+			modifier_id,
+			coal_source,
+			mine_name,
+			mine_type,
+			design_capacity,
+			loading_point,
+			mode_transport,
+			unloading_point,
+			total,
+			january,
+			february,
+			march,
+			april,
+			may,
+			june,
+			july,
+			august,
+			september,
+			october,
+			november,
+			december,
+			mj,
+			kcal,
+			particle_size,
+			ash,
+			fugitive_constituent,
+			total_sulfur,
+			full_moisture,
+			bond_index,
+			fixed_carbon,
+			carbon_melting,
+			colloidal_coal,
+			grindability,
+			data_statu,
+			checker_id,
+			check_statu,
+			check_time,
+			consignee,
+			loading_point_id 
+		FROM
+			tb_purchase_sale_contract_info t
+		WHERE 
+			id=(select purchase_info_id from tb_carriage_contract_info where id=#{carriageId});
+	</select>
+	
+	<select id="getPurchaseByLicensePlate" resultType="map" parameterType="java.lang.String">
+		SELECT
+			t1.dispatchingId,
+			t1.serviceTime,
+			t1.purchaseInfoId,
+			t1.receiptPlace,
+			t1.passenger,
+			t1.sellerName,
+			t1.buyerName,
+			t1.goodsTypeName 
+		 
+		FROM 
+		
+		(SELECT
+			t.id dispatchingId,
+			t.service_time serviceTime,
+			t.purchase_info_id purchaseInfoId,
+			t.receipt_place receiptPlace,
+			t.passenger,
+			p.seller_name sellerName,
+			p.buyer_name buyerName,
+			p.goods_type_name goodsTypeName
+		FROM
+			tb_dispatching_info t
+			LEFT JOIN tb_purchase_sale_contract_info p ON t.purchase_info_id = p.id
+		WHERE 
+			t.license_plate=#{licensePlate}
+			AND IFNULL(t.`status`,'') &lt;&gt; '1'
+		
+		UNION
+		
+		SELECT
+			t.id dispatchingId,
+			t.service_time serviceTime,
+			t.purchase_info_id purchaseInfoId,
+			t.receipt_place receiptPlace,
+			t.passenger,
+			p.seller_name sellerName,
+			p.buyer_name buyerName,
+			p.goods_type_name goodsTypeName
+		FROM 
+			tb_dispatching_info t 
+			LEFT JOIN tb_carriage_contract_info c on t.carriage_contract_id=c.id
+			LEFT JOIN tb_purchase_sale_contract_info p on c.purchase_info_id=p.id
+		WHERE 
+			t.license_plate=#{dispatchingInfo.licensePlate}
+			AND IFNULL(t.`status`,'') &lt;&gt; '1'
+		)  t1
+		
+		WHERE purchaseInfoId IS NOT NULL
+		
+		GROUP BY t1.dispatchingId
+		
+		ORDER BY t1.serviceTime DESC
+	</select>
+
+</mapper>

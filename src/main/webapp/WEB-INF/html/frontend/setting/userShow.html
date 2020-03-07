@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>个人信息</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+
+	<link rel="stylesheet" href="../resources/css/common/style.css">
+	<link rel="stylesheet" href="../resources/css/common/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/css/common/modal.css">
+	<link rel="icon" href="data:;base64,=">
+	<style>
+		.aui-me-list {
+			overflow: hidden;
+			height: 600px;
+		}
+
+		.feik-ul p {
+			font-size: 0.9rem;
+		}
+
+		.feik-ul p i {
+			width: 90px;
+			display: block;
+			float: left;
+		}
+
+		.aui-text i {
+			margin-right: 7px;
+			font-size: 0.8rem;
+			color: #666;
+		}
+
+		.top-bg {
+			background: url(../resources/images/head-bg.png) center center no-repeat;
+			background-size: cover;
+		}
+
+		.mar-top {
+			margin-top: 14px;
+		}
+
+		.img-shadow {
+			box-shadow: 0px 0px 7px #9aacb5;
+			border-radius: 10px;
+		}
+
+		.aui-footer-button span {
+			color: #929292 !important;
+		}
+
+		.mui-active {
+			color: #1b9af6 !important;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" id="goBack">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">个人信息</span>
+			</div>
+		</header>
+		<div class="aui-scrollView" id="content">
+
+			<div class="divHeight"></div>
+
+			<c:if test="${fatheruser.bsUserType=='企业用户'}">
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>所属企业</p>
+					</div>
+					<div class="aui-text">${tbCoalRelatedPage.name}</div>
+				</div>
+			</c:if>
+			<c:if test="${ fatheruser.bsUserType != '企业用户' }">
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>管辖企业企业</p>
+					</div>
+					<div class="aui-text">${tbCoalRelatedPage.name}</div>
+				</div>
+			</c:if>
+
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>用户类型</p>
+				</div>
+				<div class="aui-text">${fatheruser.bsUserType}</div>
+			</div>
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>用户账号</p>
+				</div>
+				<div class="aui-text">${user.userName }</div>
+			</div>
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>姓名</p>
+				</div>
+				<div class="aui-text">${user.realName}</div>
+			</div>
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>手机号</p>
+				</div>
+				<div class="aui-text">${user.mobilePhone}</div>
+			</div>
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<p>邮箱</p>
+				</div>
+				<div class="aui-text">${user.email}</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+<script>
+	$.config = {
+		router: false
+	}
+</script>
+<script type="text/javascript" src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/cordova-2.5.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/common/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/frontend/setting/settingList.js" charset="utf-8"></script>
+<script type="text/javascript" src="../resources/js/local/logout.js" charset="utf-8"></script>
+
+</html>

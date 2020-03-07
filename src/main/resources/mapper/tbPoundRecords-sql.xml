@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhcc.dcs.dao.TbPoundRecordsDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbPoundRecords"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbPoundRecords">
+		<result property="id" column="id"/>
+		<result property="companyCode" column="company_code"/>
+		<result property="companyName" column="company_name"/>
+		<result property="firstBalanceCode" column="first_balance_code"/>
+		<result property="firstWeight" column="first_weight"/>
+		<result property="firstTime" column="first_time"/>
+		<result property="firstConfirmingId" column="first_confirming_id"/>
+		<result property="firstConfirmingName" column="first_confirming_name"/>
+		<result property="firstConfirmingTime" column="first_confirming_time"/>
+		<result property="secondCode" column="second_code"/>
+		<result property="secondWeight" column="second_weight"/>
+		<result property="secondTime" column="second_time"/>
+		<result property="secondConfirmingId" column="second_confirming_id"/>
+		<result property="secondConfirmingName" column="second_confirming_name"/>
+		<result property="secondConfirmingTime" column="second_confirming_time"/>
+		<result property="licensePlate" column="license_plate"/>
+		<result property="dispatchingId" column="dispatching_id"/>
+		<result property="driver" column="driver"/>
+		<result property="status" column="status"/>
+		<result property="purchaseContractId" column="purchase_contract_id"/>
+		<result property="carriageContractId" column="carriage_contract_id"/>
+		<result property="contractTypeCode" column="contract_type_code"/>
+		<result property="wlCode" column="wl_code"/>
+		<result property="wlName" column="wl_name"/>
+		<result property="sellerName" column="seller_name"/>
+		<result property="sellerId" column="seller_id"/>
+		<result property="buyerName" column="buyer_name"/>
+		<result property="exceptionFlg" column="exception_flg"/>
+		<result property="exceptionDealFlg" column="exception_deal_flg"/>
+		<result property="personEditFlg" column="person_edit_flg"/>
+		<result property="licensePlateHand" column="license_plate_hand"/>
+		<result property="dispatchingIdHand" column="dispatching_id_hand"/>
+		<result property="purchaseContractIdHand" column="purchase_contract_id_hand"/>
+		<result property="carriageContractIdHand" column="carriage_contract_id_hand"/>
+		<result property="contractTypeCodeHand" column="contract_type_code_hand"/>
+		<result property="wlCodeHand" column="wl_code_hand"/>
+		<result property="wlNameHand" column="wl_name_hand"/>
+		<result property="sellerNameHand" column="seller_name_hand"/>
+		<result property="sellerIdHand" column="seller_id_hand"/>
+		<result property="buyerNameHand" column="buyer_name_hand"/>
+		<result property="confirmId" column="confirm_id"/>
+		<result property="confirmName" column="confirm_name"/>
+		<result property="confirmTime" column="confirm_time"/>
+		<result property="dealId" column="deal_id"/>
+		<result property="dealName" column="deal_name"/>
+		<result property="dealTime" column="deal_time"/>
+		<result property="updateId" column="update_id"/>
+		<result property="updateName" column="update_name"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="driverHand" column="driver_hand"/>
+		<result property="taskType" column="task_type"/>
+		<result property="buyerId" column="buyer_id"/>
+		<result property="buyerIdHand" column="buyer_id_hand"/>
+		<result property="carrierId" column="carrier_id"/>
+		<result property="carrierIdHand" column="carrier_id_hand"/>
+		<result property="carrierUnit" column="carrier_unit"/>
+		<result property="carrierUnitHand" column="carrier_unit_hand"/>
+		<result property="mergeState" column="merge_state"/>
+		<result property="mergeId" column="merge_id"/>
+	</resultMap>
+
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.company_code,
+			t.company_name,
+			t.first_balance_code,
+			t.first_weight,
+			t.first_time,
+			t.first_confirming_id,
+			t.first_confirming_name,
+			t.first_confirming_time,
+			t.second_code,
+			t.second_weight,
+			t.second_time,
+			t.second_confirming_id,
+			t.second_confirming_name,
+			t.second_confirming_time,
+			t.license_plate,
+			t.dispatching_id,
+			t.driver,
+			t.status,
+			t.purchase_contract_id,
+			t.carriage_contract_id,
+			t.contract_type_code,
+			t.wl_code,
+			t.wl_name,
+			t.seller_name,
+			t.seller_id,
+			t.buyer_name,
+			t.exception_flg,
+			t.exception_deal_flg,
+			t.person_edit_flg,
+			t.license_plate_hand,
+			t.dispatching_id_hand,
+			t.purchase_contract_id_hand,
+			t.carriage_contract_id_hand,
+			t.contract_type_code_hand,
+			t.wl_code_hand,
+			t.wl_name_hand,
+			t.seller_name_hand,
+			t.seller_id_hand,
+			t.buyer_name_hand,
+			t.confirm_id,
+			t.confirm_name,
+			t.confirm_time,
+			t.deal_id,
+			t.deal_name,
+			t.deal_time,
+			t.update_id,
+			t.update_name,
+			t.update_time,
+			t.driver_hand,
+			t.task_type,
+			t.buyer_id,
+			t.buyer_id_hand,
+			t.carriage_id,
+			t.carrier_id_hand,
+			t.carrier_unit,
+			t.carrier_unit_hand,
+			t.merge_state,
+			t.merge_id
+		</trim>
+	</sql>
+
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>
+		from tb_pound_records t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="companyName != null and companyName != ''">
+				and t.company_name = #{companyName}			
+			</if>
+			<if test="firstBalanceCode != null and firstBalanceCode != ''">
+				and t.first_balance_code = #{firstBalanceCode}			
+			</if>
+			<if test="firstWeight != null and firstWeight != ''">
+				and t.first_weight = #{firstWeight}			
+			</if>
+			<if test="firstTime != null and firstTime != ''">
+				and t.first_time = #{firstTime}			
+			</if>
+			<if test="firstConfirmingId != null and firstConfirmingId != ''">
+				and t.first_confirming_id = #{firstConfirmingId}			
+			</if>
+			<if test="firstConfirmingName != null and firstConfirmingName != ''">
+				and t.first_confirming_name = #{firstConfirmingName}			
+			</if>
+			<if test="firstConfirmingTime != null and firstConfirmingTime != ''">
+				and t.first_confirming_time = #{firstConfirmingTime}			
+			</if>
+			<if test="secondCode != null and secondCode != ''">
+				and t.second_code = #{secondCode}			
+			</if>
+			<if test="secondWeight != null and secondWeight != ''">
+				and t.second_weight = #{secondWeight}			
+			</if>
+			<if test="secondTime != null and secondTime != ''">
+				and t.second_time = #{secondTime}			
+			</if>
+			<if test="secondConfirmingId != null and secondConfirmingId != ''">
+				and t.second_confirming_id = #{secondConfirmingId}			
+			</if>
+			<if test="secondConfirmingName != null and secondConfirmingName != ''">
+				and t.second_confirming_name = #{secondConfirmingName}			
+			</if>
+			<if test="secondConfirmingTime != null and secondConfirmingTime != ''">
+				and t.second_confirming_time = #{secondConfirmingTime}			
+			</if>
+			<if test="licensePlate != null and licensePlate != ''">
+				and t.license_plate = #{licensePlate}			
+			</if>
+			<if test="dispatchingId != null and dispatchingId != ''">
+				and t.dispatching_id = #{dispatchingId}			
+			</if>
+			<if test="driver != null and driver != ''">
+				and t.driver = #{driver}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}			
+			</if>
+			<if test="purchaseContractId != null and purchaseContractId != ''">
+				and t.purchase_contract_id = #{purchaseContractId}			
+			</if>
+			<if test="carriageContractId != null and carriageContractId != ''">
+				and t.carriage_contract_id = #{carriageContractId}			
+			</if>
+		</where>
+		
+		ORDER BY t.status asc,t.first_time DESC;
+	</select>
+
+	<select id="findUnderWay" parameterType="java.lang.String" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>
+		from tb_pound_records t
+		<where>
+			(`status` is null or `status` ='0')
+		    AND t.first_time is not null
+		    AND t.second_time is null
+			AND t.license_plate = #{licensePlate}
+		</where>
+		
+		ORDER BY t.first_time DESC;
+	</select>
+
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>
+		from tb_pound_records t
+		where t.id = #{value}
+	</select>
+
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_pound_records
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			company_code,
+			company_name,
+			first_balance_code,
+			first_weight,
+			first_time,
+			first_confirming_id,
+			first_confirming_name,
+			first_confirming_time,
+			second_code,
+			second_weight,
+			second_time,
+			second_confirming_id,
+			second_confirming_name,
+			second_confirming_time,
+			license_plate,
+			dispatching_id,
+			driver,
+			status,
+			purchase_contract_id,
+			carriage_contract_id,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{companyCode},
+			#{companyName},
+			#{firstBalanceCode},
+			#{firstWeight},
+			#{firstTime},
+			#{firstConfirmingId},
+			#{firstConfirmingName},
+			#{firstConfirmingTime},
+			#{secondCode},
+			#{secondWeight},
+			#{secondTime},
+			#{secondConfirmingId},
+			#{secondConfirmingName},
+			#{secondConfirmingTime},
+			#{licensePlate},
+			#{dispatchingId},
+			#{driver},
+			#{status},
+			#{purchaseContractId},
+			#{carriageContractId},
+		</trim>
+	</insert>
+
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_pound_records
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			company_code,
+			company_name,
+			first_balance_code,
+			first_weight,
+			first_time,
+			first_confirming_id,
+			first_confirming_name,
+			first_confirming_time,
+			second_code,
+			second_weight,
+			second_time,
+			second_confirming_id,
+			second_confirming_name,
+			second_confirming_time,
+			license_plate,
+			dispatching_id,
+			driver,
+			status,
+			purchase_contract_id,
+			carriage_contract_id,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.companyCode},
+				#{item.companyName},
+				#{item.firstBalanceCode},
+				#{item.firstWeight},
+				#{item.firstTime},
+				#{item.firstConfirmingId},
+				#{item.firstConfirmingName},
+				#{item.firstConfirmingTime},
+				#{item.secondCode},
+				#{item.secondWeight},
+				#{item.secondTime},
+				#{item.secondConfirmingId},
+				#{item.secondConfirmingName},
+				#{item.secondConfirmingTime},
+				#{item.licensePlate},
+				#{item.dispatchingId},
+				#{item.driver},
+				#{item.status},
+				#{item.purchaseContractId},
+				#{item.carriageContractId},
+			</trim>
+		</foreach>
+	</insert>
+
+	<update id="update" parameterMap="parameterMap">
+		update tb_pound_records
+		<set>
+			company_code = #{companyCode},
+			company_name = #{companyName},
+			first_balance_code = #{firstBalanceCode},
+			first_weight = #{firstWeight},
+			first_time = #{firstTime},
+			first_confirming_id = #{firstConfirmingId},
+			first_confirming_name = #{firstConfirmingName},
+			first_confirming_time = #{firstConfirmingTime},
+			second_code = #{secondCode},
+			second_weight = #{secondWeight},
+			second_time = #{secondTime},
+			second_confirming_id = #{secondConfirmingId},
+			second_confirming_name = #{secondConfirmingName},
+			second_confirming_time = #{secondConfirmingTime},
+			license_plate = #{licensePlate},
+			dispatching_id = #{dispatchingId},
+			driver = #{driver},
+			status = #{status},
+			purchase_contract_id = #{purchaseContractId},
+			carriage_contract_id = #{carriageContractId},
+		</set>
+		where id = #{id}
+	</update>
+
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_pound_records
+		<set>
+			<if test="companyCode != null">
+			company_code = #{companyCode},
+			</if>
+			<if test="companyName != null">
+			company_name = #{companyName},
+			</if>
+			<if test="firstBalanceCode != null">
+			first_balance_code = #{firstBalanceCode},
+			</if>
+			<if test="firstWeight != null">
+			first_weight = #{firstWeight},
+			</if>
+			<if test="firstTime != null">
+			first_time = #{firstTime},
+			</if>
+			<if test="firstConfirmingId != null">
+			first_confirming_id = #{firstConfirmingId},
+			</if>
+			<if test="firstConfirmingName != null">
+			first_confirming_name = #{firstConfirmingName},
+			</if>
+			<if test="firstConfirmingTime != null">
+			first_confirming_time = #{firstConfirmingTime},
+			</if>
+			<if test="secondCode != null">
+			second_code = #{secondCode},
+			</if>
+			<if test="secondWeight != null">
+			second_weight = #{secondWeight},
+			</if>
+			<if test="secondTime != null">
+			second_time = #{secondTime},
+			</if>
+			<if test="secondConfirmingId != null">
+			second_confirming_id = #{secondConfirmingId},
+			</if>
+			<if test="secondConfirmingName != null">
+			second_confirming_name = #{secondConfirmingName},
+			</if>
+			<if test="secondConfirmingTime != null">
+			second_confirming_time = #{secondConfirmingTime},
+			</if>
+			<if test="licensePlate != null">
+			license_plate = #{licensePlate},
+			</if>
+			<if test="dispatchingId != null">
+			dispatching_id = #{dispatchingId},
+			</if>
+			<if test="driver != null">
+			driver = #{driver},
+			</if>
+			<if test="status != null">
+			status = #{status},
+			</if>
+			<if test="purchaseContractId != null">
+			purchase_contract_id = #{purchaseContractId},
+			</if>
+			<if test="carriageContractId != null">
+			carriage_contract_id = #{carriageContractId},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_pound_records where id = #{value}
+	</delete>
+
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_pound_records where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="findHistoryWithContractInfo" resultType="map">
+		SELECT
+			t.company_name companyName,
+			p.seller_name sellerName,
+			p.buyer_name buyerName,
+			t.first_time firstTime,
+			t.second_time secondTime,
+			p.goods_type_name goodsTypeName,
+			p.contract_type_name contractTypeName,
+			t.`status`
+		FROM
+			tb_pound_records t
+			LEFT JOIN tb_purchase_sale_contract_info p ON t.purchase_contract_id = p.id
+		<where> 
+			t.license_plate = #{licensePlate}
+			<if test="companyName != null and companyName!= '' ">
+				AND t.company_name like CONCAT('%',#{companyName},'%')
+			</if>
+		</where>
+		
+		ORDER BY t.status asc,t.first_time DESC;
+	</select>
+
+	<select id="findByPage" parameterType="map" resultType="map">
+		SELECT 
+			a.id,
+			a.first_time as firstTime,
+			a.second_time as secondTime,
+			a.first_weight as firstWeight,
+			a.second_weight as secondWeight,
+			a.exception_flg as exceptionFlg,
+			a.licensePlate,
+			a.company_name AS companyName,
+			v.max_payload as maxPayload,
+			d.`name` AS driver
+		FROM (SELECT
+			t.id,
+			t.first_time,
+			t.second_time,
+			t.first_weight,
+			t.second_weight,
+			t.exception_flg,
+			t.company_name,
+			CASE WHEN t.license_plate_hand IS NULL THEN t.license_plate
+			WHEN t.license_plate_hand = '' THEN t.license_plate
+			ELSE t.license_plate_hand END AS licensePlate,
+			
+			CASE WHEN driver_hand IS NULL THEN driver 
+			WHEN driver_hand = '' THEN driver 
+			ELSE driver_hand END  AS driver 
+		FROM
+			tb_pound_records t
+		<where>
+			<if test="companyCode != null and companyCode != '' ">
+				company_code =  #{companyCode}
+			</if>
+			<if test="timeBegin !=null">
+				and t.first_time &gt;= #{timeBegin}
+			</if>
+			<if test="timeEnd !=null">
+				and t.first_time &lt;= #{timeEnd}
+			</if>
+			<if test="exceptionOnly !=null and exceptionOnly == 'true'">
+				and exception_flg = '1'
+			</if>
+		</where>) a 
+		LEFT JOIN tb_vehicle_info v ON a.licensePlate = v.license_plate
+		LEFT JOIN tb_driver_info d ON d.id = a.driver
+		<where>
+			<if test="overWeightOnly !=null and overWeightOnly == 'true'">
+				a.second_weight - a.first_time &gt; v.max_payload
+			</if>
+			<if test="licensePlate !=null and licensePlate != '' ">
+				and a.licensePlate like concat('%',#{licensePlate},'%')
+			</if>
+			<if test="driverId !=null and driverId != '' ">
+				and d.id = #{driverId}
+			</if>
+			<if test="idCard !=null and idCard != '' ">
+				and d.id_cord = #{idCard}
+			</if>
+		</where>
+		ORDER BY a.first_time ${sort},a.second_time ${sort}
+		LIMIT ${rowIndex},${pageSize};
+	</select>
+
+	<select id="getWayBill" parameterType="string" resultType="map">
+		SELECT 
+			a.id,
+			a.first_time AS firstTime,
+			a.second_time AS secondTime,
+			a.first_weight AS firstWeight,
+			a.second_weight AS secondWeight,
+			a.exception_flg AS exceptionFlg,
+			a.licensePlate,
+			v.max_payload AS maxPayload,
+			d.`name` AS driver,
+			d.license_number AS licenseNumber,
+			v.sys_company_name AS vehicleCompany,
+			v.vehicle_type AS vehicleType,
+			v.axles,
+			a.company_name AS companyName,
+			a.wlName,
+			c.cxmc,
+			a.carrierUnit
+		FROM (SELECT
+			t.id,
+			t.first_time,
+			t.second_time,
+			t.first_weight,
+			t.second_weight,
+			t.exception_flg,
+			t.company_name,
+			CASE WHEN t.license_plate_hand IS NULL THEN t.license_plate
+			WHEN t.license_plate_hand = '' THEN t.license_plate
+			ELSE t.license_plate_hand END AS licensePlate,
+			
+			CASE WHEN driver_hand IS NULL THEN driver 
+			WHEN driver_hand = '' THEN driver 
+			ELSE driver_hand END  AS driver ,
+
+			CASE  WHEN t.wl_name_hand IS NULL THEN t.wl_name
+				ELSE t.wl_name
+			END AS wlName,
+
+			CASE WHEN carrier_unit_hand IS NULL THEN carrier_unit 
+			WHEN carrier_unit_hand = '' THEN carrier_unit  
+			ELSE carrier_unit_hand 
+			END AS carrierUnit 
+
+		FROM
+			tb_pound_records t
+		WHERE t.id = #{poundRecordId} ) a 
+
+		LEFT JOIN tb_vehicle_info v ON a.licensePlate = v.license_plate
+		LEFT JOIN tb_driver_info d ON d.id = a.driver
+		LEFT JOIN tb_base_cx c ON c.id = v.vehicle_type
+	</select>
+
+	<select id="queryCount" parameterType="map" resultType="int">
+		SELECT 
+			count(1)
+		FROM (SELECT
+			t.id,
+			t.first_time,
+			t.second_time,
+			t.first_weight,
+			t.second_weight,
+			t.exception_flg,
+			CASE WHEN t.license_plate_hand IS NULL THEN t.license_plate
+			WHEN t.license_plate_hand = '' THEN t.license_plate
+			ELSE t.license_plate_hand END AS licensePlate,
+			
+			CASE WHEN driver_hand IS NULL THEN driver 
+			WHEN driver_hand = '' THEN driver 
+			ELSE driver_hand END  AS driver 
+		FROM
+			tb_pound_records t
+		<where>
+			<if test="companyCode != null and companyCode != '' ">
+				company_code =  #{companyCode}
+			</if>
+			<if test="timeBegin !=null">
+				and t.first_time &gt;= #{timeBegin}
+			</if>
+			<if test="timeEnd !=null">
+				and t.first_time &lt;= #{timeEnd}
+			</if>
+			<if test="exceptionOnly !=null and exceptionOnly == 'true'">
+				and exception_flg = '1'
+			</if>
+		</where>) a 
+		LEFT JOIN tb_vehicle_info v ON a.licensePlate = v.license_plate
+		LEFT JOIN tb_driver_info d ON d.id = a.driver
+		<where>
+			<if test="overWeightOnly !=null and overWeightOnly == 'true'">
+				a.second_weight - a.first_time &gt; v.max_payload
+			</if>
+			<if test="licensePlate !=null and licensePlate != '' ">
+				and a.licensePlate like concat('%',#{licensePlate},'%')
+			</if>
+			<if test="driverId !=null and driverId != '' ">
+				and d.id = ${driverId}
+			</if>
+			<if test="idCard !=null and idCard != '' ">
+				and d.id_cord = #{idCard}
+			</if>
+		</where>
+	</select>
+
+</mapper>

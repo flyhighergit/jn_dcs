@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录页</title>
+
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="../resources/css/common/style.css" rel="stylesheet"
+	type="text/css">
+<link href="../resources/css/common/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="../resources/css/common/modal.css"
+	rel="stylesheet" type="text/css">
+
+</head>
+<style>
+#qrcode {
+	margin-left: 2rem auto;
+}
+</style>
+<style type="text/css">
+.aui-ver-button {
+	margin-top: 0px;
+}
+</style>
+<body>
+
+	<div class="aui-flexView">
+		<div class="aui-ver-head">
+			<img src="../resources/images/head2.png" alt="">
+		</div>
+
+		<div class="aui-ver-form" style="height: 300px">
+
+			<!-- <div class="aui-flex">
+				<div class="aui-flex-box">
+					<i class="icon-code fa fa-truck"></i> <input id="licensePlate"
+						name="licensePlate" onfocus="$('#ulId').show()"
+						onblur="setTimeout(function(){$('#ulId').hide();},10);"
+						type="text" autocomplete="off" placeholder="车牌号">
+					<ul id="ulId" style="display: none;">
+					</ul>
+				</div>
+			</div>
+			
+			<div class="aui-ver-button">
+				<a class="login-btn" id="submit">确认</a>
+			</div>
+			
+			<div class="aui-cell-box wxts">
+                  <p ><em>温馨提示：</em></p>
+				  <em>点击设备绑定后，即可将手机与车牌号绑定</em>
+			</div> -->
+			
+			<div class="aui-flex">
+				<div class="aui-flex-box">
+					<i class="icon-code fa fa-truck"></i>
+					<input id="licensePlate" name="licensePlate" type="text" autocomplete="off" placeholder="车牌号"  value="晋A88888">
+				</div>
+			</div>
+            
+             <div class="ew-code">
+                   <div id="qrcode" style="width:180px;height:180px;margin:10px auto;" ></div>
+             </div>
+
+		</div>
+	</div>
+	
+	<footer class="aui-footer-button" style="margin-top: -60px">
+		<div class="aui-ver-button">
+			<!-- <a class="login-btn" id="deviceBind">设备绑定</a> -->
+			<a class="login-btn" id="submit">登录</a>
+		</div>
+	</footer>
+	
+	<script type='text/javascript'
+		src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/sm.min.js'
+		charset='utf-8'></script>
+	<script type='text/javascript'
+		src='../resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/common/common.js'
+		charset='utf-8'></script>
+	<script type="text/javascript" charset="utf-8"
+		src="../resources/js/common/jquery-2.1.1.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="../resources/js/common/jquery.qrcode.min.js"></script>
+	<script type='text/javascript' src='../resources/js/local/login.js'
+		charset='utf-8'></script>
+</body>
+</html>

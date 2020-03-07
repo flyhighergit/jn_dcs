@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div class="aui-flexView page">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item goBack">
+				<i class=" fa fa-angle-left fa-lg" style="margin-right:5px;"></i>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">注册</span>
+			</div>
+
+		</header>
+		<div class="aui-scrollView">
+
+			<div class="aui-ver-form">
+
+				<!-- <div class="aui-flex">
+					<div class="aui-flex-box">
+						<i class="icon-code fa fa-user-circle-o"></i>
+						<input id="username" type="text" maxlength="16" autocomplete="off" placeholder="用户名" onchange="usernameChange()">
+					</div>
+				</div>
+				<div class="aui-flex">
+					<div class="aui-flex-box">
+						<i class="icon-code fa fa-user-circle-o"></i>
+						<input id="realName" type="text" maxlength="6" autocomplete="off" placeholder="真实姓名"  onchange="realNameChange()">
+					</div>
+				</div>
+				 -->
+				<div class="aui-flex">
+					<div class="aui-flex-box">
+						<i class=" icon-code fa fa-user fa-lg"></i>
+						<input id="idCord" type="text" maxlength="18" autocomplete="off" placeholder="身份证号码" onchange="idCordChange()">
+					</div>
+				</div> 
+				<div class="aui-flex">
+					<div class="aui-flex-box">
+						<i class=" icon-code fa fa-edit"></i>
+						<input id="password" type="password" maxlength="18" autocomplete="off" placeholder="密码" onchange="passwordChange()">
+					</div>
+				</div>
+				<div class="aui-flex" id="verifyPart">
+                    <div class="aui-flex-box">
+                        <img id="captcha_img" alt="点击更换" title="点击更换" src="../Kaptcha" onclick="changeVerifyCode(this);"/>
+                        <input id="j_captcha" name="j_captcha" type="text" class="form-control in" placeholder="请填写验证码（不区分大小写）"/>
+                    </div>
+                </div>
+				<!-- <div class="aui-cell-box">
+
+					<em>（密码规则：必须包含大小写字母、数字、特殊字符、6位以上）</em>
+
+				</div> -->
+
+				<div class="aui-ver-button">
+					<button id="next-btn">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/frontend/signin.js' charset='utf-8'></script>
+
+</html>

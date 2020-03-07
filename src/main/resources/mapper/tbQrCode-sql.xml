@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbQrCodeDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbQrCode"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbQrCode">
+		<result property="id" column="id"/>
+		<result property="createName" column="create_name"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateName" column="update_name"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="keyValue" column="key_value"/>
+		<result property="companyCode" column="company_code"/>
+		<result property="bfCode" column="bf_code"/>
+		<result property="beginTime" column="begin_time"/>
+		<result property="endTime" column="end_time"/>
+		<result property="status" column="status"/>
+		<result property="version" column="version"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.create_name,
+			t.create_by,
+			t.create_date,
+			t.update_name,
+			t.update_by,
+			t.update_date,
+			t.key_value,
+			t.company_code,
+			t.bf_code,
+			t.begin_time,
+			t.end_time,
+			t.status,
+			t.version,
+	 	</trim>
+	</sql>
+	
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="createName != null and createName != ''">
+				and t.create_name like concat('%',#{createName},'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name like concat('%',#{updateName},'%')
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="keyValue != null and keyValue != ''">
+				and t.key_value = #{keyValue}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="bfCode != null and bfCode != ''">
+				and t.bf_code = #{bfCode}			
+			</if>
+			<if test="beginTime != null and beginTime != ''">
+				and t.begin_time = #{beginTime}			
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t.end_time = #{endTime}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}			
+			</if>
+			<if test="version != null and version != ''">
+				and t.version = #{version}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="findByPage" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		<where>
+			<if test="tbQrCode.id != null and tbQrCode.id != ''">
+				and t.id = #{tbQrCode.id}			
+			</if>
+			<if test="tbQrCode.createBy != null and tbQrCode.createBy != ''">
+				and t.create_by = #{tbQrCode.createBy}			
+			</if>
+			<if test="tbQrCode.createDate != null and tbQrCode.createDate != ''">
+				and t.create_date = #{tbQrCode.createDate}			
+			</if>
+			<if test="tbQrCode.updateName != null and tbQrCode.updateName != ''">
+				and t.update_name like concat('%',#{tbQrCode.updateName},'%')
+			</if>
+			<if test="tbQrCode.updateBy != null and tbQrCode.updateBy != ''">
+				and t.update_by = #{tbQrCode.updateBy}			
+			</if>
+			<if test="tbQrCode.updateDate != null and tbQrCode.updateDate != ''">
+				and t.update_date = #{tbQrCode.updateDate}			
+			</if>
+			<if test="tbQrCode.keyValue != null and tbQrCode.keyValue != ''">
+				and t.key_value = #{tbQrCode.keyValue}			
+			</if>
+			<if test="tbQrCode.createName != null and tbQrCode.createName != ''">
+				and t.create_name like concat('%',#{tbQrCode.createName},'%')
+			</if>
+			<if test="tbQrCode.companyCode != null and tbQrCode.companyCode != ''">
+				and t.company_code = #{tbQrCode.companyCode}			
+			</if>
+			<if test="tbQrCode.bfCode != null and tbQrCode.bfCode != ''">
+				and t.bf_code = #{tbQrCode.bfCode}			
+			</if>
+			<if test="tbQrCode.beginTime != null and tbQrCode.beginTime != ''">
+				and t.begin_time = #{tbQrCode.beginTime}			
+			</if>
+			<if test="tbQrCode.version != null and tbQrCode.version != ''">
+				and t.version = #{tbQrCode.version}			
+			</if>
+			<if test="tbQrCode.endTime != null and tbQrCode.endTime != ''">
+				and t.end_time = #{tbQrCode.endTime}			
+			</if>
+			<if test="tbQrCode.status != null and tbQrCode.status != ''">
+				and t.status = #{tbQrCode.status}			
+			</if>
+		</where>
+		
+		LIMIT ${rowIndex},${pageSize}
+	</select>
+	
+	<select id="queryCount" parameterMap="parameterMap" resultType="int">
+		select
+			count(1)
+		from tb_qr_code t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="createName != null and createName != ''">
+				and t.create_name like concat('%',#{createName},'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name like concat('%',#{updateName},'%')
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="keyValue != null and keyValue != ''">
+				and t.key_value = #{keyValue}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="bfCode != null and bfCode != ''">
+				and t.bf_code = #{bfCode}			
+			</if>
+			<if test="beginTime != null and beginTime != ''">
+				and t.begin_time = #{beginTime}			
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t.end_time = #{endTime}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}			
+			</if>
+			<if test="version != null and version != ''">
+				and t.version = #{version}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getExpireNumber" parameterMap="parameterMap" resultType="int">
+		select
+			count(1)
+		from tb_qr_code t
+		<where>
+			t.end_time &lt;= SUBDATE(now(), INTERVAL -1 DAY ) 
+			AND t.`status` = '0'
+			<if test="id != null and id != ''">
+				and t.id = #{id}
+			</if>
+			<if test="createName != null and createName != ''">
+				and t.create_name like concat('%',#{createName},'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name like concat('%',#{updateName},'%')
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="keyValue != null and keyValue != ''">
+				and t.key_value = #{keyValue}			
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}			
+			</if>
+			<if test="bfCode != null and bfCode != ''">
+				and t.bf_code = #{bfCode}			
+			</if>
+			<if test="beginTime != null and beginTime != ''">
+				and t.begin_time = #{beginTime}			
+			</if>
+			<if test="version != null and version != ''">
+				and t.version = #{version}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="findExpireByPage" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		<where>
+			now() &gt;= #{endTime}
+			
+			<if test="tbQrCode.createName != null and tbQrCode.createName != ''">
+				and t.create_name like concat('%',#{tbQrCode.createName},'%')
+			</if>
+			<if test="tbQrCode.companyCode != null and tbQrCode.companyCode != ''">
+				and t.company_code = #{tbQrCode.companyCode}			
+			</if>
+			<if test="tbQrCode.bfCode != null and tbQrCode.bfCode != ''">
+				and t.bf_code = #{tbQrCode.bfCode}			
+			</if>
+			<if test="tbQrCode.beginTime != null and tbQrCode.beginTime != ''">
+				and t.begin_time = #{tbQrCode.beginTime}			
+			</if>
+			<if test="tbQrCode.version != null and tbQrCode.version != ''">
+				and t.version = #{tbQrCode.version}			
+			</if>
+		</where>
+		
+		LIMIT ${rowIndex},${pageSize}
+	</select>
+	
+	<select id="findExpireSoonByPage" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		<where>
+			t.end_time &lt; SUBDATE(now(), INTERVAL -1 DAY)
+			AND t.`status` = '0'
+			<if test="tbQrCode.createName != null and tbQrCode.createName != ''">
+				and t.create_name like concat('%',#{tbQrCode.createName},'%')
+			</if>
+			<if test="tbQrCode.companyCode != null and tbQrCode.companyCode != ''">
+				and t.company_code = #{tbQrCode.companyCode}			
+			</if>
+			<if test="tbQrCode.bfCode != null and tbQrCode.bfCode != ''">
+				and t.bf_code = #{tbQrCode.bfCode}			
+			</if>
+			<if test="tbQrCode.beginTime != null and tbQrCode.beginTime != ''">
+				and t.begin_time = #{tbQrCode.beginTime}			
+			</if>
+			<if test="tbQrCode.version != null and tbQrCode.version != ''">
+				and t.version = #{tbQrCode.version}			
+			</if>
+		</where>
+		
+		LIMIT ${rowIndex},${pageSize}
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		where t.id = #{value}
+	</select>
+	
+	<select id="getByKey" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_qr_code t
+		where t.key_value = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_qr_code
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			create_name,
+			create_by,
+			create_date,
+			update_name,
+			update_by,
+			update_date,
+			key_value,
+			company_code,
+			bf_code,
+			begin_time,
+			end_time,
+			status,
+			version,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{createName},
+			#{createBy},
+			#{createDate},
+			#{updateName},
+			#{updateBy},
+			#{updateDate},
+			#{keyValue},
+			#{companyCode},
+			#{bfCode},
+			#{beginTime},
+			#{endTime},
+			#{status},
+			#{version},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_qr_code
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			create_name,
+			create_by,
+			create_date,
+			update_name,
+			update_by,
+			update_date,
+			key_value,
+			company_code,
+			bf_code,
+			begin_time,
+			end_time,
+			status,
+			version,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.createName},
+				#{item.createBy},
+				#{item.createDate},
+				#{item.updateName},
+				#{item.updateBy},
+				#{item.updateDate},
+				#{item.keyValue},
+				#{item.companyCode},
+				#{item.bfCode},
+				#{item.beginTime},
+				#{item.endTime},
+				#{item.status},
+				#{item.version},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_qr_code
+		<set>
+			create_name = #{createName},
+			create_by = #{createBy},
+			create_date = #{createDate},
+			update_name = #{updateName},
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			key_value = #{keyValue},
+			company_code = #{companyCode},
+			bf_code = #{bfCode},
+			begin_time = #{beginTime},
+			end_time = #{endTime},
+			status = #{status},
+			version = #{version},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_qr_code
+		<set>
+			<if test="createName != null">
+			create_name = #{createName},
+			</if>
+			<if test="createBy != null">
+			create_by = #{createBy},
+			</if>
+			<if test="createDate != null">
+			create_date = #{createDate},
+			</if>
+			<if test="updateName != null">
+			update_name = #{updateName},
+			</if>
+			<if test="updateBy != null">
+			update_by = #{updateBy},
+			</if>
+			<if test="updateDate != null">
+			update_date = #{updateDate},
+			</if>
+			<if test="keyValue != null">
+			key_value = #{keyValue},
+			</if>
+			<if test="companyCode != null">
+			company_code = #{companyCode},
+			</if>
+			<if test="bfCode != null">
+			bf_code = #{bfCode},
+			</if>
+			<if test="beginTime != null">
+			begin_time = #{beginTime},
+			</if>
+			<if test="endTime != null">
+			end_time = #{endTime},
+			</if>
+			<if test="status != null">
+			status = #{status},
+			</if>
+			<if test="version != null">
+			version = #{version},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_qr_code where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_qr_code where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,692 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>车辆车主信息</title>
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="../resources/css/common/style.css">
+<link rel="stylesheet" href="../resources/css/common/modal.css">
+<link rel="stylesheet" href="../resources/css/common/font-awesome.min.css">
+<link rel="stylesheet" href="../resources/css/common/calendar.css">
+<link rel="stylesheet" href="../resources/css/common/sm-extend.min.css">
+<style>
+	.aui-flex { padding:8px 15px;}
+	.aui-flex h4 { color:#444;}
+	.aui-flex-box input {border: none; }
+	.inp-sm  input{ width:100px; margin-right:5px;}
+	.file-btn{width:100% !important;height:100% !important;}
+	.active{display:block}
+	.hidden{display:none}
+	
+	.aui-footer-button{position: fixed;bottom: 0;}
+	.aui-arrow{font-size: .8rem}
+
+	/* 上一步按钮 */
+	.pre-btn { 
+		width: 45% !important; 
+		margin-top: 35px; 
+		margin-left:10px;
+		float:left;
+	}
+	/* 下一步按钮 */
+	.next-btn { 
+		width: 45% !important; 
+		margin-top: 35px; 
+		margin-right:10px;
+		float:right;
+	}
+</style>
+
+</head>
+
+<body>
+	<section id="preview"></section>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" id="goBack">
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>返回
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">车辆信息</span>
+			</div>
+			<a href="javascript:;" id="goSave" class="aui-navBar-item">保存</a>
+		</header>
+		
+		<div class="aui-scrollView">
+			
+			<!-- 第一页 车辆基本信息 -->
+			<div id="module1" class="active">
+				
+				<form id="baseInfo">
+					<div class="aui-news-list b-line">
+						<div class="aui-flex baseInfo-input" style="margin-top: 1rem">
+							<div class="aui-jon-user">
+								<img src="../resources/images/user.png" alt="">
+							</div>
+							<div class="aui-flex-box">
+								<!-- <h4>
+									车辆持有人<span style="color:red;">*</span>：
+										<input type="text" id="holder" name="holder" value="" placeholder="请输入车辆持有人" style="border: none;" required="required">
+										<input type="hidden" id="id" name="id" value=""/>
+								</h4> -->
+								<h4>
+									车牌号<span style="color:red;">*</span>：
+										<input type="text" id="licensePlate" name="licensePlate"  placeholder="请输入车牌号" value="" required="required">
+										<input type="hidden" id="oldLicensePlate" value="">
+										<input type="hidden" id="id" name="id" value=""/>
+								</h4>
+							</div>
+						</div>
+					</div>
+
+					<div class="divHeight"></div>
+						
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>所属公司<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="hidden" name="sysCompanyCode" id="sysCompanyCode" value="">
+							<input type="text" name="sysCompanyName" id="sysCompanyName" readonly="readonly" required="required">
+						</div>
+					</div>
+					<!-- <div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>车牌号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="licensePlate" id="licensePlate" placeholder="请输入车牌号" value="" required="required">
+							<input type="hidden" id="oldLicensePlate" value="">
+						</div>
+					</div> -->
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>车辆类型<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text" id="vehicleTypeName">
+							请选择
+						</div>
+						<input type="hidden" name="vehicleType" value="">
+						<input type="hidden" name="vehicleTypeName" value="" required="required">
+					</div>
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>颜色<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="brandColorName" id="brandColorName" placeholder="请输入颜色" value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>品牌<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="brandModel" name="brandModel" placeholder="请输入品牌" value="" required="required">
+								
+						</div>
+					</div>
+					
+					<!-- <div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>车架号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="frameNum" name="frameNum" placeholder="请输入车架号" value="" required="required">
+						</div>
+					</div> -->
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>核载（吨）<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="maxPayload" name="maxPayload" value="" required="required" readonly="readonly">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>轴数<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="axles" name="axles" value="" required="required" readonly="readonly">
+								
+						</div>
+					</div>
+					<!-- <div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>联系电话<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="phoneNumber" name="phoneNumber" placeholder="请输入联系电话" value="" required="required">
+								
+						</div>
+					</div> -->
+					<div class="aui-flex b-line baseInfo-input">
+						<div class="aui-flex-box">
+							<p>备注</p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="remark" name="remark" placeholder="请输入备注" value="">
+						</div>
+					</div>
+					
+				</form>
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="submit-baseInfo" value="下一步">
+				</footer>
+			</div>
+			
+			
+			<!--  第二页  从业证信息 -->
+			<div id="module2" class="hidden">
+				<form id="upload-zgz">
+					<div class="aui-flex">
+						<h4>从业证</h4>
+					</div>
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>从业资格证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="qualificationCode" placeholder="请输入从业资格证号" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>从业资格类别<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="typeQualification" placeholder="请输入从业资格类别" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>初次发证时间<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="issuingTime" name="issuingTime" placeholder="请输入初次发证时间" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line zgz-input">
+						<div class="aui-flex-box">
+							<p>有效期限<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="practitionerLicenseDate" name="practitionerLicenseDate" placeholder="请输入有效期限"
+								value="" required="required">
+						</div>
+					</div>
+					
+					
+					<!-- 正面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="zgzPositiveImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">从业证正面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="zgzPositive">
+						</div>
+					</div>
+					<!-- 反面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="zgzNegativeImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">从业证反面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="zgzNegative">
+						</div>
+					</div>
+					
+				</form>
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-baseinfo" class="pre-btn" value="上一步">
+					<input type="button" id="submit-zgz" class="next-btn" value="下一步">
+				</footer>
+			</div>
+
+
+			<!-- 第三页 道路运输证信息 -->
+			<div id="module3" class="hidden">
+				<form id="upload-dlysz">
+					<div class="aui-flex">
+						<h4>道路运输证</h4>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>运输证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="tradingCode" placeholder="请输入运输证号" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>经济性质<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="economicType" placeholder="请输入经济性质" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>业户名称<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="businessName" placeholder="请输入业户名称" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>业户地址<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="businessAddress" placeholder="请输入业户地址" value="" required="required">
+								
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>发证日期<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="transportIssueDate" name="transportIssueDate" placeholder="请输入发证日期"
+								value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>有效期限<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="transportLicenseDate" name="transportLicenseDate" placeholder="请输入有效期限"
+								value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line dlysz-input">
+						<div class="aui-flex-box">
+							<p>经营范围</p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="businessScope" placeholder="请输入经营范围"
+								value="">
+						</div>
+					</div>
+					
+					<!-- 正面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="dlyszPositiveImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">道路运输证正面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="dlyszPositive">
+						</div>
+					</div>
+					<!-- 反面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="dlyszNegativeImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">道路运输证反面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="dlyszNegative">
+						</div>
+					</div>
+					
+				</form>
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-zgz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-dlysz" class="next-btn" value="下一步">
+				</footer>
+			</div>
+
+			
+			<!-- 第四页  行驶证信息 -->
+			<div id="module4" class="hidden">
+				<form id="upload-xsz">
+					<div class="aui-flex">
+						<h4>行驶证</h4>
+					</div>
+					<div class="aui-flex b-line xsz-input">
+						<div class="aui-flex-box">
+							<p>车辆识别代号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text"> 
+							<input type="text" id="vin" name="vin" placeholder="请输入车辆识别代号" value="" required="required">
+							<input type="hidden" id="oldVin" value="">	
+						</div>
+					</div>
+					<div class="aui-flex b-line xsz-input">
+						<div class="aui-flex-box">
+							<p>发动机号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="engineNum" name="engineNum" placeholder="请输入发动机号" value="" required="required">
+							<input type="hidden" id="oldEngineNum" value="">
+						</div>
+					</div>
+					<!-- <div class="aui-flex b-line xsz-input">
+						<div class="aui-flex-box">
+							<p>使用性质<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="natureUse" placeholder="请输入使用性质" value="" required="required">
+								
+						</div>
+					</div> -->
+					<div class="aui-flex b-line xsz-input">
+						<div class="aui-flex-box">
+							<p>注册日期<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="numberDate" name="numberDate" placeholder="请输入注册日期"
+								value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line xsz-input">
+						<div class="aui-flex-box">
+							<p>有效期限<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="travelLicenseDate" name="travelLicenseDate" placeholder="请输入有效期限"
+								value="" required="required">
+						</div>
+					</div>
+					
+					<!-- 正面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="xszPositiveImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">行驶证正面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="xszPositive">
+						</div>
+					</div>
+					<!-- 反面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="xszNegativeImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">行驶证反面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="xszNegative">
+						</div>
+					</div>
+					
+				</form>	
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-dlysz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-xsz" class="next-btn" value="下一步">
+				</footer>
+			</div>
+
+
+			<!-- 第五页  驾驶证信息 -->
+			<div id="module5" class="hidden">
+				<form id="upload-jsz">
+					<div class="aui-flex">
+						<h4>驾驶证</h4>
+					</div>
+					<div class="aui-flex b-line jsz-input">
+						<div class="aui-flex-box">
+							<p>驾驶证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="driverLicense" placeholder="请输入驾驶证号"
+								value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line jsz-input">
+						<div class="aui-flex-box">
+							<p>准驾车型<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text" id="models">
+							请选择
+						</div>
+						<input type="hidden" name="modelsCode" value="">
+						<input type="hidden" name="models" value="" required="required">
+					</div>
+					<div class="aui-flex b-line jsz-input">
+						<div class="aui-flex-box">
+							<p>初次领证日期<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" style="width: 180px;" id="licensingDate" name="licensingDate" placeholder="请输入初次领证日期"
+								value="" required="required">
+						</div>
+					</div>
+					<div class="aui-flex b-line jsz-input">
+						<div class="aui-flex-box">
+							<p>有效期限<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="driveLicenseDate" name="driveLicenseDate" placeholder="请输入有效期限"
+								value="" required="required">
+						</div>
+					</div>
+					
+					<!-- 正面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="jszPositiveImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">驾驶证正面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="jszPositive">
+						</div>
+					</div>
+					<!-- 反面 -->
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="jszNegativeImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">驾驶证反面</p>
+						</div>
+						<!-- <div class="aui-next">
+							<span class="preview">预览</span>
+						</div> -->
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="jszNegative">
+						</div>
+					</div>
+					
+				</form>
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-xsz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-jsz" class="next-btn" value="提交核对">
+				</footer>
+			</div>
+
+			
+			<!-- 第六页  身份证信息-->
+			<!-- <div id="module6" class="hidden">
+				<form id="upload-sfz">
+					<div class="aui-flex">
+						<h4>身份证</h4>
+					</div>
+					<div class="aui-flex b-line sfz-input">
+						<div class="aui-flex-box">
+							<p>性别<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text" id="sexOwnerName">
+							请选择
+						</div>
+						<input type="hidden" name="sexOwner" value="" required="required">
+						<input type="hidden" name="sexOwnerName" value="">
+					</div>
+					<div class="aui-flex b-line sfz-input">
+						<div class="aui-flex-box">
+							<p>身份证号<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="numberOwner" id="numberOwner" placeholder="请输入身份证号" value="" onchange="stringToDate()" required="required" >
+						</div>
+					</div>
+					<div class="aui-flex b-line sfz-input">
+						<div class="aui-flex-box">
+							<p>出生<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" id="bornOwner" name="bornOwner" value="" required="required" readonly="readonly">
+						</div>
+					</div>
+					<div class="aui-flex b-line sfz-input">
+						<div class="aui-flex-box">
+							<p>住址<span style="color:red;">*</span></p>
+						</div>
+						<div class="aui-text">
+							<input type="text" name="addressOwner" placeholder="请输入住址" value="" required="required">
+						</div>
+					</div>
+					
+					
+					正面
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="sfzPositiveImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">身份证正面</p>
+						</div>
+						<div class="aui-next">
+							<span class="preview">预览</span>
+						</div>
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="sfzPositive">
+						</div>
+					</div>
+					反面
+					<div class="aui-flex b-line upload">
+						<div class="aui-img-ico">
+							<img class="contract-img" id="sfzNegativeImg" src="../resources/images/list-ico/no-img.png" alt="" height="8" />
+						</div>
+						<div class="aui-flex-box aui-flex-box-epx">
+							<p style="text-align: center">身份证反面</p>
+						</div>
+						<div class="aui-next">
+							<span class="preview">预览</span>
+						</div>
+						<div class="aui-img-ico up-bg">
+							<input type="file" class="file-btn" id="sfzNegative">
+						</div>
+					</div>
+					
+				</form>	
+				
+				<footer class="aui-footer-button">
+					<input type="button" id="backto-jsz" class="pre-btn" value="上一步">
+					<input type="button" id="submit-sfz" class="next-btn" value="提交核对">
+				</footer>
+			</div> -->
+			
+			
+		</div>
+	</div>
+
+	<div class="popup" id="carStyle">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:closeCar('cx');" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" >
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择车辆类型</span>
+			</div>
+		</header>
+		<div class="aui-search">
+			<div class="aui-search-box">
+			</div>
+		</div>
+	</div>
+	
+	<div class="popup" id="sex">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:closeSex();" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" >
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择性别</span>
+			</div>
+		</header>
+		<div id="sexType"></div>
+	</div>
+	
+	<div class="popup" id="modelsDiv">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:closeModels();" class="aui-navBar-item" style="color:#1b9af6;font-weight: normal;" >
+				<span class="icon icon-left" style="margin-top: .4rem;"></span>关闭
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择准驾车型</span>
+			</div>
+		</header>
+		<div id="modelsType"></div>
+	</div>
+	
+	
+	<script type="text/javascript"
+		src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/common.js"
+		charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/frontend/vehicle/vehicleInfoAdd.js"
+		charset="utf-8"></script>
+</body>
+</html>

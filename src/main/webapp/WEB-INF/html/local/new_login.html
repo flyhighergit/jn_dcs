@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../resources/css/common/style.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/common/modal.css" rel="stylesheet" type="text/css">
+
+</head>
+<style>
+    #qrcode {
+        margin-left: 2rem auto;
+    }
+    .aui-ver-button {
+        margin-top: 0px;
+    }
+</style>
+
+<body>
+
+    <div class="aui-flexView page">
+        <div class="aui-ver-head">
+            <img src="../resources/images/head2.png" alt="">
+        </div>
+
+        <div class="aui-ver-form" style="height: 300px">
+
+            <div class="aui-ver-form">
+                <div class="aui-flex">
+                    <div class="aui-flex-box">
+                        <i class="icon-code fa fa-user-circle"></i>
+                        <input id="idCord" name="idCord" type="text" maxlength="18" autocomplete="off" placeholder="用户名">
+                    </div>
+                </div>
+                <div class="aui-flex">
+                    <div class="aui-flex-box">
+                        <i class=" icon-code fa fa-key"></i>
+                        <input id="password" name="password" type="password" maxlength="18" autocomplete="off" placeholder="密 码">
+                    </div>
+                </div>
+                <div class="aui-flex" id="verifyPart" style="display: none;">
+                    <div class="aui-flex-box">
+                        <img id="captcha_img" alt="点击更换" title="点击更换" src="../Kaptcha" onclick="changeVerifyCode(this);"/>
+                        <input id="j_captcha" name="j_captcha" type="text" class="form-control in" placeholder="请填写验证码（不区分大小写）"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="aui-footer-button" style="margin-top: -60px">
+        <div class="aui-ver-button">
+            <a class="login-btn" id="signin" style="width:49%;display: inline-block;">注册</a>
+            <a class="login-btn" id="submit" style="width:49%;display: inline-block;">登录</a>
+        </div>
+    </footer>
+
+    <script type='text/javascript' src='../resources/js/common/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../resources/js/common/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../resources/js/common/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../resources/js/local/new_login.js' charset='utf-8'></script>
+</body>
+
+</html>

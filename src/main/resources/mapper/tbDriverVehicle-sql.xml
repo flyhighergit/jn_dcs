@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbDriverVehicleDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbDriverVehicle"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbDriverVehicle">
+		<result property="id" column="id"/>
+		<result property="driverId" column="driver_id"/>
+		<result property="vehicleId" column="vehicle_id"/>
+		<result property="companyId" column="company_id"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.driver_id,
+			t.vehicle_id,
+			t.company_id,
+			t.create_time,
+			t.update_time,
+			t.status,
+	 	</trim>
+	</sql>
+	
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>,v.license_plate as licensePlate
+		from tb_driver_vehicle t left join tb_vehicle_info v on t.vehicle_id = v.id
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="driverId != null and driverId != ''">
+				and t.driver_id = #{driverId}			
+			</if>
+			<if test="vehicleId != null and vehicleId != ''">
+				and t.vehicle_id = #{vehicleId}			
+			</if>
+			<if test="companyId != null and companyId != ''">
+				and t.company_id = #{companyId}			
+			</if>
+			
+			<if test="createTime != null">
+				and t.create_time = #{createTime}			
+			</if>
+			<if test="updateTime != null">
+				and t.update_time = #{updateTime}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_vehicle t
+		where t.id = #{value}
+	</select>
+	
+	<select id="getDefaultVehicle" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_driver_vehicle t
+		where t.driver_id = #{value} and t.status = '1'
+	</select>
+	
+	<select id="getRelationship" resultMap="resultMap" parameterType="map">
+		select 
+			<include refid="columnSql"></include>
+		from tb_driver_vehicle t
+		where t.company_id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_driver_vehicle
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			driver_id,
+			vehicle_id,
+			company_id,
+			create_time,
+			update_time,
+			status,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{driverId},
+			#{vehicleId},
+			#{companyId},
+			#{createTime},
+			#{updateTime},
+			#{status},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_driver_vehicle
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			driver_id,
+			vehicle_id,
+			company_id,
+			create_time,
+			update_time,
+			status,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.driverId},
+				#{item.vehicleId},
+				#{item.companyId},
+				#{item.createTime},
+				#{item.updateTime},
+				#{item.status},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_driver_vehicle
+		<set>
+			driver_id = #{driverId},
+			vehicle_id = #{vehicleId},
+			company_id = #{companyId},
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			status = #{status},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_driver_vehicle
+		<set>
+			<if test="driverId != null">
+			driver_id = #{driverId},
+			</if>
+			<if test="vehicleId != null">
+			vehicle_id = #{vehicleId},
+			</if>
+			<if test="companyId != null">
+			company_id = #{companyId},
+			</if>
+			<if test="createTime != null">
+			create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+			update_time = #{updateTime},
+			</if>
+			<if test="status != null">
+			status = #{status},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateStatus" parameterType="map">
+		update tb_driver_vehicle 
+		SET  status = #{status} 
+		where vehicle_id = #{vehicleId}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_driver_vehicle where id = #{value}
+	</delete>
+	
+	<delete id="deleteByVehicleId" parameterType="map">
+		delete from tb_driver_vehicle where vehicle_id = #{vehicleId} and driver_id = #{driverId}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_driver_vehicle where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

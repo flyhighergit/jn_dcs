@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.dhcc.dcs.dao.TSFunctionDao">
+	
+	<select id="getTSFunctionByMap" resultType="com.dhcc.dcs.entity.TSFunction" parameterType="map">
+		<if test="null != flag and flag == 'parent' ">
+		select f.id,f.functionlevel as functionLevel,f.functionname as functionName,f.functionorder as functionOrder,
+			f.parentfunctionid as parentFunctionId,f.function_icon_style as functionIconStyle,f.functionurl as functionUrl
+		from  t_s_role_user r ,t_s_role_function rf ,t_s_function f,t_s_function f1
+		where r.userid = #{userId}
+			and r.roleid = rf.roleid 
+		  	and f.id = rf.functionid 
+			and f.parentfunctionid = f1.id 
+		 	and f1.functionname = 'APP'
+		order by f.functionorder
+		</if>
+		<if test="null != flag and flag == 'child' ">
+		SELECT hz.*
+		from t_s_role_user r ,t_s_role_function rf ,
+		(
+		  select f.id,f.functionlevel as functionLevel,f.functionname as functionName,f.functionorder as functionOrder,
+					f.parentfunctionid as parentFunctionId,f.function_icon_style as functionIconStyle,f.functionurl as functionUrl,f.id as parentId
+			from t_s_function f,t_s_function f1
+			where f1.id = #{parentId}  
+					and f1.id = f.parentfunctionid
+			union
+			select f2.id,f2.functionlevel as functionLevel,f2.functionname as functionName,f2.functionorder as functionOrder,
+					f2.parentfunctionid as parentFunctionId,f2.function_icon_style as functionIconStyle,f2.functionurl as functionUrl,
+					f2.parentfunctionid as parentId
+			from t_s_function f,t_s_function f1,t_s_function f2
+			where f1.id = #{parentId}
+					and f1.id = f.parentfunctionid
+					and f2.parentfunctionid = f.id
+		)hz 
+		where r.userid = #{userId}
+				and r.roleid = rf.roleid 
+				and hz.id = rf.functionid
+		order by hz.parentId ,hz.functionLevel,hz.functionOrder
+		</if>
+	</select>
+	
+	
+</mapper>

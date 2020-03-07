@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbBaseCxDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbBaseCx"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbBaseCx">
+		<result property="id" column="id"/>
+		<result property="cxmc" column="cxmc"/>
+		<result property="cxbm" column="cxbm"/>
+		<result property="cxzs" column="cxzs"/>
+		<result property="cxhz" column="cxhz"/>
+		<result property="length" column="length"/>
+		<result property="width" column="width"/>
+		<result property="height" column="height"/>
+		<result property="createName" column="create_name"/>
+		<result property="createId" column="create_id"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateName" column="update_name"/>
+		<result property="updateId" column="update_id"/>
+		<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.cxmc,
+			t.cxbm,
+			t.cxzs,
+			t.cxhz,
+			t.length,
+			t.width,
+			t.height,
+			t.create_name,
+			t.create_id,
+			t.create_time,
+			t.update_name,
+			t.update_id,
+			t.update_time,
+	 	</trim>
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_base_cx t
+		<where>
+			<if test="tbBaseCx.id != null and tbBaseCx.id != ''">
+				and t.id = #{tbBaseCx.id}			
+			</if>
+			<if test="tbBaseCx.cxmc != null and tbBaseCx.cxmc != ''">
+				and t.cxmc like concat('%',#{tbBaseCx.cxmc},'%')
+			</if>
+			<if test="tbBaseCx.cxbm != null and tbBaseCx.cxbm != ''">
+				and t.cxbm = #{tbBaseCx.cxbm}			
+			</if>
+			<if test="tbBaseCx.cxzs != null and tbBaseCx.cxzs != ''">
+				and t.cxzs = #{tbBaseCx.cxzs}			
+			</if>
+			<if test="tbBaseCx.cxhz != null and tbBaseCx.cxhz != ''">
+				and t.cxhz = #{tbBaseCx.cxhz}			
+			</if>
+			<if test="tbBaseCx.length != null and tbBaseCx.length != ''">
+				and t.length = #{tbBaseCx.length}			
+			</if>
+			<if test="tbBaseCx.width != null and tbBaseCx.width != ''">
+				and t.width = #{tbBaseCx.width}			
+			</if>
+			<if test="tbBaseCx.height != null and tbBaseCx.height != ''">
+				and t.height = #{tbBaseCx.height}			
+			</if>
+			<if test="tbBaseCx.createName != null and tbBaseCx.createName != ''">
+				and t.create_name = #{tbBaseCx.createName}			
+			</if>
+			<if test="tbBaseCx.createId != null and tbBaseCx.createId != ''">
+				and t.create_id = #{tbBaseCx.createId}			
+			</if>
+			<if test="tbBaseCx.createTime != null and tbBaseCx.createTime != ''">
+				and t.create_time = #{tbBaseCx.createTime}			
+			</if>
+			<if test="tbBaseCx.updateName != null and tbBaseCx.updateName != ''">
+				and t.update_name = #{tbBaseCx.updateName}			
+			</if>
+			<if test="tbBaseCx.updateId != null and tbBaseCx.updateId != ''">
+				and t.update_id = #{tbBaseCx.updateId}			
+			</if>
+			<if test="tbBaseCx.updateTime != null and tbBaseCx.updateTime != ''">
+				and t.update_time = #{tbBaseCx.updateTime}			
+			</if>
+		</where>
+			ORDER BY
+		t.create_time DESC
+			<if test="rowIndex!= -1 and pageSize !=-1">
+			LIMIT #{rowIndex},#{pageSize};
+		</if>
+	</select>
+	
+	<select id="find1" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_base_cx t
+		ORDER BY
+		t.create_time DESC
+			<if test="rowIndex!= -1 and pageSize !=-1">
+			LIMIT #{rowIndex},#{pageSize};
+		</if>
+	</select>
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_base_cx t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="cxmc != null and cxmc != ''">
+				and t.cxmc = #{cxmc}			
+			</if>
+			<if test="cxbm != null and cxbm != ''">
+				and t.cxbm = #{cxbm}			
+			</if>
+			<if test="cxzs != null and cxzs != ''">
+				and t.cxzs = #{cxzs}			
+			</if>
+			<if test="cxhz != null and cxhz != ''">
+				and t.cxhz = #{cxhz}			
+			</if>
+			<if test="length != null and length != ''">
+				and t.length = #{length}			
+			</if>
+			<if test="width != null and width != ''">
+				and t.width = #{width}			
+			</if>
+			<if test="height != null and height != ''">
+				and t.height = #{height}			
+			</if>
+			<if test="createName != null and createName != ''">
+				and t.create_name = #{createName}			
+			</if>
+			<if test="createId != null and createId != ''">
+				and t.create_id = #{createId}			
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.create_time = #{createTime}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="updateId != null and updateId != ''">
+				and t.update_id = #{updateId}			
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.update_time = #{updateTime}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_base_cx t
+		where t.id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_base_cx
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			cxmc,
+			cxbm,
+			cxzs,
+			cxhz,
+			length,
+			width,
+			height,
+			create_name,
+			create_id,
+			create_time,
+			update_name,
+			update_id,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{cxmc},
+			#{cxbm},
+			#{cxzs},
+			#{cxhz},
+			#{length},
+			#{width},
+			#{height},
+			#{createName},
+			#{createId},
+			#{createTime},
+			#{updateName},
+			#{updateId},
+			#{updateTime},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_base_cx
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			cxmc,
+			cxbm,
+			cxzs,
+			cxhz,
+			length,
+			width,
+			height,
+			create_name,
+			create_id,
+			create_time,
+			update_name,
+			update_id,
+			update_time,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.cxmc},
+				#{item.cxbm},
+				#{item.cxzs},
+				#{item.cxhz},
+				#{item.length},
+				#{item.width},
+				#{item.height},
+				#{item.createName},
+				#{item.createId},
+				#{item.createTime},
+				#{item.updateName},
+				#{item.updateId},
+				#{item.updateTime},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_base_cx
+		<set>
+			cxmc = #{cxmc},
+			cxbm = #{cxbm},
+			cxzs = #{cxzs},
+			cxhz = #{cxhz},
+			length = #{length},
+			width = #{width},
+			height = #{height},
+			create_name = #{createName},
+			create_id = #{createId},
+			create_time = #{createTime},
+			update_name = #{updateName},
+			update_id = #{updateId},
+			update_time = #{updateTime},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_base_cx
+		<set>
+			<if test="cxmc != null">
+			cxmc = #{cxmc},
+			</if>
+			<if test="cxbm != null">
+			cxbm = #{cxbm},
+			</if>
+			<if test="cxzs != null">
+			cxzs = #{cxzs},
+			</if>
+			<if test="cxhz != null">
+			cxhz = #{cxhz},
+			</if>
+			<if test="length != null">
+			length = #{length},
+			</if>
+			<if test="width != null">
+			width = #{width},
+			</if>
+			<if test="height != null">
+			height = #{height},
+			</if>
+			<if test="createName != null">
+			create_name = #{createName},
+			</if>
+			<if test="createId != null">
+			create_id = #{createId},
+			</if>
+			<if test="createTime != null">
+			create_time = #{createTime},
+			</if>
+			<if test="updateName != null">
+			update_name = #{updateName},
+			</if>
+			<if test="updateId != null">
+			update_id = #{updateId},
+			</if>
+			<if test="updateTime != null">
+			update_time = #{updateTime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_base_cx where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_base_cx where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="queryCount" resultType="int">
+		select count(1)
+		from tb_base_cx t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="cxmc != null and cxmc != ''">
+			and t.cxmc like concat('%',#{cxmc},'%')
+			</if>
+			<if test="cxbm != null and cxbm != ''">
+				and t.cxbm = #{cxbm}			
+			</if>
+			<if test="cxzs != null and cxzs != ''">
+				and t.cxzs = #{cxzs}			
+			</if>
+			<if test="cxhz != null and cxhz != ''">
+				and t.cxhz = #{cxhz}			
+			</if>
+			<if test="length != null and length != ''">
+				and t.length = #{length}			
+			</if>
+			<if test="width != null and width != ''">
+				and t.width = #{width}			
+			</if>
+			<if test="height != null and height != ''">
+				and t.height = #{height}			
+			</if>
+			<if test="createName != null and createName != ''">
+				and t.create_name = #{createName}			
+			</if>
+			<if test="createId != null and createId != ''">
+				and t.create_id = #{createId}			
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.create_time = #{createTime}			
+			</if>
+			<if test="updateName != null and updateName != ''">
+				and t.update_name = #{updateName}			
+			</if>
+			<if test="updateId != null and updateId != ''">
+				and t.update_id = #{updateId}			
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.update_time = #{updateTime}			
+			</if>
+		</where>
+		ORDER BY
+		t.create_time DESC
+	</select>
+	
+	
+</mapper>

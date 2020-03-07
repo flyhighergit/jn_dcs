@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TSUserDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TSUser"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TSUser">
+		<result property="id" column="id"/>
+		<result property="email" column="email"/>
+		<result property="mobilephone" column="mobilephone"/>
+		<result property="officephone" column="officephone"/>
+		<result property="signaturefile" column="signaturefile"/>
+		<result property="updateName" column="update_name"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="createName" column="create_name"/>
+		<result property="createDate" column="create_date"/>
+		<result property="createBy" column="create_by"/>
+		<result property="portrait" column="portrait"/>
+		<result property="imsign" column="imsign"/>
+		<result property="devFlag" column="dev_flag"/>
+		<result property="userType" column="user_type"/>
+		<result property="personType" column="person_type"/>
+		<result property="sex" column="sex"/>
+		<result property="empNo" column="emp_no"/>
+		<result property="citizenNo" column="citizen_no"/>
+		<result property="fax" column="fax"/>
+		<result property="address" column="address"/>
+		<result property="post" column="post"/>
+		<result property="memo" column="memo"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.email,
+			t.mobilephone,
+			t.officephone,
+			t.signaturefile,
+			t.update_name,
+			t.update_date,
+			t.update_by,
+			t.create_name,
+			t.create_date,
+			t.create_by,
+			t.portrait,
+			t.imsign,
+			t.dev_flag,
+			t.user_type,
+			t.person_type,
+			t.sex,
+			t.emp_no,
+			t.citizen_no,
+			t.fax,
+			t.address,
+			t.post,
+			t.memo,
+	 	</trim>
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from t_s_user t
+		<where>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from t_s_user t
+		where t.id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into t_s_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			email,
+			mobilephone,
+			officephone,
+			signaturefile,
+			update_name,
+			update_date,
+			update_by,
+			create_name,
+			create_date,
+			create_by,
+			portrait,
+			imsign,
+			dev_flag,
+			user_type,
+			person_type,
+			sex,
+			emp_no,
+			citizen_no,
+			fax,
+			address,
+			post,
+			memo,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{email},
+			#{mobilephone},
+			#{officephone},
+			#{signaturefile},
+			#{updateName},
+			#{updateDate},
+			#{updateBy},
+			#{createName},
+			#{createDate},
+			#{createBy},
+			#{portrait},
+			#{imsign},
+			#{devFlag},
+			#{userType},
+			#{personType},
+			#{sex},
+			#{empNo},
+			#{citizenNo},
+			#{fax},
+			#{address},
+			#{post},
+			#{memo},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into t_s_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			email,
+			mobilephone,
+			officephone,
+			signaturefile,
+			update_name,
+			update_date,
+			update_by,
+			create_name,
+			create_date,
+			create_by,
+			portrait,
+			imsign,
+			dev_flag,
+			user_type,
+			person_type,
+			sex,
+			emp_no,
+			citizen_no,
+			fax,
+			address,
+			post,
+			memo,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.email},
+				#{item.mobilephone},
+				#{item.officephone},
+				#{item.signaturefile},
+				#{item.updateName},
+				#{item.updateDate},
+				#{item.updateBy},
+				#{item.createName},
+				#{item.createDate},
+				#{item.createBy},
+				#{item.portrait},
+				#{item.imsign},
+				#{item.devFlag},
+				#{item.userType},
+				#{item.personType},
+				#{item.sex},
+				#{item.empNo},
+				#{item.citizenNo},
+				#{item.fax},
+				#{item.address},
+				#{item.post},
+				#{item.memo},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update t_s_user
+		<set>
+			email = #{email},
+			mobilephone = #{mobilephone},
+			officephone = #{officephone},
+			signaturefile = #{signaturefile},
+			update_name = #{updateName},
+			update_date = #{updateDate},
+			update_by = #{updateBy},
+			create_name = #{createName},
+			create_date = #{createDate},
+			create_by = #{createBy},
+			portrait = #{portrait},
+			imsign = #{imsign},
+			dev_flag = #{devFlag},
+			user_type = #{userType},
+			person_type = #{personType},
+			sex = #{sex},
+			emp_no = #{empNo},
+			citizen_no = #{citizenNo},
+			fax = #{fax},
+			address = #{address},
+			post = #{post},
+			memo = #{memo},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update t_s_user
+		<set>
+			<if test="email != null">
+			email = #{email},
+			</if>
+			<if test="mobilephone != null">
+			mobilephone = #{mobilephone},
+			</if>
+			<if test="officephone != null">
+			officephone = #{officephone},
+			</if>
+			<if test="signaturefile != null">
+			signaturefile = #{signaturefile},
+			</if>
+			<if test="updateName != null">
+			update_name = #{updateName},
+			</if>
+			<if test="updateDate != null">
+			update_date = #{updateDate},
+			</if>
+			<if test="updateBy != null">
+			update_by = #{updateBy},
+			</if>
+			<if test="createName != null">
+			create_name = #{createName},
+			</if>
+			<if test="createDate != null">
+			create_date = #{createDate},
+			</if>
+			<if test="createBy != null">
+			create_by = #{createBy},
+			</if>
+			<if test="portrait != null">
+			portrait = #{portrait},
+			</if>
+			<if test="imsign != null">
+			imsign = #{imsign},
+			</if>
+			<if test="devFlag != null">
+			dev_flag = #{devFlag},
+			</if>
+			<if test="userType != null">
+			user_type = #{userType},
+			</if>
+			<if test="personType != null">
+			person_type = #{personType},
+			</if>
+			<if test="sex != null">
+			sex = #{sex},
+			</if>
+			<if test="empNo != null">
+			emp_no = #{empNo},
+			</if>
+			<if test="citizenNo != null">
+			citizen_no = #{citizenNo},
+			</if>
+			<if test="fax != null">
+			fax = #{fax},
+			</if>
+			<if test="address != null">
+			address = #{address},
+			</if>
+			<if test="post != null">
+			post = #{post},
+			</if>
+			<if test="memo != null">
+			memo = #{memo},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from t_s_user where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from t_s_user where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

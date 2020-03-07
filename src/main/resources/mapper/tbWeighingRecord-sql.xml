@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbWeighingRecordDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbWeighingRecord"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbWeighingRecord">
+		<result property="id" column="id"/>
+		<result property="companyCode" column="company_code"/>
+		<result property="weighbridgeCode" column="weighbridge_code"/>
+		<result property="createDate" column="create_date"/>
+		<result property="weight" column="weight"/>
+		<result property="vehicleCode" column="vehicle_code"/>
+		<result property="dispatchingId" column="dispatching_id"/>
+		<result property="statu" column="statu"/>
+		<result property="checkId" column="check_id"/>
+		<result property="checkDate" column="check_date"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.company_code,
+			t.weighbridge_code,
+			t.create_date,
+			t.weight,
+			t.vehicle_code,
+			t.dispatching_id,
+			t.statu
+	 	</trim>
+	</sql>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_weighing_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			company_code,
+			weighbridge_code,
+			create_date,
+			weight,
+			vehicle_code,
+			dispatching_id,
+			statu,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{companyCode},
+			#{weighbridgeCode},
+			#{createDate},
+			#{weight},
+			#{vehicleCode},
+			#{dispatchingId},
+			'0',
+		</trim>
+	</insert>
+	
+	<select id="getCompanyName" resultType="String" parameterType="String">
+		select name from tb_coal_related where code = #{code}
+	</select>
+	
+	<select id="getBnagChengCode" resultType="String" parameterType="String">
+		select equipment_name from tb_depart_equipmen_info where equipment_code = #{code}
+	</select>
+	
+	<select id="getById" resultMap="resultMap" parameterType="String">
+		select 
+		<include refid="columnSql"></include>
+		 from tb_weighing_record t where t.id = #{id}
+	</select>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_weighing_record
+		<set>
+			<if test="id != null and id != '' ">
+				id = #{id},
+			</if>
+			<if test="companyCode != null and companyCode !='' ">
+				company_code = #{companyCode},
+			</if>
+			<if test="weighbridgeCode != null and weighbridgeCode !='' ">
+				weighbridge_code = #{weighbridgeCode},
+			</if>
+			<if test="createDate != null ">
+				create_date = #{createDate},
+			</if>
+			<if test="weight != null and weight !='' ">
+				weight = #{weight},
+			</if>
+			<if test="vehicleCode != null and vehicleCode !='' ">
+				vehicle_code = #{vehicleCode},
+			</if>
+			<if test="dispatchingId != null and dispatchingId !='' ">
+				dispatching_id = #{dispatchingId},
+			</if>
+			<if test="statu != null and statu !='' ">
+				statu = #{statu},
+			</if>
+			<if test="checkId != null and checkId !='' ">
+				check_id = #{checkId},
+			</if>
+			<if test="checkDate != null ">
+				check_date = #{checkDate}
+			</if>
+		</set>
+		
+		where id=#{id}
+	</update>
+	
+</mapper>

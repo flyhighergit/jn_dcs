@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhcc.dcs.dao.TbDispatchBillDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbDispatchBill"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbDispatchBill">
+		<result property="id" column="id"/>
+		<result property="dispatchAutoCode" column="dispatch_auto_code"/>
+		<result property="purchaseInfoId" column="purchase_info_id"/>
+		<result property="carriageContractId" column="carriage_contract_id"/>
+		<result property="carriageUnitId" column="carriage_unit_id"/>
+		<result property="carriageUnitCode" column="carriage_unit_code"/>
+		<result property="carriageUnitName" column="carriage_unit_name"/>
+		<result property="dispatchType" column="dispatch_type"/>
+		<result property="sellerId" column="seller_id"/>
+		<result property="sellerName" column="seller_name"/>
+		<result property="buyerId" column="buyer_id"/>
+		<result property="buyerName" column="buyer_name"/>
+		<result property="coalRelatedCode" column="coal_related_code"/>
+		<result property="deliveryPlace" column="delivery_place"/>
+		<result property="receiptPlace" column="receipt_place"/>
+		<result property="serviceTime" column="service_time"/>
+		<result property="status" column="status"/>
+		<result property="licensePlate" column="license_plate"/>
+		<result property="driverName" column="driver_name"/>
+		<result property="driverId" column="driver_id"/>
+		<result property="signTime" column="sign_time"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateBy" column="update_by"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="attribute1" column="attribute1"/>
+		<result property="attribute2" column="attribute2"/>
+		<result property="attribute3" column="attribute3"/>
+		<result property="attribute4" column="attribute4"/>
+		<result property="attribute5" column="attribute5"/>
+		<result property="attribute6" column="attribute6"/>
+		<result property="attribute7" column="attribute7"/>
+		<result property="attribute8" column="attribute8"/>
+		<result property="attribute9" column="attribute9"/>
+		<result property="attribute10" column="attribute10"/>
+	</resultMap>
+
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.dispatch_auto_code,
+			t.purchase_info_id,
+			t.carriage_contract_id,
+			t.carriage_unit_id,
+			t.carriage_unit_code,
+			t.carriage_unit_name,
+			t.dispatch_type,
+			t.seller_id,
+			t.seller_name,
+			t.buyer_id,
+			t.buyer_name,
+			t.coal_related_code,
+			t.delivery_place,
+			t.receipt_place,
+			t.service_time,
+			t.status,
+			t.license_plate,
+			t.driver_name,
+			t.driver_id,
+			t.sign_time,
+			t.create_by,
+			t.create_date,
+			t.update_by,
+			t.update_date,
+			t.attribute1,
+			t.attribute2,
+			t.attribute3,
+			t.attribute4,
+			t.attribute5,
+			t.attribute6,
+			t.attribute7,
+			t.attribute8,
+			t.attribute9,
+			t.attribute10,
+		</trim>
+	</sql>
+
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>
+		from tb_dispatch_bill t
+		<where>
+			<if test="id != null and id != ''">
+				t.id = #{id}			
+			</if>
+			<if test="dispatchAutoCode != null and dispatchAutoCode != ''">
+				and t.dispatch_auto_code = #{dispatchAutoCode}			
+			</if>
+			<if test="purchaseInfoId != null and purchaseInfoId != ''">
+				and t.purchase_info_id = #{purchaseInfoId}			
+			</if>
+			<if test="carriageContractId != null and carriageContractId != ''">
+				and t.carriage_contract_id = #{carriageContractId}			
+			</if>
+			<if test="carriageUnitId != null and carriageUnitId != ''">
+				and t.carriage_unit_id = #{carriageUnitId}			
+			</if>
+			<if test="carriageUnitCode != null and carriageUnitCode != ''">
+				and t.carriage_unit_code = #{carriageUnitCode}			
+			</if>
+			<if test="carriageUnitName != null and carriageUnitName != ''">
+				and t.carriage_unit_name = #{carriageUnitName}			
+			</if>
+			<if test="dispatchType != null and dispatchType != ''">
+				and t.dispatch_type = #{dispatchType}			
+			</if>
+			<if test="sellerId != null and sellerId != ''">
+				and t.seller_id = #{sellerId}			
+			</if>
+			<if test="sellerName != null and sellerName != ''">
+				and t.seller_name = #{sellerName}			
+			</if>
+			<if test="buyerId != null and buyerId != ''">
+				and t.buyer_id = #{buyerId}			
+			</if>
+			<if test="buyerName != null and buyerName != ''">
+				and t.buyer_name = #{buyerName}			
+			</if>
+			<if test="coalRelatedCode != null and coalRelatedCode != ''">
+				and t.coal_related_code = #{coalRelatedCode}			
+			</if>
+			<if test="deliveryPlace != null and deliveryPlace != ''">
+				and t.delivery_place = #{deliveryPlace}			
+			</if>
+			<if test="receiptPlace != null and receiptPlace != ''">
+				and t.receipt_place = #{receiptPlace}			
+			</if>
+			<if test="serviceTime != null and serviceTime != ''">
+				and t.service_time = #{serviceTime}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}			
+			</if>
+			<if test="licensePlate != null and licensePlate != ''">
+				and t.license_plate like concat('%',#{licensePlate},'%')
+			</if>
+			<if test="driverName != null and driverName != ''">
+				and t.driver_name like concat('%',#{driverName},'%')
+			</if>
+			<if test="driverId != null and driverId != ''">
+				and t.driver_id = #{driverId}			
+			</if>
+			<if test="signTime != null and signTime != ''">
+				and t.sign_time = #{signTime}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="attribute1 != null and attribute1 != ''">
+				and t.attribute1 = #{attribute1}			
+			</if>
+			<if test="attribute2 != null and attribute2 != ''">
+				and t.attribute2 = #{attribute2}			
+			</if>
+			<if test="attribute3 != null and attribute3 != ''">
+				and t.attribute3 = #{attribute3}			
+			</if>
+			<if test="attribute4 != null and attribute4 != ''">
+				and t.attribute4 = #{attribute4}			
+			</if>
+			<if test="attribute5 != null and attribute5 != ''">
+				and t.attribute5 = #{attribute5}			
+			</if>
+			<if test="attribute6 != null and attribute6 != ''">
+				and t.attribute6 = #{attribute6}			
+			</if>
+			<if test="attribute7 != null and attribute7 != ''">
+				and t.attribute7 = #{attribute7}			
+			</if>
+			<if test="attribute8 != null and attribute8 != ''">
+				and t.attribute8 = #{attribute8}			
+			</if>
+			<if test="attribute9 != null and attribute9 != ''">
+				and t.attribute9 = #{attribute9}			
+			</if>
+			<if test="attribute10 != null and attribute10 != ''">
+				and t.attribute10 = #{attribute10}			
+			</if>
+		</where>
+	</select>
+
+	<select id="findByLicense" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>,p.goods_type_name as goodsTypeName
+		from tb_dispatch_bill t left join tb_purchase_sale_contract_info p 
+		on t.purchase_info_id = p.id
+		where t.status in (${status})
+		and t.license_plate in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        	#{item.licensePlate}
+		</foreach>
+		order by t.status DESC, t.update_date DESC
+		limit ${rowIndex},${pageSize};
+	</select>
+
+	<select id="queryCountByLicense" resultType="int">
+		select count(1)
+		from tb_dispatch_bill t
+		where t.status in (${status})
+		and t.license_plate in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        	#{item.licensePlate}
+		</foreach>
+	</select>
+
+	<select id="findByPage" parameterMap="parameterMap" resultType="com.dhcc.dcs.entity.TbDispatchBill">
+		select
+		<include refid="columnSql"></include>,p.goods_type_name as goodsTypeName
+		from tb_dispatch_bill t left join tb_purchase_sale_contract_info p 
+		on t.purchase_info_id = p.id
+		<where>
+			<if test="tbDispatchBill.id != null and tbDispatchBill.id != ''">
+				t.id = #{tbDispatchBill.id}			
+			</if>
+			<if test="tbDispatchBill.dispatchAutoCode != null and tbDispatchBill.dispatchAutoCode != ''">
+				and t.dispatch_auto_code = #{tbDispatchBill.dispatchAutoCode}			
+			</if>
+			<if test="tbDispatchBill.purchaseInfoId != null and tbDispatchBill.purchaseInfoId != ''">
+				and t.purchase_info_id = #{tbDispatchBill.purchaseInfoId}			
+			</if>
+			<if test="tbDispatchBill.carriageContractId != null and tbDispatchBill.carriageContractId != ''">
+				and t.carriage_contract_id = #{tbDispatchBill.carriageContractId}			
+			</if>
+			<if test="tbDispatchBill.carriageUnitId != null and tbDispatchBill.carriageUnitId != ''">
+				and t.carriage_unit_id = #{tbDispatchBill.carriageUnitId}			
+			</if>
+			<if test="tbDispatchBill.carriageUnitCode != null and tbDispatchBill.carriageUnitCode != ''">
+				and t.carriage_unit_code = #{tbDispatchBill.carriageUnitCode}			
+			</if>
+			<if test="tbDispatchBill.carriageUnitName != null and tbDispatchBill.carriageUnitName != ''">
+				and t.carriage_unit_name = #{tbDispatchBill.carriageUnitName}			
+			</if>
+			<if test="tbDispatchBill.dispatchType != null and tbDispatchBill.dispatchType != ''">
+				and t.dispatch_type = #{tbDispatchBill.dispatchType}			
+			</if>
+			<if test="tbDispatchBill.sellerId != null and tbDispatchBill.sellerId != ''">
+				and t.seller_id = #{tbDispatchBill.sellerId}			
+			</if>
+			<if test="tbDispatchBill.sellerName != null and tbDispatchBill.sellerName != ''">
+				and t.seller_name = #{tbDispatchBill.sellerName}			
+			</if>
+			<if test="tbDispatchBill.buyerId != null and tbDispatchBill.buyerId != ''">
+				and t.buyer_id = #{tbDispatchBill.buyerId}			
+			</if>
+			<if test="tbDispatchBill.buyerName != null and tbDispatchBill.buyerName != ''">
+				and t.buyer_name = #{tbDispatchBill.buyerName}			
+			</if>
+			<if test="tbDispatchBill.coalRelatedCode != null and tbDispatchBill.coalRelatedCode != ''">
+				and t.coal_related_code = #{tbDispatchBill.coalRelatedCode}			
+			</if>
+			<if test="tbDispatchBill.deliveryPlace != null and tbDispatchBill.deliveryPlace != ''">
+				and t.delivery_place = #{tbDispatchBill.deliveryPlace}			
+			</if>
+			<if test="tbDispatchBill.receiptPlace != null and tbDispatchBill.receiptPlace != ''">
+				and t.receipt_place = #{tbDispatchBill.receiptPlace}			
+			</if>
+			<if test="tbDispatchBill.serviceTime != null and tbDispatchBill.serviceTime != ''">
+				and t.service_time = #{tbDispatchBill.serviceTime}			
+			</if>
+			<!-- <choose>
+				<when test="tbDispatchBill.status == '1' ">
+					and t.status in ('00','01','02')
+				</when>
+				<otherwise>
+					and t.status = #{tbDispatchBill.status}	
+				</otherwise>
+			</choose> -->
+			<if test="tbDispatchBill.status != null">
+				and t.status in (${tbDispatchBill.status})
+			</if>
+			<!-- <if test="tbDispatchBill.status != null and tbDispatchBill.status == '1' ">
+				and t.status in ('00','01','02')
+			</if> -->
+			<!-- <if test="tbDispatchBill.status != null and tbDispatchBill.status != '1' ">
+				and t.status = #{tbDispatchBill.status}	
+			</if> -->
+			<if test="tbDispatchBill.licensePlate != null and tbDispatchBill.licensePlate != ''">
+				and t.license_plate like concat('%',#{tbDispatchBill.licensePlate},'%')
+			</if>
+			<if test="tbDispatchBill.driverName != null and tbDispatchBill.driverName != ''">
+				and t.driver_name like concat('%',#{tbDispatchBill.driverName},'%')
+			</if>
+			<if test="tbDispatchBill.driverId != null and tbDispatchBill.driverId != ''">
+				and t.driver_id = #{tbDispatchBill.driverId}			
+			</if>
+			<if test="tbDispatchBill.signTime != null and tbDispatchBill.signTime != ''">
+				and t.sign_time = #{tbDispatchBill.signTime}			
+			</if>
+			<if test="tbDispatchBill.createBy != null and tbDispatchBill.createBy != ''">
+				and t.create_by = #{tbDispatchBill.createBy}			
+			</if>
+			<if test="tbDispatchBill.createDate != null and tbDispatchBill.createDate != ''">
+				and t.create_date = #{tbDispatchBill.createDate}			
+			</if>
+			<if test="tbDispatchBill.updateBy != null and tbDispatchBill.updateBy != ''">
+				and t.update_by = #{tbDispatchBill.updateBy}			
+			</if>
+			<if test="tbDispatchBill.updateDate != null and tbDispatchBill.updateDate != ''">
+				and t.update_date = #{tbDispatchBill.updateDate}			
+			</if>
+			<if test="tbDispatchBill.attribute1 != null and tbDispatchBill.attribute1 != ''">
+				and t.attribute1 = #{tbDispatchBill.attribute1}			
+			</if>
+			<if test="tbDispatchBill.attribute2 != null and tbDispatchBill.attribute2 != ''">
+				and t.attribute2 = #{tbDispatchBill.attribute2}			
+			</if>
+			<if test="tbDispatchBill.attribute3 != null and tbDispatchBill.attribute3 != ''">
+				and t.attribute3 = #{tbDispatchBill.attribute3}			
+			</if>
+			<if test="tbDispatchBill.attribute4 != null and tbDispatchBill.attribute4 != ''">
+				and t.attribute4 = #{tbDispatchBill.attribute4}			
+			</if>
+			<if test="tbDispatchBill.attribute5 != null and tbDispatchBill.attribute5 != ''">
+				and t.attribute5 = #{tbDispatchBill.attribute5}			
+			</if>
+			<if test="tbDispatchBill.attribute6 != null and tbDispatchBill.attribute6 != ''">
+				and t.attribute6 = #{tbDispatchBill.attribute6}			
+			</if>
+			<if test="tbDispatchBill.attribute7 != null and tbDispatchBill.attribute7 != ''">
+				and t.attribute7 = #{tbDispatchBill.attribute7}			
+			</if>
+			<if test="tbDispatchBill.attribute8 != null and tbDispatchBill.attribute8 != ''">
+				and t.attribute8 = #{tbDispatchBill.attribute8}			
+			</if>
+			<if test="tbDispatchBill.attribute9 != null and tbDispatchBill.attribute9 != ''">
+				and t.attribute9 = #{tbDispatchBill.attribute9}			
+			</if>
+			<if test="tbDispatchBill.attribute10 != null and tbDispatchBill.attribute10 != ''">
+				and t.attribute10 = #{tbDispatchBill.attribute10}			
+			</if>
+			<if test="tbDispatchBill.goodsTypeName != null and tbDispatchBill.goodsTypeName != ''">
+				and p.goods_type_name = #{tbDispatchBill.goodsTypeName}			
+			</if>
+			<if test="tbDispatchBill.goodsVarietyName != null and tbDispatchBill.goodsVarietyName != ''">
+				and p.goods_variety_name = #{tbDispatchBill.goodsVarietyName}			
+			</if>
+		</where>
+		order by t.status DESC, t.update_date DESC
+		limit #{rowIndex},#{pageSize};
+	</select>
+
+	<select id="findBySearch" parameterMap="parameterMap" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>,t.goods_type_code,t.goods_variety_code,
+			t.purchase_auto_code,t.carriage_auto_code,t.purchase_code,t.carriage_code
+		from v_dispatch_bill t
+		<where>
+			<if test="id != null and id != ''">
+				t.id = #{id}			
+			</if>
+			<if test="dispatchAutoCode != null and dispatchAutoCode != ''">
+				and t.dispatch_auto_code = #{dispatchAutoCode}			
+			</if>
+			<if test="purchaseInfoId != null and purchaseInfoId != ''">
+				and t.purchase_info_id = #{purchaseInfoId}			
+			</if>
+			<if test="carriageContractId != null and carriageContractId != ''">
+				and t.carriage_contract_id = #{carriageContractId}			
+			</if>
+			<if test="carriageUnitId != null and carriageUnitId != ''">
+				and t.carriage_unit_id = #{carriageUnitId}			
+			</if>
+			<if test="carriageUnitCode != null and carriageUnitCode != ''">
+				and t.carriage_unit_code = #{carriageUnitCode}			
+			</if>
+			<if test="carriageUnitName != null and carriageUnitName != ''">
+				and t.carriage_unit_name = #{carriageUnitName}			
+			</if>
+			<if test="dispatchType != null and dispatchType != ''">
+				and t.dispatch_type = #{dispatchType}			
+			</if>
+			<if test="sellerId != null and sellerId != ''">
+				and t.seller_id = #{sellerId}			
+			</if>
+			<if test="sellerName != null and sellerName != ''">
+				and t.seller_name = #{sellerName}			
+			</if>
+			<if test="buyerId != null and buyerId != ''">
+				and t.buyer_id = #{buyerId}			
+			</if>
+			<if test="buyerName != null and buyerName != ''">
+				and t.buyer_name = #{buyerName}			
+			</if>
+			<if test="coalRelatedCode != null and coalRelatedCode != ''">
+				and t.coal_related_code = #{coalRelatedCode}			
+			</if>
+			<if test="deliveryPlace != null and deliveryPlace != ''">
+				and t.delivery_place = #{deliveryPlace}			
+			</if>
+			<if test="receiptPlace != null and receiptPlace != ''">
+				and t.receipt_place = #{receiptPlace}			
+			</if>
+			<if test="serviceTime != null and serviceTime != ''">
+				and t.service_time = #{serviceTime}			
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{tbDispatchBill.status}				
+			</if>
+			<if test="licensePlate != null and licensePlate != ''">
+				and t.license_plate like concat('%',#{licensePlate},'%')
+			</if>
+			<if test="driverName != null and driverName != ''">
+				and t.driver_name like concat('%',#{driverName},'%')
+			</if>
+			<if test="driverId != null and driverId != ''">
+				and t.driver_id = #{driverId}			
+			</if>
+			<if test="signTime != null and signTime != ''">
+				and t.sign_time = #{signTime}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="attribute1 != null and attribute1 != ''">
+				and t.attribute1 = #{attribute1}			
+			</if>
+			<if test="attribute2 != null and attribute2 != ''">
+				and t.attribute2 = #{attribute2}			
+			</if>
+			<if test="attribute3 != null and attribute3 != ''">
+				and t.attribute3 = #{attribute3}			
+			</if>
+			<if test="attribute4 != null and attribute4 != ''">
+				and t.attribute4 = #{attribute4}			
+			</if>
+			<if test="attribute5 != null and attribute5 != ''">
+				and t.attribute5 = #{attribute5}			
+			</if>
+			<if test="attribute6 != null and attribute6 != ''">
+				and t.attribute6 = #{attribute6}			
+			</if>
+			<if test="attribute7 != null and attribute7 != ''">
+				and t.attribute7 = #{attribute7}			
+			</if>
+			<if test="attribute8 != null and attribute8 != ''">
+				and t.attribute8 = #{attribute8}			
+			</if>
+			<if test="attribute9 != null and attribute9 != ''">
+				and t.attribute9 = #{attribute9}			
+			</if>
+			<if test="attribute10 != null and attribute10 != ''">
+				and t.attribute10 = #{attribute10}			
+			</if>
+		</where>
+	</select>
+
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+		<include refid="columnSql"></include>,p.goods_type_name as goodsTypeName
+		from tb_dispatch_bill t left join tb_purchase_sale_contract_info p 
+		on t.purchase_info_id = p.id
+		where t.id = #{value}
+	</select>
+
+	<select id="queryCount" parameterMap="parameterMap" resultType="int">
+		select
+			count(1)
+		from tb_dispatch_bill t
+		<where>
+			<if test="id != null and id != ''">
+				t.id = #{id}			
+			</if>
+			<if test="dispatchAutoCode != null and dispatchAutoCode != ''">
+				and t.dispatch_auto_code = #{dispatchAutoCode}			
+			</if>
+			<if test="purchaseInfoId != null and purchaseInfoId != ''">
+				and t.purchase_info_id = #{purchaseInfoId}			
+			</if>
+			<if test="carriageContractId != null and carriageContractId != ''">
+				and t.carriage_contract_id = #{carriageContractId}			
+			</if>
+			<if test="carriageUnitId != null and carriageUnitId != ''">
+				and t.carriage_unit_id = #{carriageUnitId}			
+			</if>
+			<if test="carriageUnitCode != null and carriageUnitCode != ''">
+				and t.carriage_unit_code = #{carriageUnitCode}			
+			</if>
+			<if test="carriageUnitName != null and carriageUnitName != ''">
+				and t.carriage_unit_name = #{carriageUnitName}			
+			</if>
+			<if test="dispatchType != null and dispatchType != ''">
+				and t.dispatch_type = #{dispatchType}			
+			</if>
+			<if test="sellerId != null and sellerId != ''">
+				and t.seller_id = #{sellerId}			
+			</if>
+			<if test="sellerName != null and sellerName != ''">
+				and t.seller_name = #{sellerName}			
+			</if>
+			<if test="buyerId != null and buyerId != ''">
+				and t.buyer_id = #{buyerId}			
+			</if>
+			<if test="buyerName != null and buyerName != ''">
+				and t.buyer_name = #{buyerName}			
+			</if>
+			<if test="coalRelatedCode != null and coalRelatedCode != ''">
+				and t.coal_related_code = #{coalRelatedCode}			
+			</if>
+			<if test="deliveryPlace != null and deliveryPlace != ''">
+				and t.delivery_place = #{deliveryPlace}			
+			</if>
+			<if test="receiptPlace != null and receiptPlace != ''">
+				and t.receipt_place = #{receiptPlace}			
+			</if>
+			<if test="serviceTime != null and serviceTime != ''">
+				and t.service_time = #{serviceTime}			
+			</if>
+			<!-- <choose>
+				<when test="status == '1' ">
+					and t.status in ('00','01','02')
+				</when>
+				<otherwise>
+					and t.status = #{status}	
+				</otherwise>
+			</choose> -->
+			<if test="status != null">
+				and t.status in (${status})
+			</if>
+			<!-- <if test="status != null and status != '1' ">
+				and t.status = #{status}
+			</if> -->
+			<if test="licensePlate != null and licensePlate != ''">
+				and t.license_plate like concat('%',#{licensePlate},'%')
+			</if>
+			<if test="driverName != null and driverName != ''">
+				and t.driver_name like concat('%',#{driverName},'%')
+			</if>
+			<if test="driverId != null and driverId != ''">
+				and t.driver_id = #{driverId}			
+			</if>
+			<if test="signTime != null and signTime != ''">
+				and t.sign_time = #{signTime}			
+			</if>
+			<if test="createBy != null and createBy != ''">
+				and t.create_by = #{createBy}			
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date = #{createDate}			
+			</if>
+			<if test="updateBy != null and updateBy != ''">
+				and t.update_by = #{updateBy}			
+			</if>
+			<if test="updateDate != null and updateDate != ''">
+				and t.update_date = #{updateDate}			
+			</if>
+			<if test="attribute1 != null and attribute1 != ''">
+				and t.attribute1 = #{attribute1}			
+			</if>
+			<if test="attribute2 != null and attribute2 != ''">
+				and t.attribute2 = #{attribute2}			
+			</if>
+			<if test="attribute3 != null and attribute3 != ''">
+				and t.attribute3 = #{attribute3}			
+			</if>
+			<if test="attribute4 != null and attribute4 != ''">
+				and t.attribute4 = #{attribute4}			
+			</if>
+			<if test="attribute5 != null and attribute5 != ''">
+				and t.attribute5 = #{attribute5}			
+			</if>
+			<if test="attribute6 != null and attribute6 != ''">
+				and t.attribute6 = #{attribute6}			
+			</if>
+			<if test="attribute7 != null and attribute7 != ''">
+				and t.attribute7 = #{attribute7}			
+			</if>
+			<if test="attribute8 != null and attribute8 != ''">
+				and t.attribute8 = #{attribute8}			
+			</if>
+			<if test="attribute9 != null and attribute9 != ''">
+				and t.attribute9 = #{attribute9}			
+			</if>
+			<if test="attribute10 != null and attribute10 != ''">
+				and t.attribute10 = #{attribute10}			
+			</if>
+		</where>
+	</select>
+
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_dispatch_bill
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			dispatch_auto_code,
+			purchase_info_id,
+			carriage_contract_id,
+			carriage_unit_id,
+			carriage_unit_code,
+			carriage_unit_name,
+			dispatch_type,
+			seller_id,
+			seller_name,
+			buyer_id,
+			buyer_name,
+			coal_related_code,
+			delivery_place,
+			receipt_place,
+			service_time,
+			status,
+			license_plate,
+			driver_name,
+			driver_id,
+			sign_time,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			attribute1,
+			attribute2,
+			attribute3,
+			attribute4,
+			attribute5,
+			attribute6,
+			attribute7,
+			attribute8,
+			attribute9,
+			attribute10,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{dispatchAutoCode},
+			#{purchaseInfoId},
+			#{carriageContractId},
+			#{carriageUnitId},
+			#{carriageUnitCode},
+			#{carriageUnitName},
+			#{dispatchType},
+			#{sellerId},
+			#{sellerName},
+			#{buyerId},
+			#{buyerName},
+			#{coalRelatedCode},
+			#{deliveryPlace},
+			#{receiptPlace},
+			#{serviceTime},
+			#{status},
+			#{licensePlate},
+			#{driverName},
+			#{driverId},
+			#{signTime},
+			#{createBy},
+			#{createDate},
+			#{updateBy},
+			#{updateDate},
+			#{attribute1},
+			#{attribute2},
+			#{attribute3},
+			#{attribute4},
+			#{attribute5},
+			#{attribute6},
+			#{attribute7},
+			#{attribute8},
+			#{attribute9},
+			#{attribute10},
+		</trim>
+	</insert>
+
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_dispatch_bill
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			dispatch_auto_code,
+			purchase_info_id,
+			carriage_contract_id,
+			carriage_unit_id,
+			carriage_unit_code,
+			carriage_unit_name,
+			dispatch_type,
+			seller_id,
+			seller_name,
+			buyer_id,
+			buyer_name,
+			coal_related_code,
+			delivery_place,
+			receipt_place,
+			service_time,
+			status,
+			license_plate,
+			driver_name,
+			driver_id,
+			sign_time,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			attribute1,
+			attribute2,
+			attribute3,
+			attribute4,
+			attribute5,
+			attribute6,
+			attribute7,
+			attribute8,
+			attribute9,
+			attribute10,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.dispatchAutoCode},
+				#{item.purchaseInfoId},
+				#{item.carriageContractId},
+				#{item.carriageUnitId},
+				#{item.carriageUnitCode},
+				#{item.carriageUnitName},
+				#{item.dispatchType},
+				#{item.sellerId},
+				#{item.sellerName},
+				#{item.buyerId},
+				#{item.buyerName},
+				#{item.coalRelatedCode},
+				#{item.deliveryPlace},
+				#{item.receiptPlace},
+				#{item.serviceTime},
+				#{item.status},
+				#{item.licensePlate},
+				#{item.driverName},
+				#{item.driverId},
+				#{item.signTime},
+				#{item.createBy},
+				#{item.createDate},
+				#{item.updateBy},
+				#{item.updateDate},
+				#{item.attribute1},
+				#{item.attribute2},
+				#{item.attribute3},
+				#{item.attribute4},
+				#{item.attribute5},
+				#{item.attribute6},
+				#{item.attribute7},
+				#{item.attribute8},
+				#{item.attribute9},
+				#{item.attribute10},
+			</trim>
+		</foreach>
+	</insert>
+
+	<update id="update" parameterMap="parameterMap">
+		update tb_dispatch_bill
+		<set>
+			dispatch_auto_code = #{dispatchAutoCode},
+			purchase_info_id = #{purchaseInfoId},
+			carriage_contract_id = #{carriageContractId},
+			carriage_unit_id = #{carriageUnitId},
+			carriage_unit_code = #{carriageUnitCode},
+			carriage_unit_name = #{carriageUnitName},
+			dispatch_type = #{dispatchType},
+			seller_id = #{sellerId},
+			seller_name = #{sellerName},
+			buyer_id = #{buyerId},
+			buyer_name = #{buyerName},
+			coal_related_code = #{coalRelatedCode},
+			delivery_place = #{deliveryPlace},
+			receipt_place = #{receiptPlace},
+			service_time = #{serviceTime},
+			status = #{status},
+			license_plate = #{licensePlate},
+			driver_name = #{driverName},
+			driver_id = #{driverId},
+			sign_time = #{signTime},
+			create_by = #{createBy},
+			create_date = #{createDate},
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			attribute1 = #{attribute1},
+			attribute2 = #{attribute2},
+			attribute3 = #{attribute3},
+			attribute4 = #{attribute4},
+			attribute5 = #{attribute5},
+			attribute6 = #{attribute6},
+			attribute7 = #{attribute7},
+			attribute8 = #{attribute8},
+			attribute9 = #{attribute9},
+			attribute10 = #{attribute10},
+		</set>
+		where id = #{id}
+	</update>
+
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_dispatch_bill
+		<set>
+			<if test="dispatchAutoCode != null">
+			dispatch_auto_code = #{dispatchAutoCode},
+			</if>
+			<if test="purchaseInfoId != null">
+			purchase_info_id = #{purchaseInfoId},
+			</if>
+			<if test="carriageContractId != null">
+			carriage_contract_id = #{carriageContractId},
+			</if>
+			<if test="carriageUnitId != null">
+			carriage_unit_id = #{carriageUnitId},
+			</if>
+			<if test="carriageUnitCode != null">
+			carriage_unit_code = #{carriageUnitCode},
+			</if>
+			<if test="carriageUnitName != null">
+			carriage_unit_name = #{carriageUnitName},
+			</if>
+			<if test="dispatchType != null">
+			dispatch_type = #{dispatchType},
+			</if>
+			<if test="sellerId != null">
+			seller_id = #{sellerId},
+			</if>
+			<if test="sellerName != null">
+			seller_name = #{sellerName},
+			</if>
+			<if test="buyerId != null">
+			buyer_id = #{buyerId},
+			</if>
+			<if test="buyerName != null">
+			buyer_name = #{buyerName},
+			</if>
+			<if test="coalRelatedCode != null">
+			coal_related_code = #{coalRelatedCode},
+			</if>
+			<if test="deliveryPlace != null">
+			delivery_place = #{deliveryPlace},
+			</if>
+			<if test="receiptPlace != null">
+			receipt_place = #{receiptPlace},
+			</if>
+			<if test="serviceTime != null">
+			service_time = #{serviceTime},
+			</if>
+			<if test="status != null">
+			status = #{status},
+			</if>
+			<if test="licensePlate != null">
+			license_plate = #{licensePlate},
+			</if>
+			<if test="driverName != null">
+			driver_name = #{driverName},
+			</if>
+			<if test="driverId != null">
+			driver_id = #{driverId},
+			</if>
+			<if test="signTime != null">
+			sign_time = #{signTime},
+			</if>
+			<if test="createBy != null">
+			create_by = #{createBy},
+			</if>
+			<if test="createDate != null">
+			create_date = #{createDate},
+			</if>
+			<if test="updateBy != null">
+			update_by = #{updateBy},
+			</if>
+			<if test="updateDate != null">
+			update_date = #{updateDate},
+			</if>
+			<if test="attribute1 != null">
+			attribute1 = #{attribute1},
+			</if>
+			<if test="attribute2 != null">
+			attribute2 = #{attribute2},
+			</if>
+			<if test="attribute3 != null">
+			attribute3 = #{attribute3},
+			</if>
+			<if test="attribute4 != null">
+			attribute4 = #{attribute4},
+			</if>
+			<if test="attribute5 != null">
+			attribute5 = #{attribute5},
+			</if>
+			<if test="attribute6 != null">
+			attribute6 = #{attribute6},
+			</if>
+			<if test="attribute7 != null">
+			attribute7 = #{attribute7},
+			</if>
+			<if test="attribute8 != null">
+			attribute8 = #{attribute8},
+			</if>
+			<if test="attribute9 != null">
+			attribute9 = #{attribute9},
+			</if>
+			<if test="attribute10 != null">
+			attribute10 = #{attribute10},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_dispatch_bill where id = #{value}
+	</delete>
+
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_dispatch_bill where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+</mapper>

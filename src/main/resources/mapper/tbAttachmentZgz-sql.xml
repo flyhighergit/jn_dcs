@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhcc.dcs.dao.TbAttachmentZgzDao">
+
+	<parameterMap id="parameterMap" type="com.dhcc.dcs.entity.TbAttachmentZgz"></parameterMap>
+	<resultMap id="resultMap" type="com.dhcc.dcs.entity.TbAttachmentZgz">
+		<result property="id" column="id"/>
+		<result property="clId" column="cl_id"/>
+		<result property="attaName" column="atta_name"/>
+		<result property="attaPath" column="atta_path"/>
+		<result property="ulUserName" column="ul_user_name"/>
+		<result property="ulUserId" column="ul_user_id"/>
+		<result property="ulTime" column="ul_time"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		<trim suffixOverrides=",">
+			t.id,
+			t.cl_id,
+			t.atta_name,
+			t.atta_path,
+			t.ul_user_name,
+			t.ul_user_id,
+			t.ul_time,
+	 	</trim>
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_attachment_zgz t
+		<where>
+			<if test="id != null and id != ''">
+				and t.id = #{id}			
+			</if>
+			<if test="clId != null and clId != ''">
+				and t.cl_id = #{clId}			
+			</if>
+			<if test="attaName != null and attaName != ''">
+				and t.atta_name = #{attaName}			
+			</if>
+			<if test="attaPath != null and attaPath != ''">
+				and t.atta_path = #{attaPath}			
+			</if>
+			<if test="ulUserName != null and ulUserName != ''">
+				and t.ul_user_name = #{ulUserName}			
+			</if>
+			<if test="ulUserId != null and ulUserId != ''">
+				and t.ul_user_id = #{ulUserId}			
+			</if>
+			<if test="ulTime != null and ulTime != ''">
+				and t.ul_time = #{ulTime}			
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_attachment_zgz t
+		where t.id = #{value}
+	</select>
+	
+	<select id="getCount" parameterType="java.lang.String" resultType="int">
+		select
+			count(*)
+		from tb_attachment_zgz t
+		where t.cl_id = #{value}
+	</select>
+	
+	<select id="getByCompanyCode" parameterType="java.lang.String" resultMap="resultMap">
+		select
+			<include refid="columnSql"></include>
+		from tb_attachment_zgz t
+		where t.cl_id = #{value}
+		order by t.atta_name
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into tb_attachment_zgz
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			cl_id,
+			atta_name,
+			atta_path,
+			ul_user_name,
+			ul_user_id,
+			ul_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},
+			#{clId},
+			#{attaName},
+			#{attaPath},
+			#{ulUserName},
+			#{ulUserId},
+			#{ulTime},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into tb_attachment_zgz
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			cl_id,
+			atta_name,
+			atta_path,
+			ul_user_name,
+			ul_user_id,
+			ul_time,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.id},
+				#{item.clId},
+				#{item.attaName},
+				#{item.attaPath},
+				#{item.ulUserName},
+				#{item.ulUserId},
+				#{item.ulTime},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update tb_attachment_zgz
+		<set>
+			cl_id = #{clId},
+			atta_name = #{attaName},
+			atta_path = #{attaPath},
+			ul_user_name = #{ulUserName},
+			ul_user_id = #{ulUserId},
+			ul_time = #{ulTime},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update tb_attachment_zgz
+		<set>
+			<if test="clId != null">
+			cl_id = #{clId},
+			</if>
+			<if test="attaName != null">
+			atta_name = #{attaName},
+			</if>
+			<if test="attaPath != null">
+			atta_path = #{attaPath},
+			</if>
+			<if test="ulUserName != null">
+			ul_user_name = #{ulUserName},
+			</if>
+			<if test="ulUserId != null">
+			ul_user_id = #{ulUserId},
+			</if>
+			<if test="ulTime != null">
+			ul_time = #{ulTime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from tb_attachment_zgz where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from tb_attachment_zgz where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

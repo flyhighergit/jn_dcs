@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>选择派单信息</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="../resources/css/common/style.css" rel="stylesheet"
+	type="text/css">
+<link href="../resources/css/common/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../resources/css/common/modal.css">
+</head>
+<style type="text/css">
+
+.aui-flex-box span {
+	color: #777;
+	font-size: 0.65rem;
+}
+
+body {
+	background: #fff;
+}
+
+p {
+	margin: 5px 0px
+}
+
+a:hover, a:active {
+	background-color: #dbdbdb;
+}
+</style>
+<body>
+	<section id="preview"></section>
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="font-weight: normal;" id="settings"> 
+				<span class="icon icon-settings" style="margin-top: .4rem;"></span>设置
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">选择派单</span>
+			</div>
+			<div class="aui-navBar-item exit">退出</div>
+		</header>
+		<div class="aui-scrollView">
+
+			<div class="divHeight"></div>
+			
+			<input type="hidden" id="id">
+			<div class="divHeight"></div>
+			<div class="aui-me-list" id="content" style="display: none;">
+				
+			</div>
+
+		</div>
+
+
+		<footer class="aui-footer-button">
+
+			<input type="button" onclick="goDispatching()" value="确认选择">
+
+		</footer>
+
+	</div>
+
+	<div class="panel panel-left panel-cover theme-dark" id="panel-js-demo">
+		<div class="content-block">
+		    <!-- <p id="mineInfo">我的信息</p> -->
+		    <p id="dobind">设备绑定</p>
+		    <p id="unbind">解除绑定</p> 
+		    <p id="clearcache">清除缓存</p> 
+		    <p class="exit">退出应用</p>
+		    <!-- <p id="logout">退出登录</p> -->
+		    <!-- Click on link with "close-panel" class will close panel -->
+		    <p><a href="#" class="close-panel">关闭</a></p>
+	  	</div>
+	</div>
+
+	<script type="text/javascript"
+		src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/cordova-2.5.0.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/common.js"
+		charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/frontend/dispatching/chooseDispatching.js" charset="utf-8"></script>
+</body>
+</html>

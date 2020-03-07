@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+
+<link href="../resources/css/common/style.css" rel="stylesheet"
+	type="text/css">
+<link href="../resources/css/common/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../resources/css/common/modal.css">
+
+<style>
+.aui-flex h4 {
+	color: #444;
+}
+
+.aui-flex-box input {
+	border: none;
+}
+
+.inp-sm  input {
+	width: 100px;
+	margin-right: 5px;
+}
+</style>
+</head>
+
+<body>
+
+	<div class="aui-flexView">
+		<header class="aui-navBar  b-line">
+			<a href="javascript:;" class="aui-navBar-item" style="font-weight: normal;" id="settings"> 
+				<span class="icon icon-settings" style="margin-top: .4rem;"></span>设置
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">车牌号：<a href="javascript:;" id="licensePlate"></a></span>
+			</div>
+			<div class="aui-navBar-item" id="goHistory"> 作业记录</div>
+		</header>
+		<div class="aui-scrollView">
+
+			<div class="divHeight"></div>
+			<input type="hidden" name="poundId" id="poundId" value=""/>
+			
+			<div class="aui-palace aui-palace-one" id="scan">
+				<div class="aui-palace-grid aui-palace-grid-one">
+					<div class="aui-palace-grid-icon aui-palace-grid-icon-one">
+						<i class="icon icon-scan" style="left: 25%"></i> 
+						<span id="scantext">扫码称重</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="divHeight"></div>
+			
+			<div class="aui-flex">
+				<h4>采集状态</h4>
+			</div>
+			
+			<div  class="aui-flex b-line" id="no-state" style="display:none;">
+				<div class="aui-flex-box">
+					<p>暂无</p>
+				</div>
+			</div>
+			
+			<div class="aui-flex b-line" style="display:none;" id="empty-weight">
+				<div class="aui-radio">
+					<img src="../resources/images/list-ico/checked.png" alt="" />
+				</div>
+				<div class="aui-flex-box">
+					<p id="first-time"></p>
+				</div>
+				<div class="aui-text">第一次称重完成</div>
+			</div>
+			
+			<div class="aui-flex b-line" style="display:none;"  id="fillin-weight">
+				<div class="aui-radio">
+					<img src="../resources/images/list-ico/checked.png" alt="" />
+				</div>
+				<div class="aui-flex-box">
+					<p id="second-time"></p>
+				</div>
+				<div class="aui-text">第二次称重完成</div>
+			</div>
+
+			<div class="divHeight"></div>
+			
+			<div id="cyxx" style="display:none;">
+				<div class="aui-flex">
+					<h4>合同信息</h4>
+				</div>
+				
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>买受方</p>
+					</div>
+					<div class="aui-text" id="buyerName"></div>
+				</div>
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>售卖方</p>
+					</div>
+					<div class="aui-text" id="sellerName"></div>
+				</div>
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>合同类型</p>
+					</div>
+					<div class="aui-text" id="contractTypeCode"></div>
+				</div>
+				<div class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<p>物料种类</p>
+					</div>
+					<div class="aui-text" id="goodsTypeName"></div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<footer class="aui-footer-button" id="pass">
+			<input type="button" value="结束"  id="over"/>
+		</footer>
+	</div>
+	
+	<div class="panel panel-left panel-cover theme-dark" id="panel-js-demo">
+		<div class="content-block">
+		    <!-- <p id="mineInfo">我的信息</p> -->
+		    <p id="dobind">设备绑定</p>
+		    <p id="unbind">解除绑定</p> 
+		    <p id="clearcache">清除缓存</p> 
+		    <p id="exit">退出应用</p>
+		    <!-- <p id="logout">退出登录</p> -->
+		    <!-- Click on link with "close-panel" class will close panel -->
+		    <p><a href="#" class="close-panel">关闭</a></p>
+	  	</div>
+	</div>
+	
+	<script type="text/javascript"
+		src="../resources/js/common/zepto.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm.min.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/cordova-2.5.0.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/common/sm-extend.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../resources/js/common/common.js"
+		charset="utf-8"></script>
+	<script type="text/javascript"
+		src="../resources/js/frontend/index.js" charset="utf-8"></script>
+	
+</body>
+</html>

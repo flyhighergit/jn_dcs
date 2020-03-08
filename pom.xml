@@ -11,8 +11,6 @@
 	<groupId>com.dhcc</groupId>
 	<artifactId>dcs</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
-
 	<name>jn_dcs</name>
 	<description>JinN data collecing system(dcs) project for Spring Boot</description>
 

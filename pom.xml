@@ -247,7 +247,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>./lib/</classpathPrefix>
-              <mainClass>com.huaweicloud.sample.Application</mainClass>
+              <mainClass>com.dhcc.dcs.DCSApplication</mainClass>
             </manifest>
             <manifestEntries>
               <Class-Path>.</Class-Path>

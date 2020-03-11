@@ -13,6 +13,7 @@
 	<version>1.0.0</version>
 	<name>jn_dcs</name>
 	<description>JinN data collecing system(dcs) project for Spring Boot</description>
+	<packaging>war</packaging>
 
 
 	<properties>

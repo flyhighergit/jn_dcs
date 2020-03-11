@@ -147,11 +147,11 @@ public class MvcConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 		// 拦截的路径（全局）
 		String interceptPath = "/**";
 		// 注册拦截器
-		//InterceptorRegistration loginIR = registry.addInterceptor(new LoginInterceptor());
+		InterceptorRegistration loginIR = registry.addInterceptor(new LoginInterceptor());
 		// 配置拦截的路径
-	    //loginIR.addPathPatterns(interceptPath);
+	    loginIR.addPathPatterns(interceptPath);
 		// 配置不拦截的路径
-/*		loginIR.excludePathPatterns("/driverlogin/login");
+		loginIR.excludePathPatterns("/driverlogin/login");
 		loginIR.excludePathPatterns("/driverlogin/logincheck");
 		loginIR.excludePathPatterns("/verify/getRecord");
 		loginIR.excludePathPatterns("/frontend/signin");
@@ -159,7 +159,7 @@ public class MvcConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 		loginIR.excludePathPatterns("/resources/js");
 		loginIR.excludePathPatterns("/resources/css");
 		loginIR.excludePathPatterns("/resources/images");
-		loginIR.excludePathPatterns("/driverlogin/signinUser");*/
+		loginIR.excludePathPatterns("/driverlogin/signinUser");
 	}
 
 	@Value("${kaptcha.border}")
